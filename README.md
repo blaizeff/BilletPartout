@@ -63,7 +63,7 @@ Si vous voulez créer une page,
 5. Le Header et le Footer sont accessible avec PageFrame::Header();
 6. Pour les styles et le Js, mettez le dans public/css et public/js
 
-# Autheurs
+# Auteurs
 * Max-Antoine Clément
 * Blaize Flowers-Fontaine
 * Coralie Girard
