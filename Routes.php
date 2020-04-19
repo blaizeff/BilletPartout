@@ -5,7 +5,7 @@ Route::set('index.php',function() {
     HomeController::View('home');
 });
 Route::set('login',function() {
-    ProfileController::View('login');
+    ProfileController::LoginView('login');
 });
 
 

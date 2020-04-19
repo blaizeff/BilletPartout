@@ -1,4 +1,4 @@
-# Fonctionnement de l'application:
+# Fonctionnement de l'application
 
 ## Dossiers
 1. **controllers:** Contient les controlleurs.

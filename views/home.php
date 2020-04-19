@@ -39,7 +39,7 @@
         <div class="searchBar">
             <div style="width:34px; height:10px; display:inline-block"></div>
             <input type="text">
-            <a href=""><i class="search fas fa-search"></i></a>
+            <a href="/show/list"><i class="search fas fa-search"></i></a>
         </div>
         <div id="filterButtonContainer">
             <button class="filterButton"><i class="smallIcon fas fa-map-marker-alt"></i><span>Salle</span></button>
