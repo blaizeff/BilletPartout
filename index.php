@@ -2,6 +2,7 @@
     /* Author : Max-Antoine Clément
      * The client is always redirected to this page.
      * This page load essentials files and finaly load routes.php
+     * PATATE
      */
     session_start();
     spl_autoload_register(function ($class_name) {
