@@ -1,5 +1,5 @@
 <?php
-class html {
+class HTML {
     
 }
 ?>

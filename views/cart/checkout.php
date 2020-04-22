@@ -95,23 +95,6 @@ PageFrame::loadBundle();
 
             <h3>Paiment</h3>
 
-            <div>
-                <div class="custom-control custom-radio">
-                    <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                    <label class="custom-control-label" for="credit">Carte de crédit</label>
-                </div>
-
-                <div class="custom-control custom-radio">
-                    <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                    <label class="custom-control-label" for="debit">Carte de Débit</label>
-                </div>
-
-                <div class="custom-control custom-radio">
-                    <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                    <label class="custom-control-label" for="paypal">Paypal</label>
-                </div>
-            </div>
-
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="cc-name">Nom sur la carte</label>

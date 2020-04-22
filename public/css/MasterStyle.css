@@ -60,3 +60,10 @@ footer {
     align-items: center;
     justify-content: center;
 }
+
+.customInput {
+    background-color: #edeef6 !important;
+    border: none !important;
+    margin: 15px 0 15px 0 !important;
+    padding: 15px 20px 15px 20px !important;
+}

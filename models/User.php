@@ -1,13 +1,25 @@
 <?php
 class User
 {
-    public static function validateCredentials($username, $password)
+    public static function validateCredentials($email, $password)
     {
-        if ($username == "" || $password == "") {
+        if ($email == "" || $password == "") {
             return false;
         }
 
-        //Faire les requètes à la BD
-        return ($username == "client" && $username == "client");
+        //TODO: Faire les requètes à la BD
+        return ($email == "client" && $email == "client");
+    }
+    public static function createUser($email,$password) {
+        //TODO : faire la requète 
+        return true;
+    }
+    public static function errorMessage()
+    {
+        if (isset($_SESSION['LoginInvalid']) && $_SESSION['LoginInvalid']) {
+            unset($_SESSION['LoginInvalid']);
+            return "Erreur dans le nom d'utilisateur ou le mot de passe";
+        }
+        return "";
     }
 }

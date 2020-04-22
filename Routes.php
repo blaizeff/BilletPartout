@@ -4,17 +4,15 @@
 Route::set('index.php',function() {
     HomeController::View('home');
 });
-Route::set('login',function() {
+
+Route::set('profile/login',function() {
     ProfileController::LoginView('login');
 });
-
-
 Route::set('profile/homepage',function() {
     ProfileController::View("homepage");
 });
-
-Route::set('profile/history',function() {
-    ProfileController::View("history");
+Route::set('profile/SignUp',function() {
+    ProfileController::SignUpView("SignUp");
 });
 
 

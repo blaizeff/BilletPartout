@@ -30,7 +30,7 @@
 
         </div>
         <div class="navRight" style="text-align: right">
-            <a href="/login"><i class="profileIcon fas fa-user"></i></a>
+            <a href="/profile/login"><i class="profileIcon fas fa-user"></i></a>
         </div>
     </nav>
     <div id="searchContainer">
