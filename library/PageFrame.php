@@ -1,8 +1,9 @@
 <?php
 class PageFrame
 {
-    public static function header() {
-        echo ('<nav class="navcontainer navbar navbar-expand-sm sticky-top">
+    public static function header()
+    {
+        $html = '<nav class="navcontainer navbar navbar-expand-sm sticky-top">
         <div class="container" style="padding:0">
             <a class="navbar-brand" href="/.">
                 <!--Link to home page-->
@@ -27,14 +28,46 @@ class PageFrame
                     </li>
                     </li>
                 </ul>
-            </div>
-        </div>
-    </nav>');
+            </div>';
+        $html .= self::dropMenu();
+        $html .= " </div></nav>";
+        echo $html;
     }
+    public static function dropMenu()
+    {
+        if (isset($_SESSION["user"])) {
+            $html = ' <div class="dropdown">
+            <img src="/public/images/profileIcon.png" onclick="showDropDown()" class="dropdown-link">
+            <div id="dropdown" class="dropdown-content">
+            <a href="/profile/homepage">Profil</a>
+            <a href="/profile/logout?page=' . $_GET["url"] . '">Déconnexion</a>
+            </div></div><script>
+            function showDropDown() { document.getElementById("dropdown").classList.toggle("show"); }
+             window.onclick = function(event) {
+            if (!event.target.matches(".dropdown-link")) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains("show")) {
+                    openDropdown.classList.remove("show");
+                    }
+                }
+                } 
+            }
+            </script>';
+        } else {
+            $html = '<a href="/profile/login" class="dropdown"><img src="/public/images/profileIcon.png"  class="dropdown-link"></a>';
+        }
+
+        return $html;
+    }
+
     public static function footer()
     {
         echo ('<footer>BilletPartout &copy; 2020</footer>');
     }
+
     public static function loadBundle()
     {
         echo ('<link rel="stylesheet" href="/public/css/MasterStyle.css">
