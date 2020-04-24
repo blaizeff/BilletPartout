@@ -1,32 +1,81 @@
 <?php
 class DB
 {
-    //http://167.114.152.54/phpadmin/
-    public static $host = "167.114.152.54";
-    public static $dbName = "dbequipe22";
     public static $username = "equipe22";
     public static $password = "in8vest22";
+    public static $dsn = "mysql:host=167.114.152.54;dbname=dbequipe22;charset=utf8mb4";
+    private $pdo;
 
-    private static function connect()
+
+    public function __construct()
     {
-        $pdo = new PDO("mysql:host=".self::$host.";dbname=".self::$dbName.";charset=utf8", self::$username, self::$password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        return $pdo;
+        $this->pdo = new PDO($this::$dsn, $this::$username, $this::$password);
     }
 
-    /*IMPORTANT: Instead querry, we need to use methods that call procedures
-        EXAMPLE:
-        public static function createUser($firstName,$lastName,$password) {
-            
-        }
-        */
-
-    public static function query($query, $params = array())
+    public function get($table, $id)
     {
-        $statement = self::connect()->prepare($query);
-        $statement->execute($params);
-        $data = $statement->fetchAll();
-        return $data;
+        $stm = $this->pdo->prepare('SELECT * FROM ' . $table . ' WHERE `id` = :id');
+        $stm->bindValue(':id', $id);
+        $success = $stm->execute();
+        $row = $stm->fetch(PDO::FETCH_ASSOC);
+        return ($success) ? $row : [];
+    }
+
+    public function getWhere($table,$column,$value)
+    {
+        $stm = $this->pdo->prepare('SELECT * FROM ' . $table . ' WHERE  '.$column.'= :value');
+        $stm->bindValue(':value', $value);
+        $success = $stm->execute();
+        $row = $stm->fetch(PDO::FETCH_ASSOC);
+        return ($success) ? $row : [];
+    }
+
+    public function selectAll($table)
+    {
+        $stm = $this->pdo->prepare('SELECT * FROM ' . $table);
+        $success = $stm->execute();
+        $rows = $stm->fetchAll(PDO::FETCH_ASSOC);
+        return ($success) ? $rows : [];
+    }
+
+    public function create($table, $data)
+    {
+        $columns = array_keys($data);
+        $columnSql = implode(',', $columns);
+        $bindingSql = ':' . implode(',:', $columns);
+        $sql = "INSERT INTO $table ($columnSql) VALUES ($bindingSql)";
+        $stm = $this->pdo->prepare($sql);
+        foreach ($data as $key => $value) {
+            $stm->bindValue(':' . $key, $value);
+        }
+        $status = $stm->execute();
+        return ($status) ? $this->pdo->lastInsertId() : false;
+    }
+
+    public function update($table, $id, $data)
+    {
+        if (isset($data['id']))
+            unset($data['id']);
+        $columns = array_keys($data);
+        $columns = array_map(function ($item) {
+            return $item . '=:' . $item;
+        }, $columns);
+        $bindingSql = implode(',', $columns);
+        $sql = "UPDATE $table SET $bindingSql WHERE `id` = :id";
+        $stm = $this->pdo->prepare($sql);
+        $data['id'] = $id;
+        foreach ($data as $key => $value) {
+            $stm->bindValue(':' . $key, $value);
+        }
+        $status = $stm->execute();
+        return $status;
+    }
+
+    public function delete($table, $id)
+    {
+        $stm = $this->pdo->prepare('DELETE FROM ' . $table . ' WHERE id = :id');
+        $stm->bindParam(':id', $id);
+        $success = $stm->execute();
+        return ($success);
     }
 }
-?>

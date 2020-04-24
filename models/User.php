@@ -1,24 +1,44 @@
 <?php
+include_once 'DB.php';
 class User
 {
-    public static function validateCredentials($email, $password)
+    private $DB;
+    private $table="Clients";
+    public function __construct()
     {
-        if ($email == "" || $password == "") {
-            return false;
-        }
-
-        //TODO: Faire les requètes à la BD
-        return ($email == "client" && $email == "client");
+        $this->DB = new DB();
     }
-    public static function createUser($email,$password) {
-        //TODO : faire la requète 
+    
+    public function validateCredentials($email, $password)
+    {
+        $result = $this->DB->getWhere($this->table,"Courriel",$email);
+        return $result != null;
+    }
+
+    public function emailExist($email){
+        $result = $this->DB->getWhere($this->table,"Courriel",$email);
+        return $result != null;
+    }
+    public function createUser($email,$password) {
+        $data = [
+            "courriel"=>$email,
+            "mot_de_passe"=>$password
+        ];
+        $result = $this->DB->create($this->table,$data);
+        $_SESSION['LoginInvalid'] = $result;
+        return $result;
+    }
+    
+    public function updateUser($data) {
+        
         return true;
     }
     public static function errorMessage()
     {
-        if (isset($_SESSION['LoginInvalid']) && $_SESSION['LoginInvalid']) {
+        if (isset($_SESSION['LoginInvalid'])) {
+            $temp = $_SESSION['LoginInvalid'];
             unset($_SESSION['LoginInvalid']);
-            return "Erreur dans le nom d'utilisateur ou le mot de passe";
+            return $temp;
         }
         return "";
     }
