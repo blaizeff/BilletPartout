@@ -6,8 +6,8 @@
     ?>
     <form id="form" class="container" method="POST" action="">
         <div class="row align-items-center justify-content-center no-gutters ">
-            <div class="col-12 col-md-5 col-lg-4 py-8 py-md-11" style="padding-top:240px">
-
+            <div class="col-12 col-md-5 col-lg-5 py-8 py-md-11 card" style="margin-top:240px;">
+            <div style="padding:50px 30px 50px 30px">
                 <h1 class="title">Se connecter</h1>
                 <div style="color:red;text-align:center"><?php echo User::errorMessage(); ?></div>
                 <input type="text" class="form-control form-control-lg customInput" name="email" placeholder="Entrez votre adresse courriel">
@@ -26,6 +26,7 @@
                 <div class="text-center">
                     Première visite. <a href="SignUp" style="color:#21c87a">Créer un compte</a>.
                 </div>
+            </div>
             </div>
 
         </div>

@@ -9,12 +9,14 @@ Route::set('profile/login',function() {
     ProfileController::LoginView('login');
 });
 Route::set('profile/homepage',function() {
-    ProfileController::View("homepage");
+    ProfileController::HomepageView("homepage");
 });
 Route::set('profile/SignUp',function() {
     ProfileController::SignUpView("SignUp");
 });
-
+Route::set('profile/admin',function() {
+    ProfileController::AdminView("admin");
+});
 
 Route::set('cart/checkout',function() {
     CartController::View('checkout');

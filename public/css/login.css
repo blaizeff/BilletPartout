@@ -1,4 +1,16 @@
-.title {
-    text-align: center;
-    font-weight: 600;
-}
+    .title {
+        text-align: center;
+        font-weight: 600;
+    }
+    
+    .loginInput {
+        margin: 15px 0 15px 0 !important;
+    }
+    
+    body {
+        background-image: url("/public/images/bgold.png");
+        background-repeat: no-repeat;
+        background-position: top right;
+        background-color: #f8f9fa;
+        background-size: 115% 115%;
+    }
