@@ -21,27 +21,27 @@ PageFrame::loadBundle();
         <form class="row">
             <div class="col-12 col-md-6 form-group">
                 <label>Prénom</label>
-                <input type="text" class="form-control customInput">
+                <input type="text" class="form-control">
             </div>
 
             <div class="col-12 col-md-6 form-group">
                 <label>Nom</label>
-                <input type="text" class="form-control customInput">
+                <input type="text" class="form-control">
             </div>
 
             <div class="col-12 form-group">
                 <label class="mb-1">Adresse courriel</label>
-                <input type="email" class="form-control customInput">
+                <input type="email" class="form-control">
             </div>
 
             <div class="col-12 col-md-6 form-group">
                 <label>No. Téléphone</label>
-                <input type="text" class="form-control customInput">
+                <input type="text" class="form-control">
             </div>
 
             <div class="col-12 col-md-6 form-group">
                 <label>Date de naissance</label>
-                <input type="text" class="form-control customInput">
+                <input type="text" class="form-control">
             </div>
 
             <div class="col-12 form-group">
