@@ -2,3 +2,7 @@
     text-align: center;
     font-weight: 600;
 }
+
+.loginInput {
+    margin: 15px 0 15px 0 !important;
+}
