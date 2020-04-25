@@ -4,7 +4,7 @@ PageFrame::loadBundle();
 ?>
 <style>
     .info {
-        background-color: #eeeeee;
+        background-color: #edeef6 ;
         border-radius: 10px;
         padding: 20px
     }
@@ -12,63 +12,70 @@ PageFrame::loadBundle();
     body {
         background-color: #f8f9fa;
     }
+    hr{
+        border: none;
+    height: 1px;
+    color: #999; 
+    background-color: #999;
+    margin-bottom: 50px;
+    margin-top: 20px
+    }
 </style>
 
 <div class="container">
-    <div class="col-md-12" style="padding-top:100px">
+    <div class="col-md-12 article" >
         <h2>Profile</h2>
 
         <form class="row">
             <div class="col-12 col-md-6 form-group">
                 <label>Prénom</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control custominput">
             </div>
 
             <div class="col-12 col-md-6 form-group">
                 <label>Nom</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control custominput">
             </div>
 
             <div class="col-12 form-group">
                 <label class="mb-1">Adresse courriel</label>
-                <input type="email" class="form-control">
+                <input type="email" class="form-control custominput">
             </div>
 
             <div class="col-12 col-md-6 form-group">
                 <label>No. Téléphone</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control custominput">
             </div>
 
             <div class="col-12 col-md-6 form-group">
                 <label>Date de naissance</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control custominput">
             </div>
 
-            <div class="col-12 form-group">
+            <div class="col-12 ">
                 <button type="submit" class="btn btn-primary green">Mettre à jour</button>
             </div>
         </form>
 
-        <hr>
+        <hr >
 
         <h2>Mot de passe</h2>
         <form class="row">
             <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label>Mot de passe</label>
-                    <input type="password" class="form-control">
+                    <input type="password" class="form-control custominput">
                 </div>
 
                 <div class="form-group">
                     <label>Nouveau mot de passe</label>
-                    <input type="password" class="form-control">
+                    <input type="password" class="form-control custominput">
                 </div>
 
                 <div class="form-group">
                     <label>Confirmer votre mot de passe</label>
-                    <input type="password" class="form-control">
+                    <input type="password" class="form-control custominput">
                 </div>
-
                 <button type="submit" class="btn btn-primary green">Mettre à jour</button>
             </div>
 
@@ -85,30 +92,31 @@ PageFrame::loadBundle();
                 </div>
             </div>
         </form>
+
         <hr>
 
         <h2>Paiement</h2>
         <form class="row col-md-12">
             <div class="row">
-                <div class="col-md-6 mb-3 form-group">
+                <div class="col-md-6 mb-3 form-group ">
                     <label for="firstName">Prénom</label>
-                    <input type="text" class="form-control" id="firstName" required>
+                    <input type="text" class="form-control custominput" id="firstName" required>
                 </div>
 
                 <div class="col-md-6 mb-3 form-group">
                     <label for="lastName">Nom</label>
-                    <input type="text" class="form-control" id="lastName" required>
+                    <input type="text" class="form-control custominput" id="lastName" required>
                 </div>
 
 
                 <div class="col-md-12 mb-3 form-group">
                     <label for="address">Addresse</label>
-                    <input type="text" class="form-control" id="address" placeholder="Adresse, Boîte postale ou no. Appartement" required>
+                    <input type="text" class="form-control custominput" id="address" placeholder="Adresse, Boîte postale ou no. Appartement" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label for="zip">Code Postale</label>
-                    <input type="text" class="form-control" id="zip" placeholder="A1A 1A1" required>
+                    <input type="text" class="form-control custominput" id="zip" placeholder="A1A 1A1" required>
                 </div>
 
             </div>
@@ -116,25 +124,26 @@ PageFrame::loadBundle();
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="cc-name">Nom sur la carte</label>
-                    <input type="text" class="form-control" id="cc-name" required>
+                    <input type="text" class="form-control custominput" id="cc-name" required>
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label for="cc-number">Numéro de la carte</label>
-                    <input type="text" class="form-control" id="cc-number" required>
+                    <input type="text" class="form-control custominput" id="cc-number" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label for="cc-expiration">Date d'expiration</label>
-                    <input type="text" class="form-control" id="cc-expiration" required>
+                    <input type="text" class="form-control custominput" id="cc-expiration" required>
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="cc-expiration">CVV</label>
-                    <input type="text" class="form-control" id="cc-cvv" required>
+                    <input type="text" class="form-control custominput" id="cc-cvv" required>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary green">Mettre à jour</button>
         </form>
+        
         <hr>
         <h2>Historique d'achat</h2>
 
