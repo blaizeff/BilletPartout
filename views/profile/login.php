@@ -11,12 +11,17 @@
                 <h1 class="title">Se connecter</h1>
                 <div style="color:red;text-align:center"><?php echo User::errorMessage(); ?></div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <input type="email" class="form-control form-control-lg customInput loginInput" name="email" placeholder="Entrez votre adresse courriel" required>
                 <input type="password" class="form-control form-control-lg customInput loginInput" name="password" placeholder="Entrez votre mot de passe" required>
 =======
                 <input type="text" class="form-control form-control-lg customInput" name="email" placeholder="Entrez votre adresse courriel">
                 <input type="password" class="form-control form-control-lg customInput" name="password" placeholder="Entrez votre mot de passe">
 >>>>>>> fbf2fb03c586af0dd4cc3fb27bf310ec9cc1bf58
+=======
+                <input type="email" class="form-control form-control-lg customInput" name="email" placeholder="Entrez votre adresse courriel" required>
+                <input type="password" class="form-control form-control-lg customInput" name="password" placeholder="Entrez votre mot de passe" required>
+>>>>>>> parent of 148d76d... css change
 
                 <div class="form-group d-flex justify-content-between">
                     <div class="custom-control custom-checkbox">
