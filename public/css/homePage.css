@@ -1,3 +1,4 @@
+        @import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
         span {
             font-family: 'Ubuntu', sans-serif;
             font-weight: 700;
@@ -11,18 +12,8 @@
             padding: 0;
             height: 100%;
             font-family: 'Ubuntu', sans-serif;
-            background-image: url(/public/images/bg.png);
-            background-repeat: no-repeat;
-            background-size: 100%;
-            background-attachment: local;
         }
-        #background{
-            width: 100%;
-            z-index: -50;
-            position: relative;
-            top:0;
-            left:0;
-        }
+        
         button:focus,
         input:focus,
         textarea:focus,
@@ -38,22 +29,10 @@
         svg {
             transform: scale(1.1);
         }
-        input::placeholder{
-            color:rgb(150, 150, 150);
-        }
         
-<<<<<<< HEAD
         header {
             background: #21c87a;
             padding: 0;
-=======
-        #homeHeader {
-            /*
-            background: rgb(13, 116, 29);
-            background: linear-gradient(137deg, rgba(13, 116, 29, 1) 0%, rgba(12, 148, 31, 1) 8%, rgba(12, 174, 33, 1) 18%, rgba(12, 201, 35, 1) 35%, rgba(12, 228, 37, 1) 46%, rgba(12, 228, 37, 1) 69%, rgba(10, 202, 34, 1) 86%, rgba(5, 129, 26, 1) 100%);
-            */
-            padding-bottom: 160px;
->>>>>>> fbf2fb03c586af0dd4cc3fb27bf310ec9cc1bf58
         }
         
         #searchContainer {
@@ -63,21 +42,23 @@
         
         .searchBar {
             position: relative;
-            left:20px;
         }
         
         .search {
             position: relative;
             right: 45px;
-            color: #21c87a;
+            color: green;
             transition: all .2s ease-in-out;
             padding: 9px;
             border-radius: 1em;
-            cursor:pointer;
         }
         
         .search:hover {
             background-color: #e0e0e0;
+            color: #333;
+        }
+        
+        input::placeholder {
             color: #333;
         }
         
@@ -90,13 +71,11 @@
             font-size: 1.1em;
             line-height: 18px;
             border-radius: 50px;
-            border: 1px solid #21c87a;
+            border: 1px solid green;
             transition: all .2s ease-in-out;
             box-shadow: 0 1px 10px rgba(0, 0, 0, .2);
         }
-        .searchBar button{
-            display: none;
-        }
+        
         .searchBar input:hover {
             border-color: #333;
         }
@@ -104,7 +83,7 @@
         .filterButton {
             border-radius: 1em;
             background-color: white;
-            border: 1px solid #21c87a;
+            border: 1px solid green;
             width: 100px;
             height: 30px;
             box-shadow: 0 1px 10px rgba(0, 0, 0, .2);
@@ -115,18 +94,17 @@
             margin: 0;
             color: black;
         }
+        
         h2 {
             margin-top: 5px;
             margin-bottom: 0;
-            font-weight: 500;
-            color: #21c87a;
+            color: #0cb922;
         }
         
         h3 {
             margin-top: 5px;
             margin-bottom: 0;
             font-size: 1em;
-            font-weight: 500;
             color: #595959;
         }
         
@@ -154,7 +132,7 @@
             width: 200px;
             height: 180px;
             overflow: hidden;
-            border-radius: 10px;
+            border-radius: 15px;
             box-shadow: 0 1px 10px rgba(0, 0, 0, .5);
             display: inline-block;
             margin-right: 15px;
@@ -166,14 +144,15 @@
         }
         
         #extraFeatured h3 {
-            font-size: 0.9em;
             margin-top: 5px;
+            font-size: 0.9em;
         }
         
         footer {
+            box-shadow: 0 1px 10px rgba(0, 0, 0, .5);
             height: 100px;
             margin-top: 50px;
-            background-color: white;
+            background-color: #eaeaea;
             text-align: center;
             display: flex;
             align-items: center;
@@ -185,7 +164,7 @@
             width: 150px;
             height: 30px;
             border: none;
-            background-color: #21c87a;
+            background-color: #0cb922;
             border-radius: 5px;
             color: white;
             font-size: 17px;
@@ -196,7 +175,7 @@
         }
         
         #featuredSection button:hover {
-            background-color: #21c87a;
+            background-color: #0ca020;
         }
         
         .profileIcon {
@@ -205,7 +184,6 @@
             transition: all .2s ease-in-out;
             padding: 15px;
             border-radius: 1em;
-            color: white !important;
             background-color: none;
         }
         
