@@ -1,4 +1,28 @@
-@import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../font/Ubuntu-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Ubuntu';
+    src: url('../font/Ubuntu-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Ubuntu';
+    src: url('../font/Ubuntu-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Ubuntu';
+    src: url('../font/Ubuntu-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+
 html,
 body {
     overflow-x: hidden;
@@ -10,51 +34,31 @@ body {
     flex-direction: column;
 }
 
-input:focus,
-select:focus,
-button:focus {
-    box-shadow: 0 0 0 .2rem rgba(1, 189, 29, .25) !important;
-    border-color: #01bd1d !important;
-}
-
-.navcontainer {
-    background-color: #01bd1d;
-    margin: 0;
-    box-shadow: 0 1px 10px rgba(150, 150, 150, .5);
-}
-
 .green {
-    background-color: #01bd1d !important;
-    border: #01bd1d !important;
+    background-color: #21c87a !important;
+    border: #21c87a !important;
     color: white !important;
 }
 
-.nav-link {
-    color: white;
-    font-size: 1.2em;
+.icon{
+    font-size: 40px;
+    margin-top:25px;
+    margin-right:20px;
+    vertical-align: top;
+    color:#21c87a;
+    text-shadow: 0 0 10px rgba(0, 0, 0, .5);
 }
-
-.nav-link:hover {
-    background-color: #ddd;
-}
-
-.nav-searchbar {
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 500;
-    margin-bottom: 5px;
-    padding: 10px 45px 10px 24px;
-    font-size: 1em;
-    line-height: 18px;
-    border-radius: 50px;
-    border: 0;
+.smallIcon{
+    font-size: 15px;
+    margin-right:15px;
+    color:#333;
 }
 
 footer {
     margin-top: auto;
     width: 100%;
-    box-shadow: 0 1px 10px rgba(0, 0, 0, .5);
     height: 50px;
-    background-color: #eaeaea;
+    background-color: #f8f9fa;
     text-align: center;
     display: flex;
     align-items: center;
@@ -67,33 +71,86 @@ footer {
     border: none !important;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+.profileIcon{
+    margin: 5px 15px 0 0;
+    font-size: 32px;
+    padding:15px;
+    border-radius: 1em;
+    color: #21c87a;
 }
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.show {
-    display: block;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
+header a{
     text-decoration: none;
-    display: block;
+    color: white;
+}
+header{
+    position: sticky;
+    top:0;
+    left:0;
+    background: white;
+    padding: 0;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, .2);
+    z-index:1000;
+}
+.navSearchBar{
+    margin: 0 100px 0 50px;
+    display:inline-block;
+}
+.navButton{
+    margin-right:20px;
+    font-size:1.2em;
+    color: rgb(95, 95, 95);
+}
+.navButton:hover{
+    color: #21c87a;
+}
+.navSearch{
+    cursor:pointer;
+    position:relative;
+    right:45px;
+    color: #21c87a;
+    transition: all .2s ease-in-out;
+    padding:9px;
+    border-radius: 1em;
+}
+.navSearch:hover{
+    color: #21c87a;
+    background-color:rgb(241, 244, 248);
+}
+#submit{
+    display:none;
+}
+.navSearchBar input{
+    font-family: 'Ubuntu', sans-serif; 
+    background-color: white;
+    font-weight: 500;
+    width:800px;
+    padding: 12px 45px 12px 24px;
+    font-size: 0.9em;
+    line-height: 18px;
+    border-radius: 5px;
+    border: 2px solid rgb(241, 244, 248);
+    transition: all .2s ease-in-out;
+    outline: none;
+}
+.navSearchBar input:focus{
+    background-color: rgba(255, 255, 255, 1);
+    border: 2px solid rgb(220, 220, 220);
+}
+.profileIcon:hover{
+    transition: all .2s ease-in-out;
+    background-color: rgba(255, 255, 255, .2);
+    color:#333;
 }
 
-.dropdown-link {
-    width: 38px;
-    height: 38px;
+input::placeholder{
+    color:rgb(167, 163, 163);
+}
+nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+nav img{
+    margin-left:20px;
+    margin-right:10px;
 }
