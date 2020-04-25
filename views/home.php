@@ -58,7 +58,7 @@
             <h2 style="color:#333">En Vedette</h2>
             <section>
                 <a href="">
-                    <img style="cursor: pointer" width="100%" src="/public/images/show/sample1.jpg">
+                    <img style="cursor: pointer" width="100%" src="/public/images/show/show1.jpg">
                 </a>
                 <div style="display: inline-block; text-align: left; width: 50%; padding-left:15px;">
                     <h2>Yannick de Martino</h2>
@@ -72,7 +72,7 @@
             <div id="extraFeatured">
                 <section>
                     <a href="">
-                        <img style="cursor: pointer" width="100%" height="60%" src="public/images/show/sample2.jpg">
+                        <img style="cursor: pointer" width="100%" height="60%" src="public/images/show/show2.jpg">
                     </a>
                     <div style="display: inline-block; text-align: left; width: 50%; padding-left:15px;">
                         <h2>Calgary Stampeders</h2>
@@ -81,7 +81,7 @@
                 </section>
                 <section>
                     <a href="">
-                        <img style="cursor: pointer" width="100%" height="60%" src="/public/images/show/sample3.jpg">
+                        <img style="cursor: pointer" width="100%" height="60%" src="/public/images/show/show3.jpg">
                     </a>
                     <div style="display: inline-block; text-align: left; width: 50%; padding-left:15px;">
                         <h2>The Weeknd</h2>
@@ -90,7 +90,7 @@
                 </section>
                 <section>
                     <a href="">
-                        <img style="cursor: pointer" width="100%" height="60%" src="/public/images/show/sample4.jpg">
+                        <img style="cursor: pointer" width="100%" height="60%" src="/public/images/show/show4.jpg">
                     </a>
                     <div style="display: inline-block; text-align: left; width: 50%; padding-left:15px;">
                         <h2>Justin Bieber</h2>

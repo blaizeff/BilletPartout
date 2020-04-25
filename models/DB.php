@@ -78,4 +78,12 @@ class DB
         $success = $stm->execute();
         return ($success);
     }
+
+    public function selectShow() {
+        $stm = $this->pdo->prepare('Select s.idSpectacle,r.idRepresentation,s.nomSpectacle,s.nomArtiste,sa.Adresse,r.Date,s.description from Spectacles s join Representation r on s.idSpectacle=r.idSpectacle join Salles sa on r.idSalle=sa.idSalle');
+        //$stm->bindValue(':value', $value);
+        $success = $stm->execute();
+        $row = $stm->fetchAll(PDO::FETCH_ASSOC);
+        return ($success) ? $row : [];
+    }
 }

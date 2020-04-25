@@ -21,11 +21,12 @@ class ProfileController extends Controller
             $password = $_POST['password'];
 
 
-            if (!parent::validCharacter($email) && !parent::validCharacter($password)) {
+            if (!Components::validCharacter($email) && !Components::validCharacter($password)) {
                 $_SESSION['LoginInvalid'] = "Votre nom d'utilisateur ou votre mot de passe est invalide";
             } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $_SESSION['LoginInvalid'] = "Votre adresse courriel est invalide";
             } else if ($user->validateCredentials($email, $password)) {
+                //Crer la session user
                 $_SESSION["user"]=$user->getFromEmail($email);
                 if (UserAcess::isAdmin()) {
                     header('location: admin');
@@ -52,13 +53,14 @@ class ProfileController extends Controller
             $user = new User();
 
 
-            if (!parent::validCharacter($email) && !parent::validCharacter($password)) {
+            if (!Components::validCharacter($email) && !Components::validCharacter($password)) {
                 $_SESSION['LoginInvalid'] = "Votre nom d'utilisateur ou votre mot de passe est invalide";
             } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $_SESSION['LoginInvalid'] = "Votre adresse courriel est invalide";
             } else if ($user->emailExist($email)) {
                 $_SESSION['LoginInvalid'] = "Cette adresse Courriel existe déjà";
             } else if ($user->createUser($email, $password)) {
+                //Crer la session user
                 $_SESSION["user"]=$user->getFromEmail($email);
                 header('location: homepage');
             } else {
