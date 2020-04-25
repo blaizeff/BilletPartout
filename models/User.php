@@ -3,45 +3,34 @@ include_once 'DB.php';
 class User
 {
     private $DB;
-    private $table = "Clients";
+    private $table="Clients";
     public function __construct()
     {
         $this->DB = new DB();
     }
-
-    public function get($id) {
-        return $this->DB->get($this->table,$id);
-    }
-    public function getFromEmail($email)
-    {
-        return $this->DB->getWhere($this->table, "Courriel", $email);
-    }
-
+    
     public function validateCredentials($email, $password)
     {
-        $result = $this->getFromEmail($email);
-        return password_verify($password, $result['mot_de_passe']);
-    }
-
-    public function emailExist($email)
-    {
-        $result = $this->getFromEmail($email);
+        $result = $this->DB->getWhere($this->table,"Courriel",$email);
         return $result != null;
     }
-    public function createUser($email, $password)
-    {
+
+    public function emailExist($email){
+        $result = $this->DB->getWhere($this->table,"Courriel",$email);
+        return $result != null;
+    }
+    public function createUser($email,$password) {
         $data = [
-            "courriel" => $email,
-            "mot_de_passe" => password_hash($password, PASSWORD_DEFAULT)
+            "courriel"=>$email,
+            "mot_de_passe"=>$password
         ];
-        $result = $this->DB->create($this->table, $data);
+        $result = $this->DB->create($this->table,$data);
         $_SESSION['LoginInvalid'] = $result;
         return $result;
     }
-
-    public function updateUser($data)
-    {
-
+    
+    public function updateUser($data) {
+        
         return true;
     }
     public static function errorMessage()
