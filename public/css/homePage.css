@@ -42,18 +42,12 @@
             color:rgb(150, 150, 150);
         }
         
-<<<<<<< HEAD
-        header {
-            background: #21c87a;
-            padding: 0;
-=======
         #homeHeader {
             /*
             background: rgb(13, 116, 29);
             background: linear-gradient(137deg, rgba(13, 116, 29, 1) 0%, rgba(12, 148, 31, 1) 8%, rgba(12, 174, 33, 1) 18%, rgba(12, 201, 35, 1) 35%, rgba(12, 228, 37, 1) 46%, rgba(12, 228, 37, 1) 69%, rgba(10, 202, 34, 1) 86%, rgba(5, 129, 26, 1) 100%);
             */
             padding-bottom: 160px;
->>>>>>> fbf2fb03c586af0dd4cc3fb27bf310ec9cc1bf58
         }
         
         #searchContainer {
