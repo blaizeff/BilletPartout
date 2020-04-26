@@ -10,7 +10,7 @@
             <div class="col-12 col-md-5 col-lg-5 py-8 py-md-11 card" style="margin-top:240px">
                 <div style="padding:50px 30px 50px 30px">
                     <h1 class="title">Créer un compte</h1>
-                    <div style="color:red;text-align:center"><?php echo User::errorMessage(); ?></div>
+                    <div style="color:red;text-align:center"><?php echo User::errorMessage($data); ?></div>
                     <input type="text" class="form-control form-control-lg customInput" name="email" placeholder="Entrez votre adresse courriel">
                     <input type="password" class="form-control form-control-lg customInput loginInput" name="password" placeholder="Entrez votre mot de passe">
                     <input type="password" class="form-control form-control-lg customInput loginInput" name="confirm" placeholder="Confirmez votre mot de passe">

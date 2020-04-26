@@ -11,7 +11,8 @@ class Components
             $Date = explode("-", explode(" ", $value['Date'])[0]);
             $month = self::frenchMonth($Date[1]);
             $day = $Date[2];
-            $Hour = explode(" ", $value['Date'])[1];
+            $Hour = explode(":", explode(" ", $value['Date'])[1])[0];
+            $min =  explode(":", explode(" ", $value['Date'])[1])[1];
             $Desc = $value['description'];
             $IdShow = $value["IdShow"];
             echo "<tr><td>
@@ -20,7 +21,7 @@ class Components
                                 <img class=\"showImage\" src=\"/public/images/show/show$IdShow.jpg\">
                                 <div style=\"margin-left:15px\">
                                     <h2>$day $month</h2>
-                                    <h3>$Hour</h3>
+                                    <h3>" . $Hour . "h" . $min . "</h3>
                                 </div>
                             </div>
                             <div style=\"display:grid; grid-template-columns:3fr 1fr;\">
@@ -37,6 +38,36 @@ class Components
                             </div>
                     </td></tr>";
         }
+    }
+
+    public static function adminList($data) {
+        
+        $html = "<table>";
+        foreach ($data as $value) {
+            $IdShow = $value["IdShow"];
+            $Name = $value['Title'];
+            $Artist = $value['Artist'];
+            $category = $value["idCat"];
+            $html .="<tr><td>
+                        <div class=\"listingContainer\">
+                            <div style=\"display:grid; grid-template-columns:1fr 1fr;\">
+                            <img class=\"showImage\" src=\"/public/images/show/show$IdShow.jpg\">
+                        </div>
+                        <div style=\"display:grid; grid-template-columns:3fr 1fr;\">
+                            <div style=\"position:relative;\">
+                                <h2>$Name</h2>
+                                <h3>$Artist &bull; $category</h3>
+                                <i class=\"expand fas fa-chevron-down\"></i>
+                            </div>
+                                <div style=\"text-align:right; display:flex; justify-content:flex-end;align-items:center;\">
+                                    <a href=\"/admin/details?id=$IdShow\"><div class=\"next\">Modifier</div></a>
+                                </div>
+                            </div>
+                        </div>
+                    </td></tr>";
+        }
+        $html .= "</table>";
+        echo $html;
     }
     public static function frenchMonth($intMonth)
     {
@@ -69,6 +100,46 @@ class Components
 
         foreach ($charInvalid as $char) {
             if (strpos($input, $char) === true) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    //Note: the input[file] need to have an id named image
+    public static function uploadImage($imageFolder, $upload_file_name )
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (is_uploaded_file($_FILES['image']['tmp_name'])) {
+                //First, Validate the file name
+                if (empty($_FILES['image']['name'])) {
+                    exit;
+                }
+
+               
+                //Too long file name?
+                if (strlen($upload_file_name) > 100) {
+                    exit;
+                }
+
+                //replace any non-alpha-numeric cracters in th file name
+                $upload_file_name = preg_replace("/[^A-Za-z0-9 \.\-_]/", '', $upload_file_name);
+
+                //set a limit to the file upload size
+                if ($_FILES['image']['size'] > 1000000) {
+                    exit;
+                }
+
+                //Save the file
+                $dest =__DIR__ .'/../public/images/'.$imageFolder."/". $upload_file_name;
+                if (move_uploaded_file($_FILES['image']['tmp_name'], $dest)) {
+                }
+            }
+        }
+    }
+    public static function verifyPostValue($array) {
+        foreach ($array as $item) {
+            if (!(isset($_POST[$item]) && $_POST[$item]!='')) {
                 return false;
             }
         }

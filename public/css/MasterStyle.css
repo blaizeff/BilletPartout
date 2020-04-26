@@ -75,6 +75,16 @@ footer {
     padding: 15px 20px 15px 20px !important;
 }
 
+.customSelect {
+    background-color: #edeef6 !important;
+    border: none !important;
+}
+
+.customInput:focus,
+.customSelect:focus {
+    box-shadow: 0 0 0 .2rem rgba(33, 200, 122, .25);
+}
+
 .profileIcon {
     margin: 5px 15px 0 0;
     font-size: 32px;
@@ -178,4 +188,13 @@ nav img {
     margin-top: 50px;
     margin-bottom: 50px;
     border: 2px solid rgb(233, 237, 241);
+}
+
+.preview-image {
+    display: block;
+    border-radius: 5px;
+    width: 30g;
+    height: auto;
+    overflow: hidden;
+    object-fit: cover;
 }

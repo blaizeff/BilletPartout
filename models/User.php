@@ -44,11 +44,11 @@ class User
 
         return true;
     }
-    public static function errorMessage()
+    public static function errorMessage($data)
     {
-        if (isset($_SESSION['LoginInvalid'])) {
-            $temp = $_SESSION['LoginInvalid'];
-            unset($_SESSION['LoginInvalid']);
+        if (isset($data) && array_key_exists('LoginInvalid',$data)) {
+            $temp = $data['LoginInvalid'];
+            $data['LoginInvalid']='';
             return $temp;
         }
         return "";

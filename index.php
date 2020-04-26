@@ -2,9 +2,9 @@
     /* Author : Max-Antoine Clément
      * The client is always redirected to this page.
      * This page load essentials files and finaly load routes.php
-     * PATATE
      */
     session_start();
+    //Autoload 
     spl_autoload_register(function ($class_name) {
         if (file_exists('./library/' . $class_name . '.php')) {
             require_once './library/' . $class_name . '.php';

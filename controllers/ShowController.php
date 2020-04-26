@@ -9,7 +9,7 @@ class ShowController extends Controller {
     public static function ListView($page) {
         //[GET]
         $events = new Show();
-        $_SESSION["listShow"] = $events->getAllShow();
+        $data["listShow"] = $events->getAllShow();
         require_once("./Views/Show/" . $page . ".php");
     }
 }

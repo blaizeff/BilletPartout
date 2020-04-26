@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="/public/css/list.css">
     
     <div id="contentContainer">
-        <h1><?php echo count($_SESSION["listShow"]);?> résulats trouvés <?php 
+        <h1><?php echo count($data["listShow"]);?> résulats trouvés <?php 
         if (isset($_GET['search']) && $_GET["search"] != "") {
             echo "pour \"".$_GET['search']."\"";
         }?></h1>
         <table>
             <?php
-            Components::showList($_SESSION["listShow"]);
+            Components::showList($data["listShow"]);
             ?>
         </table>
     </div>

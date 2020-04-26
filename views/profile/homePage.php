@@ -1,6 +1,6 @@
 <?php
-PageFrame::header();
 PageFrame::loadBundle();
+PageFrame::header();
 ?>
 <style>
     .info {
@@ -28,7 +28,7 @@ PageFrame::loadBundle();
 
         <form class="row">
             <div class="col-12 col-md-6 form-group">
-                <label>Prénom</label>
+                <label>Prénom </label>
                 <input type="text" class="form-control custominput">
             </div>
 

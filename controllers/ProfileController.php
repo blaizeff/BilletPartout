@@ -11,30 +11,28 @@ class ProfileController extends Controller
     }
     public static function LoginView($viewName)
     {
+        $data = [];
+
         //[POST]
-        if (
-            isset($_POST['email']) && $_POST['email'] != '' &&
-            isset($_POST['password']) && $_POST['password'] != ''
-        ) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && Components::verifyPostValue(["email","password"])) {
             $user = new User();
             $email = $_POST['email'];
             $password = $_POST['password'];
 
-
             if (!Components::validCharacter($email) && !Components::validCharacter($password)) {
-                $_SESSION['LoginInvalid'] = "Votre nom d'utilisateur ou votre mot de passe est invalide";
+                $data['LoginInvalid'] = "Votre nom d'utilisateur ou votre mot de passe est invalide";
             } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $_SESSION['LoginInvalid'] = "Votre adresse courriel est invalide";
+                $data['LoginInvalid'] = "Votre adresse courriel est invalide";
             } else if ($user->validateCredentials($email, $password)) {
                 //Crer la session user
                 $_SESSION["user"]=$user->getFromEmail($email);
                 if (UserAcess::isAdmin()) {
-                    header('location: admin');
+                    header('location: /admin/');
                 } else {
                     header('location: homepage');
                 }
             } else {
-                $_SESSION['LoginInvalid'] = "Votre mot de passe est invalide";
+                $data['LoginInvalid'] = "Votre mot de passe est invalide";
             }
         }
         //[GET]
@@ -42,37 +40,33 @@ class ProfileController extends Controller
     }
     public static function SignUpView($viewName)
     {
+        $data = [];
         //[POST]
-        if (
-            isset($_POST['email']) && $_POST['email'] != '' &&
-            isset($_POST['password']) && $_POST['password'] != '' &&
-            isset($_POST['confirm']) && $_POST['confirm'] != ''
-        ) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && Components::verifyPostValue(["email","password","confirm"])) {
             $email = $_POST['email'];
             $password = $_POST['password'];
+            $confirm = $_POST['confirm'];
             $user = new User();
 
-
-            if (!Components::validCharacter($email) && !Components::validCharacter($password)) {
-                $_SESSION['LoginInvalid'] = "Votre nom d'utilisateur ou votre mot de passe est invalide";
+            if ($confirm !== $password) {
+                $data['LoginInvalid'] = "les mot de passes ne concordent pas";
+            }
+            else if (!Components::validCharacter($email) && !Components::validCharacter($password)) {
+                $data['LoginInvalid'] = "Votre nom d'utilisateur ou votre mot de passe est invalide";
             } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $_SESSION['LoginInvalid'] = "Votre adresse courriel est invalide";
+                $data['LoginInvalid'] = "Votre adresse courriel est invalide";
             } else if ($user->emailExist($email)) {
-                $_SESSION['LoginInvalid'] = "Cette adresse Courriel existe déjà";
+                $data['LoginInvalid'] = "Cette adresse Courriel existe déjà";
             } else if ($user->createUser($email, $password)) {
                 //Crer la session user
                 $_SESSION["user"]=$user->getFromEmail($email);
                 header('location: homepage');
             } else {
-                $_SESSION['LoginInvalid'] = "Erreur lors de la connexion";
+                $data['LoginInvalid'] = "Erreur lors de la connexion";
             }
         }
 
         //[GET]
-        require_once("./Views/profile/" . $viewName . ".php");
-    }
-    public static function AdminView($viewName) {
-        require_once("./models/UserAcess.php");
         require_once("./Views/profile/" . $viewName . ".php");
     }
 
