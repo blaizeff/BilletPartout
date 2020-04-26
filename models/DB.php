@@ -14,7 +14,7 @@ class DB
 
     public function get($table, $id)
     {
-        $stm = $this->pdo->prepare('SELECT * FROM ' . $table . ' WHERE `id` = :id');
+        $stm = $this->pdo->prepare('SELECT * FROM ' . $table . ' WHERE `idClient` = :id');
         $stm->bindValue(':id', $id);
         $success = $stm->execute();
         $row = $stm->fetch(PDO::FETCH_ASSOC);

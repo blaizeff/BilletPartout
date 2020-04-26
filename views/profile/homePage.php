@@ -1,6 +1,17 @@
 <?php
 PageFrame::loadBundle();
 PageFrame::header();
+
+    echo "<h5> PHP List All Session Variables</h5>";
+    print_r($_SESSION);
+
+    $currentUser = new User();
+
+    $currentUser->loadUser($_SESSION["user"]["idClient"]); //the session 
+
+    
+
+
 ?>
 <style>
     .info {
