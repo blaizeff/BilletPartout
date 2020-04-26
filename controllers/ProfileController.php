@@ -8,6 +8,8 @@ class ProfileController extends Controller
         
         UserAcess::restrictPage();
         require_once("./Views/profile/" . $viewName . ".php");
+
+        //THIS IS WHERE I WILL BE WORKING
     }
     public static function LoginView($viewName)
     {
