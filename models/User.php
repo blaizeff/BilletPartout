@@ -4,12 +4,13 @@ class User
 {
 
     private $idCLient;
-    private $nomFamClient;
+    private $nomClient;
     private $adresseClient;
     private $courrielClient;
     private $mdpClient;
     private $ccClient;
     private $admin;
+    private $numTelephone;
 
 
     //getters and setters
@@ -22,11 +23,11 @@ class User
     }
 
     public function get_nom(){
-        return $this->nomFamClient;
+        return $this->nomClient;
     }
 
     private function set_nom($nom){
-        $this->nomFamClient = $nom;
+        $this->nomClient = $nom;
     }
 
     public function get_adresse(){
@@ -45,6 +46,14 @@ class User
         $this->courrielClient = $courriel;
     }
 
+    public function get_telephone(){
+        return $this->numTelephone;
+    }
+
+    private function set_telephone($telephone){
+        $this->numTelephone = $telephone;
+    }
+
     private $DB;
     private $table = "Clients";
     public function __construct()
@@ -57,12 +66,17 @@ class User
         $table = $this->get($id);
 
         $this->idCLient = $table["idClient"];
+        $this->nomClient = $table["nomClient"];
+        $this->adresseClient = $table["Adresse"];
+        $this->courrielClient = $table["Courriel"];
+        $this->admin = $table["Admin"];
+        
         //not finished obvi
 
     }
 
     public function get($id) {
-        return $this->DB->get($this->table,$id);
+        return $this->DB->getUserByID($this->table,$id);
     }
     public function getFromEmail($email)
     {
@@ -91,7 +105,7 @@ class User
         return $result;
     }
 
-    public function updateUser($data)
+    public function updateUserProfile($data)
     {
 
         return true;
