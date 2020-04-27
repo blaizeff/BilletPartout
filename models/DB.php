@@ -33,7 +33,7 @@ class DB
 
     public function getWhere($table,$column,$value)
     {
-        $stm = $this->pdo->prepare('SELECT * FROM ' . $table . ' WHERE  '.$column.'= :value');
+        $stm = $this->pdo->prepare('SELECT * FROM ' . $table . ' WHERE  ' . $column . '= :value');
         $stm->bindValue(':value', $value);
         $success = $stm->execute();
         $row = $stm->fetch(PDO::FETCH_ASSOC);
@@ -62,7 +62,7 @@ class DB
         return ($status) ? $this->pdo->lastInsertId() : false;
     }
 
-    public function update($table, $id, $data)
+    public function update($table,$id, $data,$idName='id')
     {
         if (isset($data['id']))
             unset($data['id']);
@@ -71,7 +71,7 @@ class DB
             return $item . '=:' . $item;
         }, $columns);
         $bindingSql = implode(',', $columns);
-        $sql = "UPDATE $table SET $bindingSql WHERE `id` = :id";
+        $sql = "UPDATE $table SET $bindingSql WHERE `$idName` = :id";
         $stm = $this->pdo->prepare($sql);
         $data['id'] = $id;
         foreach ($data as $key => $value) {
@@ -89,9 +89,17 @@ class DB
         return ($success);
     }
 
-    public function selectShow() {
-        $stm = $this->pdo->prepare('Select s.idCategories,s.idSpectacle,r.idRepresentation,s.nomSpectacle,s.nomArtiste,sa.Adresse,r.Date,s.description from Spectacles s join Representation r on s.idSpectacle=r.idSpectacle join Salles sa on r.idSalle=sa.idSalle');
-        //$stm->bindValue(':value', $value);
+    public function selectShow($id = '')
+    {
+        $sqlString = 'Select s.idSpectacle,r.idRepresentation,s.idCategories,s.nomSpectacle,s.nomArtiste,sa.Adresse,r.Date,s.description from Spectacles s join Representation r on s.idSpectacle=r.idSpectacle join Salles sa on r.idSalle=sa.idSalle';
+        if ($id != '') {
+            $sqlString .= ' where s.idSpectacle = :id';
+        }
+
+        $stm = $this->pdo->prepare($sqlString);
+        if ($id != '') {
+            $stm->bindValue(':id', $id);
+        }
         $success = $stm->execute();
         $row = $stm->fetchAll(PDO::FETCH_ASSOC);
         return ($success) ? $row : [];
