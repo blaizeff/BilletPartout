@@ -105,10 +105,10 @@ class User
         return $result;
     }
 
-    public function updateUserProfile($data)
+    public function updateUserProfile($idClient, $data)
     {
-
-        return true;
+        $result = $this->DB->update("Clients", $idClient, $data, "idClient");
+        return $result;
     }
     public static function errorMessage($data)
     {
