@@ -33,13 +33,19 @@ Route::set('show/list',function() {
 });
 
 Route::set('admin/',function() {
-    AdminController::IndexView("index");
+    AdminController::indexView("index");
 });
-Route::set('admin/add-show',function() {
-    AdminController::AddView("addShow");
+Route::set('admin/show',function() {
+    AdminController::showView("Show");
 });
-Route::set('admin/add-event',function() {
-    AdminController::AddView("addEvent");
+Route::set('admin/event',function() {
+    AdminController::eventView("event");
+});
+Route::set('admin/details',function() {
+    AdminController::detailsView("details");
+});
+Route::set('admin/location',function() {
+    AdminController::locationView("location");
 });
 
 if(!in_array($_GET['url'],Route::$validRoute)) {

@@ -4,17 +4,17 @@ class Components
     public static function showList($data)
     {
         foreach ($data as $value) {
-            $Id = $value['Id'];
-            $Name = $value['Title'];
-            $Artist = $value['Artist'];
-            $Location = $value['Location'];
+            $Id = $value['id'];
+            $Name = $value['title'];
+            $Artist = $value['artist'];
+            $Location = $value['location'];
             $Date = explode("-", explode(" ", $value['Date'])[0]);
             $month = self::frenchMonth($Date[1]);
             $day = $Date[2];
             $Hour = explode(":", explode(" ", $value['Date'])[1])[0];
             $min =  explode(":", explode(" ", $value['Date'])[1])[1];
             $Desc = $value['description'];
-            $IdShow = $value["IdShow"];
+            $IdShow = $value["idShow"];
             echo "<tr><td>
                         <div class=\"listingContainer\">
                             <div style=\"display:grid; grid-template-columns:1fr 1fr;\">
@@ -31,7 +31,7 @@ class Components
                                     <div id=\"desc\" class=\"hide\"><h4>$Desc</h4></div>
                                     <i class=\"expand fas fa-chevron-down\"></i>
                                 </div>
-                                <div style=\"text-align:right; display:flex; justify-content:flex-end;align-items:center;\">
+                                <div>
                                     <a href=\"/show/event-info?id=$Id\"><div class=\"next\">Voir Billets</div></a>
                                 </div>
                                 </div>
@@ -40,35 +40,6 @@ class Components
         }
     }
 
-    public static function adminList($data) {
-        
-        $html = "<table>";
-        foreach ($data as $value) {
-            $IdShow = $value["IdShow"];
-            $Name = $value['Title'];
-            $Artist = $value['Artist'];
-            $category = $value["idCat"];
-            $html .="<tr><td>
-                        <div class=\"listingContainer\">
-                            <div style=\"display:grid; grid-template-columns:1fr 1fr;\">
-                            <img class=\"showImage\" src=\"/public/images/show/show$IdShow.jpg\">
-                        </div>
-                        <div style=\"display:grid; grid-template-columns:3fr 1fr;\">
-                            <div style=\"position:relative;\">
-                                <h2>$Name</h2>
-                                <h3>$Artist &bull; $category</h3>
-                                <i class=\"expand fas fa-chevron-down\"></i>
-                            </div>
-                                <div style=\"text-align:right; display:flex; justify-content:flex-end;align-items:center;\">
-                                    <a href=\"/admin/details?id=$IdShow\"><div class=\"next\">Modifier</div></a>
-                                </div>
-                            </div>
-                        </div>
-                    </td></tr>";
-        }
-        $html .= "</table>";
-        echo $html;
-    }
     public static function frenchMonth($intMonth)
     {
         $month = [
@@ -81,9 +52,11 @@ class Components
         }
         return "Mois invalide";
     }
+
+    //change key or an array
+    //Note: it doesn't change the key in array inside the param array
     public static function change_key($array, $old_key, $new_key)
     {
-
         if (!array_key_exists($old_key, $array))
             return $array;
 
@@ -105,9 +78,9 @@ class Components
         }
         return true;
     }
-    
+
     //Note: the input[file] need to have an id named image
-    public static function uploadImage($imageFolder, $upload_file_name )
+    public static function uploadImage($imageFolder, $upload_file_name)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (is_uploaded_file($_FILES['image']['tmp_name'])) {
@@ -116,8 +89,7 @@ class Components
                     exit;
                 }
 
-               
-                //Too long file name?
+                //Too long file name
                 if (strlen($upload_file_name) > 100) {
                     exit;
                 }
@@ -131,18 +103,27 @@ class Components
                 }
 
                 //Save the file
-                $dest =__DIR__ .'/../public/images/'.$imageFolder."/". $upload_file_name;
+                $dest = __DIR__ . '/../public/images/' . $imageFolder . "/" . $upload_file_name;
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $dest)) {
                 }
             }
         }
     }
-    public static function verifyPostValue($array) {
+
+    //Verify is post value is set and not null
+    public static function verifyPostValue($array)
+    {
         foreach ($array as $item) {
-            if (!(isset($_POST[$item]) && $_POST[$item]!='')) {
+            if (!(isset($_POST[$item]) && $_POST[$item] != '')) {
                 return false;
             }
         }
         return true;
+    }
+
+    //echo nothing if value is undefined
+    public static function dataValExist($data,$value)
+    {
+        echo array_key_exists($value,$data) ? $value : "";
     }
 }

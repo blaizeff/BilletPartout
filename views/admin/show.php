@@ -5,34 +5,36 @@ PageFrame::loadBundle();
 <style>
     body {
         background-color: #f8f9fa;
-
     }
 </style>
+<link rel="stylesheet" href="/public/css/admin.css">
 <div class="container">
     <div class="col-md-12 article">
-        <a style="color:21c87a" href="./.">Retour au menu</a>
+        <a style="color:21c87a" href="<?php echo $data["returnLink"]; ?>">Retour au menu</a>
         <br>
-        <h2>Ajouter un Spectacle</h2>
+        <h2><?php echo $data["pageTitle"] ?></h2>
 
         <form id="form" class="row" method="POST" action="" enctype="multipart/form-data">
+            <?php echo isset($_GET["id"]) && $_GET["id"] != '' ? "<input type='hidden' name='id' value=" . $_GET["id"] . ">" : "" ?>
+
             <div class="col-12 form-group">
                 <label class="mb-1">Titre</label>
-                <input name="title" type="text" class="form-control custominput">
+                <input name="title" type="text" class="form-control custominput" value='<?php echo $data["title"] ?>'>
             </div>
 
             <div class="col-12 form-group">
                 <label class="mb-1">Description</label>
-                <textarea  name="description" type="text" class="form-control custominput" rows="4" cols="50"></textarea>
+                <textarea name="description" type="text" class="form-control custominput" rows="4" cols="50"><?php echo $data["description"] ?></textarea>
             </div>
 
             <div class="col-12 form-group">
                 <label class="mb-1">Nom de l'artiste ou du groupe</label>
-                <input name="artist" type="text" class="form-control custominput">
+                <input name="artist" type="text" class="form-control custominput" value='<?php echo $data["artist"] ?>'>
             </div>
 
             <div class="col-12 form-group">
                 <label class="mb-1">Catégorie</label>
-                <?php echo Show::showCategory() ?>
+                <?php echo Show::showCategory('', $data['idCat']) ?>
             </div>
 
             <div class="col-12 form-group">
@@ -42,12 +44,9 @@ PageFrame::loadBundle();
             </div>
 
             <div class="col-12 ">
-                <button type="submit" class="btn btn-primary green">Créer le spectable</button>
+                <button type="submit" class="btn btn-primary green">Ajouter</button>
             </div>
         </form>
-
-        <hr>
-
     </div>
 </div>
 

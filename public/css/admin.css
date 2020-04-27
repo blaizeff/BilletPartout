@@ -1,0 +1,45 @@
+.section {
+    box-shadow: rgba(82, 63, 105, 0.05) 0px 0px 13px 0px;
+    background-color: white;
+    margin-top: 50px;
+    border: 2px solid rgb(233, 237, 241);
+}
+
+table * {
+    font-weight: 400;
+}
+
+body {
+    background-color: #f8f9fa;
+}
+
+.showImage {
+    border-radius: 5px;
+    height: 70px;
+    width: 125px;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.next {
+    background-color: #21c87a;
+    border-radius: 5px;
+    padding: 10px;
+    margin-right: 8px;
+    font-size: 18px;
+    color: white;
+    transition: ease-in-out 50ms;
+}
+
+.next:hover {
+    background-color: #21c87a;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, .3);
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+tr {
+    border-bottom: 1px solid #dbdde6 !important;
+}
