@@ -71,7 +71,7 @@ class User
         $this->courrielClient = $table["Courriel"];
         $this->admin = $table["Admin"];
         
-        //not finished obvi
+        
 
     }
 
