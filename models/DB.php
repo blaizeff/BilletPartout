@@ -14,6 +14,7 @@ class DB
 
     public function get($table, $id)
     {
+        //ATTENTION: le get ne fonctionne pas de base avec la majorite des tables puisque la colonne ID ne s'apelle pas seulement ID dans la majorite des cas
         $stm = $this->pdo->prepare('SELECT * FROM ' . $table . ' WHERE `id` = :id');
         $stm->bindValue(':id', $id);
         $success = $stm->execute();
@@ -21,7 +22,16 @@ class DB
         return ($success) ? $row : [];
     }
 
-    public function getWhere($table, $column, $value)
+    public function getUserByID($table, $id)
+    {
+        $stm = $this->pdo->prepare('SELECT * FROM ' . $table . ' WHERE `idClient` = :id');
+        $stm->bindValue(':id', $id);
+        $success = $stm->execute();
+        $row = $stm->fetch(PDO::FETCH_ASSOC);
+        return ($success) ? $row : [];
+    }
+
+    public function getWhere($table,$column,$value)
     {
         $stm = $this->pdo->prepare('SELECT * FROM ' . $table . ' WHERE  ' . $column . '= :value');
         $stm->bindValue(':value', $value);

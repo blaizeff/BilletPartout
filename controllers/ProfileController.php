@@ -10,6 +10,40 @@ class ProfileController extends Controller
         require_once("./Views/profile/" . $viewName . ".php");
 
         //THIS IS WHERE I WILL BE WORKING
+        //Note a mathieu don't delete: https://www.sitepoint.com/community/t/multiple-forms-on-one-page/43577
+        $user = new User;
+        $user->loadUser($_SESSION["user"]["idClient"]);
+        
+        //[POST]
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            //this is for the Profile modification
+            if(array_key_exists("submitProfile",$_POST) && $_POST["submitProfile"])
+            {
+                //addr doesn't exist but it's in the DB so idk lol, for now null will do
+                //ADD PHONE NUMBER eventually
+                //
+                $data = [$_SESSION["user"]["idClient"],$_POST["nom"], $_POST["courriel"]];
+
+                $user->updateUserProfile($data);
+                
+
+            }
+            elseif(array_key_exists("submitPass",$_POST) && $_POST["submitPass"])
+            {
+                echo "Pass";
+
+            }
+            elseif(array_key_exists("submitPay",$_POST) && $_POST["submitPay"])
+            {
+                echo "Pay";
+
+            }
+        
+        }
+
+        //[GET]
+        require_once("./Views/profile/" . $viewName . ".php");
+
     }
     public static function LoginView($viewName)
     {
