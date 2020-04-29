@@ -27,11 +27,25 @@ class Show
             "nomArtiste" => "artist",
             "Adresse" => "location",
             "idSpectacle" => "idShow",
-            "idCategories" => "idCat"
+            "idCategories" => "idCat",
+            "nomSalle" => "venueName"
         ];
         return Components::change_arrayKeys($DBresult, $keys);
     }
-
+    public function getEvent($idShow) {
+        $DBresult = $this->DB->getEvent($idShow);
+        $keys = [
+            "idRepresentation" => "id",
+            "idSpectacle" => "idShow",
+            "nomSpectacle" => "title",
+            "nomArtiste" => "artist",
+            "Adresse" => "venueLocation",
+            "Description" => "categorie",
+            "description" => "description",
+            "nomSalle" => "venueName",
+        ];
+        return Components::change_arrayKeys($DBresult, $keys);
+    }
     public function selectAll() {
         $DBresult = $this->DB->selectAll($this->table);
         $keys = [

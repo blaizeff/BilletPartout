@@ -133,4 +133,22 @@ class DB
         $row = $stm->fetchAll(PDO::FETCH_ASSOC);
         return ($success) ? $row : [];
     }
+
+    public function getEvent($id) {
+        $sqlString = 'SELECT    s.idSpectacle,
+                                r.idRepresentation,
+                                s.nomSpectacle,
+                                s.nomArtiste,
+                                s.description,
+                                cat.Description,
+                                r.Date,
+                                sa.nomSalle,
+                                sa.Adresse from Spectacles s join Representation r on s.idSpectacle=r.idSpectacle join Salles sa on r.idSalle=sa.idSalle join Categories cat on s.idCategories=cat.idCategories' ;
+        $sqlString .= ' WHERE r.idRepresentation = :id';
+        $stm = $this->pdo->prepare($sqlString);
+        $stm->bindValue(':id',$id);
+        $success = $stm->execute();
+        $row = $stm->fetchAll(PDO::FETCH_ASSOC);
+        return ($success) ? $row : [];
+    }
 }
