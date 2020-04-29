@@ -45,6 +45,7 @@ class ProfileController extends Controller
         require_once("./Views/profile/" . $viewName . ".php");
 
     }
+
     public static function LoginView($viewName)
     {
         $data = [];
@@ -74,6 +75,7 @@ class ProfileController extends Controller
         //[GET]
         require_once("./Views/profile/" . $viewName . ".php");
     }
+
     public static function SignUpView($viewName)
     {
         $data = [];
@@ -94,7 +96,7 @@ class ProfileController extends Controller
             } else if ($user->emailExist($email)) {
                 $data['LoginInvalid'] = "Cette adresse Courriel existe déjà";
             } else if ($user->createUser($email, $password)) {
-                //Crer la session user
+                //Create Session User
                 $_SESSION["user"]=$user->getFromEmail($email);
                 header('location: homepage');
             } else {

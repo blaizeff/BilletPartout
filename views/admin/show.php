@@ -40,7 +40,7 @@ PageFrame::loadBundle();
             <div class="col-12 form-group">
                 <label class="mb-1">Affiche</label>
                 <input name="image" id="image" type="file" class="form-control customselect " accept="image/png" onchange="readURL(this);">
-                <img id="blah" class="showImage" src="#" alt="" />
+                <img id="blah"  src="#" alt="" />
             </div>
 
             <div class="col-12 ">

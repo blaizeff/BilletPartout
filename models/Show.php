@@ -3,14 +3,14 @@ include_once 'DB.php';
 class Show 
 {
     private $DB;
-    private $tableShow = "Spectacles";
+    private $table = "Spectacles";
     public function __construct()
     {
         $this->DB = new DB();
     }
 
     public function get($id) {
-        $result= $this->DB->getWhere($this->tableShow,"idSpectacle",$id);
+        $result= $this->DB->getWhere($this->table,"idSpectacle",$id);
             $result = Components::change_key($result,"idSpectacle","idShow");
             $result = Components::change_key($result,"nomSpectacle","title");
             $result = Components::change_key($result,"nomArtiste","artist");
@@ -18,45 +18,41 @@ class Show
             $result = Components::change_key($result,"idCategories","idCat");
         return $result;
     }
+
     public function getAllShow() {
         $DBresult = $this->DB->selectShow();
-        $result = array();
-        foreach ($DBresult as $item) {
-            $item = Components::change_key($item,"idRepresentation","id");
-            $item = Components::change_key($item,"nomSpectacle","title");
-            $item = Components::change_key($item,"nomArtiste","artist");
-            $item = Components::change_key($item,"Adresse","location");
-            $item = Components::change_key($item,"idSpectacle","idShow");
-            $item = Components::change_key($item,"idCategories","idCat");
-
-            $result[] = $item;
-        }
-        return $result;
+        $keys = [
+            "idRepresentation" => "id",
+            "nomSpectacle" => "title",
+            "nomArtiste" => "artist",
+            "Adresse" => "location",
+            "idSpectacle" => "idShow",
+            "idCategories" => "idCat"
+        ];
+        return Components::change_arrayKeys($DBresult, $keys);
     }
 
     public function selectAll() {
-        $DBresult = $this->DB->selectAll($this->tableShow);
-        $result = array();
-        foreach ($DBresult as $item) {
-            $item = Components::change_key($item,"idSpectacle","idShow");
-            $item = Components::change_key($item,"nomSpectacle","title");
-            $item = Components::change_key($item,"nomArtiste","artist");
-            $item = Components::change_key($item,"Adresse","location");
-            $item = Components::change_key($item,"idCategories","idCat");
-            $result[] = $item;
-        }
-        return $result;
+        $DBresult = $this->DB->selectAll($this->table);
+        $keys = [
+            "idSpectacle" => "idShow",
+            "nomSpectacle" => "title",
+            "nomArtiste" => "artist",
+            "Adresse" => "location",
+            "idCategories" => "idCat"
+        ];
+        return Components::change_arrayKeys($DBresult, $keys);
     }
+
     public function getAllCategory() {
         $DBresult = $this->DB->selectAll("Categories");
-        $result = array();
-        foreach ($DBresult as $item) {
-            $item = Components::change_key($item,"idCategories","id");
-            $item = Components::change_key($item,"Description","value");
-            $result[] = $item;
-        }
-        return $result;
+        $keys = [
+            "idCategories" => "id",
+            "Description" => "value",
+        ];
+        return Components::change_arrayKeys($DBresult, $keys);
     }
+    
     public function create($title,$desc,$artist,$category) {
         $data = [
             "nomSpectacle" => $title,
@@ -64,7 +60,7 @@ class Show
             "idCategories" => $category,
             "nomArtiste" => $artist,
         ];
-        return $this->DB->create($this->tableShow,$data);
+        return $this->DB->create($this->table,$data);
     }
 
     public function update($id,$title,$desc,$artist,$category) {
@@ -74,7 +70,7 @@ class Show
             "idCategories" => $category,
             "nomArtiste" => $artist,
         ];
-        return $this->DB->update($this->tableShow,$id,$data,"idSpectacle");
+        return $this->DB->update($this->table,$id,$data,"idSpectacle");
     }
 
 

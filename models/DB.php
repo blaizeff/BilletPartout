@@ -89,6 +89,7 @@ class DB
         return ($success);
     }
 
+    //This is in D
     public function selectShow($id = '')
     {
         $sqlString = 'Select s.idSpectacle,r.idRepresentation,s.idCategories,s.nomSpectacle,s.nomArtiste,sa.Adresse,r.Date,s.description from Spectacles s join Representation r on s.idSpectacle=r.idSpectacle join Salles sa on r.idSalle=sa.idSalle';

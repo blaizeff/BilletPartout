@@ -54,7 +54,7 @@ class Components
     }
 
     //change key or an array
-    //Note: it doesn't change the key in array inside the param array
+    //Note: it doesn't change the key in array inside the param array. Use Change_keys instead
     public static function change_key($array, $old_key, $new_key)
     {
         if (!array_key_exists($old_key, $array))
@@ -66,6 +66,19 @@ class Components
         return array_combine($keys, $array);
     }
 
+    //Change Multiple keys in a sub array
+    public static function change_arrayKeys($data,$new_keys)
+    {
+        $result = array();
+        foreach ($data as $row) {
+            foreach($new_keys as $key => $value) {
+                $row = self::change_key($row, $key, $value);
+            }
+            $result[] = $row;
+        }
+        return $result;
+    }
+    
     //return if the input contain a illegal char
     public static function validCharacter($input)
     {

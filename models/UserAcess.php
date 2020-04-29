@@ -1,4 +1,5 @@
 <?php
+
 class UserAcess
 {
     public static function restrictPage()
@@ -7,13 +8,16 @@ class UserAcess
             header('Location: /profile/login');
         }
     }
-    public static function isAdmin() {
+    public static function isAdmin()
+    {
         return isset($_SESSION["user"]) && $_SESSION["user"]["Admin"];
     }
     public static function adminPage()
     {
+        require_once("./models/User.php");
+
         $user = new User();
-        if (!(isset($_SESSION['user']) && $user->get($_SESSION["user"])["idClient"])) {
+        if (!self::isAdmin()) {
             header('Location: /profile/login');
         }
     }

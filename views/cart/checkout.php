@@ -30,8 +30,8 @@
 </head>
 
 <?php
-PageFrame::header();
 PageFrame::loadBundle();
+PageFrame::header();
 ?>
 <div class="container">
     <form class="row" style="padding-top:100px">

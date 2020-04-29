@@ -9,6 +9,7 @@ class AdminController extends Controller
 {
     public static function indexView($viewName)
     {
+        UserAcess::adminPage();
         $show = new Show();
         $location = new Location();
         $data["showList"] = $show->selectAll();
@@ -31,7 +32,7 @@ class AdminController extends Controller
 
             if ($id)
                 Components::uploadImage("show", "show" . $id);
-                
+
             header('Location: ./');
         }
 
