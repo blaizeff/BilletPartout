@@ -14,6 +14,7 @@ class ShowController extends Controller {
         }
         $events = new Show();
         $data["listShow"] = $events->getAllShow($filter);
+        print_r($events->getEvent(3));
         require_once("./Views/Show/" . $page . ".php");
     }
 }

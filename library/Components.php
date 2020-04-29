@@ -140,7 +140,7 @@ class Components
         echo array_key_exists($value,$data) ? $value : "";
     }
     public static function showFilterOptions() {
-        echo '<select onchange="location = this.value">
+        echo '<select onchange="location = this.value" class="form-control customSelect custom-select">
                 <option '.self::filterSelected('').' value="list?'.(isset($_GET["search"]) ? "search=".$_GET["search"] : "").'&order=">Date</option>
                 <option '.self::filterSelected('nameA-Z').' value="list?'.(isset($_GET["search"]) ? "search=".$_GET["search"] : "").'&order=nameA-Z">Nom A-Z</option>
                 <option '.self::filterSelected('nameZ-A').' value="list?'.(isset($_GET["search"]) ? "search=".$_GET["search"] : "").'&order=nameZ-A">Nom Z-A</option>

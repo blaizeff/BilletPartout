@@ -91,7 +91,7 @@ class DB
 
     public function selectShow($filter)
     {
-        $sqlString = 'Select s.idSpectacle,r.idRepresentation,s.idCategories,s.nomSpectacle,s.nomArtiste,sa.Adresse,r.Date,s.description from Spectacles s join Representation r on s.idSpectacle=r.idSpectacle join Salles sa on r.idSalle=sa.idSalle';
+        $sqlString = 'Select s.idSpectacle,sa.nomSalle,r.idRepresentation,s.idCategories,s.nomSpectacle,s.nomArtiste,sa.Adresse,r.Date,s.description from Spectacles s join Representation r on s.idSpectacle=r.idSpectacle join Salles sa on r.idSalle=sa.idSalle';
 
         //If Id is set then find with id else show all 
         //By default its show future show 
@@ -129,6 +129,24 @@ class DB
         if (array_key_exists('search',$filter) && $filter['search'] != '') {
             $stm->bindValue(':search', $filter['search']);
         }
+        $success = $stm->execute();
+        $row = $stm->fetchAll(PDO::FETCH_ASSOC);
+        return ($success) ? $row : [];
+    }
+
+    public function getEvent($id) {
+        $sqlString = 'SELECT    s.idSpectacle,
+                                r.idRepresentation,
+                                s.nomSpectacle,
+                                s.nomArtiste,
+                                s.description,
+                                cat.Description,
+                                r.Date,
+                                sa.nomSalle,
+                                sa.Adresse from Spectacles s join Representation r on s.idSpectacle=r.idSpectacle join Salles sa on r.idSalle=sa.idSalle join Categories cat on s.idCategories=cat.idCategories' ;
+        $sqlString .= ' WHERE r.idRepresentation = :id';
+        $stm = $this->pdo->prepare($sqlString);
+        $stm->bindValue(':id',$id);
         $success = $stm->execute();
         $row = $stm->fetchAll(PDO::FETCH_ASSOC);
         return ($success) ? $row : [];
