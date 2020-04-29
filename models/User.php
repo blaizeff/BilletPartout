@@ -54,6 +54,14 @@ class User
         $this->numTelephone = $telephone;
     }
 
+    public function get_mdp(){
+        return $this->mdpClient;
+    }
+
+    private function set_mdp($hashedPass){
+        $this->mdpClient = $hashedPass;
+    }
+
     private $DB;
     private $table = "Clients";
     public function __construct()
@@ -70,9 +78,7 @@ class User
         $this->adresseClient = $table["Adresse"];
         $this->courrielClient = $table["Courriel"];
         $this->admin = $table["Admin"];
-        
-        
-
+        $this->numTelephone = $table["numTelephone"];
     }
 
     public function get($id) {
@@ -109,6 +115,18 @@ class User
     {
         $result = $this->DB->update("Clients", $idClient, $data, "idClient");
         return $result;
+    }
+    public function updateUserPassword($idClient,$newPassHashed)
+    {
+        $data = [
+            "mot_de_passe" => $newPassHashed
+        ];
+
+
+        $result = $this->DB->update("Clients", $idClient, $data, "idClient");
+        return $result;
+
+
     }
     public static function errorMessage($data)
     {

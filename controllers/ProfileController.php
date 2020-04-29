@@ -20,32 +20,51 @@ class ProfileController extends Controller
             if(array_key_exists("submitProfile",$_POST) && $_POST["submitProfile"])
             {
                 //addr doesn't exist but it's in the DB so idk lol, for now null will do
-                //ADD PHONE NUMBER eventually
-                if(filter_var($_POST["courriel"], FILTER_VALIDATE_EMAIL))
+                if(filter_var($_POST["courriel"], FILTER_VALIDATE_EMAIL)) //&& !Components::validCharacter($_POST["courriel"]) && !Components::validCharacter($_POST["nom"])
                 {
-                    $data = ["nomClient" => $_POST["nom"], "Courriel" => $_POST["courriel"]];
+                    $data = ["nomClient" => $_POST["nom"], "Courriel" => $_POST["courriel"], "numTelephone" => $_POST["telephone"]];
 
                     $result = $user->updateUserProfile($_SESSION["user"]["idClient"], $data);
+
+                    echo "<meta http-equiv='refresh' content='0'>";
                 }
                 else{
-                    //Some kind of warning
+                    echo '<script>alert("Nom, courriel ou numéro de téléphone invalide. SVP ne pas utiliser de charactères spéciaux.")</script>';
                 }
             }
+            //this is for password modification
             elseif(array_key_exists("submitPass",$_POST) && $_POST["submitPass"])
             {
-                echo "Pass";
+                if(Components::verifyPostValue(["oldPass", "newPass", "newPassConfirm"]))
+                {
+                    if(password_verify($_POST["oldPass"], $_SESSION["user"]["mot_de_passe"]) )
+                    {
+                        if($_POST["newPass"] == $_POST["newPassConfirm"])
+                        {
+                            $hashedNewPass = password_hash($_POST["newPass"], PASSWORD_DEFAULT);
+
+                            $result = $user->updateUserPassword($_SESSION["user"]["idClient"], $hashedNewPass);
+                        }
+                        else{ echo '<script>alert("SVP s\'assurez que le nouveau mot de passe est identique à la confirmation.")</script>';  }
+                    }
+                }
+                else{
+                    echo '<script>alert("SVP remplir toutes les cases pour modifier son mot de passe.")</script>';
+                }
 
             }
+            //this is for payment info modification
             elseif(array_key_exists("submitPay",$_POST) && $_POST["submitPay"])
             {
                 echo "Pay";
+                //there's no DB section for CC
 
             }
-        
         }
 
         //[GET]
         require_once("./Views/profile/" . $viewName . ".php");
+        
 
     }
 

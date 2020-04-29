@@ -1,21 +1,9 @@
 <?php
 PageFrame::loadBundle();
 PageFrame::header();
-
-    echo "<h5> PHP List All Session Variables</h5>";
-    print_r($_SESSION);
-    
-
     $currentUser = new User();
 
     $currentUser->loadUser($_SESSION["user"]["idClient"]);
-
-    echo "<t>currentUser</t>";
-    print_r($currentUser);
-
-    
-
-
 ?>
 
 <head>
@@ -72,7 +60,7 @@ PageFrame::header();
 
             <div class="col-12 col-md-6 form-group">
                 <label>No. Téléphone</label>
-                <input type="text" class="form-control custominput" name="telephone" value="<?php echo $currentUser->get_telephone() ?>" maxlength="11" placeholder="4440001111" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
+                <input type="text" class="form-control custominput" name="telephone" value="<?php echo $currentUser->get_telephone() ?>" maxlength="11" placeholder="1112223333" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
                 
             </div>
         <!-- this isn't in any of our other documentation, idk if we need it -->
@@ -92,17 +80,17 @@ PageFrame::header();
         <form class="row" method="POST">
             <div class="col-12 col-md-6">
                 <div class="form-group">
-                    <label>Mot de passe</label>
+                    <label>Ancien mot de passe</label>
                     <input type="password" class="form-control custominput" name="oldPass">
                 </div>
 
                 <div class="form-group">
                     <label>Nouveau mot de passe</label>
-                    <input type="password" class="form-control custominput" name="newPass">
+                    <input type="password" class="form-control custominput" name="newPass" pattern="^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-zA-Z]).{8,}$">
                 </div>
 
                 <div class="form-group">
-                    <label>Confirmer votre mot de passe</label>
+                    <label>Confirmer votre nouveau mot de passe</label>
                     <input type="password" class="form-control custominput" name="newPassConfirm">
                 </div>
                 <input type="submit" class="btn btn-primary green" value="Mettre à jour" name="submitPass">
