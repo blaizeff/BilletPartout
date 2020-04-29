@@ -31,7 +31,7 @@ class AdminController extends Controller
             }
 
             if ($id)
-                Components::uploadImage("show", "show" . $id);
+                Components::uploadImage("show", "show" . $id.".jpg");
 
             header('Location: ./');
         }
