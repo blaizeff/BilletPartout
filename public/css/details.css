@@ -1,0 +1,143 @@
+body{
+    background-color: #f8f9fa;
+}
+#contentContainer{
+    margin: 80px 200px 50px 200px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, .3);
+}
+#infoContainer{
+    display:flex;
+    flex-direction: row;
+    overflow:hidden;
+    padding: 10px 100px 20px 100px;
+    width:100%;
+}
+#extraContainer{
+    overflow:hidden;
+    padding: 20px 200px 100px 200px;
+    width:100%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: #f8f9fa;
+}
+.eventDetails{
+    margin:50px 0px 0px 50px;
+}
+
+.aBuyButton{
+    display:inline-block;
+    margin-top: 25px;
+    width:200px;
+}
+.buyButton {
+    font-weight: 500;
+    background-color: #21c87a;
+    width:200px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+    color: white;
+    transition: ease-in-out 50ms;
+}
+
+.buyButton:hover {
+    background-color: #21c87a;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, .3);
+}
+.eventDetails > h1{
+    font-weight: 700;
+    width:900px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size:2em;
+    margin-bottom:10px;
+}
+.eventDetails > h2{
+    color:rgb(70, 70, 70);
+    font-weight: 500;
+    width:900px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size:1.4em;
+}
+.eventDetails > h3{
+    color:#333;
+    font-weight: 500;
+    width:900px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size:1.3em;
+}
+.eventDetails > h4{
+    color:#333;
+    font-weight: 400;
+    width:900px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size:1.1em;
+}
+h4{
+    color: #5e5e5e;
+    font-size: 1em;
+    font-weight: 400;
+}
+.smallIcon{
+    font-size: 25px;
+    color:#21c87a;
+}
+.banner{
+    border-radius: 5px;
+}
+
+a:hover {
+    text-decoration: none;
+}
+#extraNav{
+    display:flex;
+    
+    justify-content: center;
+}
+#salleButton{
+    font-weight: 500;
+    text-align: center;
+    width:200px;
+    border-radius: 5px;
+    padding: 5px 5px 5px 10px;
+    margin-right:5px;
+    display:inline-block;
+}
+#moreInfoButton{
+    font-weight: 500;
+    text-align: center;
+    width:200px;
+    border-radius: 5px;
+    padding: 5px 10px 5px 5px;
+    display:inline-block;
+}
+.selected{
+    background-color: #6c757d;
+    color:white;
+    border: 2px solid #6c757d;
+}
+.selected:hover{
+    background-color: #677077;
+    border: 2px solid #677077;
+    cursor:pointer;
+}
+.unselected{
+    color:#6c757d;
+    background-color: white;
+    border: 2px solid rgba(38, 38, 38, 0.1);
+}
+.unselected:hover{
+    cursor:pointer;
+    background-color: #edeff1;
+    color:#333;
+}

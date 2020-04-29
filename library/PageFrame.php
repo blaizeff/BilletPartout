@@ -17,8 +17,12 @@ class PageFrame
                     <i class="navSearch fas fa-search"></i>
                     <button id="submit" type="submit"></button>
                 </form>
-                <a class="login" id="login" href="/profile/login">
-                '.(isset($_SESSION["user"]) ? $_SESSION["user"]["nomClient"] : '').'<i class="profileIcon fas fa-user"></i></a>
+                <!--
+                <a href=""><span class="navButton">Concerts</span></a>
+                <a href=""><span class="navButton">Sports</span></a>
+                <a href=""><span class="navButton">Théâtre</span></a>
+                -->
+                <a href="/profile/login"><i class="profileIcon fas fa-user"></i></a>
         </nav>
     </header>');
     }

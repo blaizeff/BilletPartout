@@ -26,7 +26,7 @@ Route::set('show/details',function() {
     ShowController::View('details');
 });
 Route::set('show/event-info',function() {
-    ShowController::View('eventInfo');
+    ShowController::InfoView('eventInfo');
 });
 Route::set('show/list',function() {
     ShowController::ListView('list');

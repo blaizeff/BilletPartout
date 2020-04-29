@@ -4,43 +4,32 @@
     PageFrame::header();
     ?>
     <link rel="stylesheet" href="/public/css/list.css">
-    <div class="listContainers ">
-        <div id="list">
-            <h1>
-                <?php echo count($data["listShow"]) . ' résulats trouvés ';
-                if (isset($_GET['search']) && $_GET["search"] != "") {
-                    echo "pour \"" . $_GET['search'] . "\"";
-                } ?>
-            </h1>
-            <table>
-                <?php
-                Components::showList($data["listShow"]);
-                ?>
-            </table>
-        </div>
 
-        <div id="filter">
-            <h4>Filtre</h4>
-            <div class="form-group">
-                <label class="mb-1">Catégorie</label>
-                <?php echo Components::showFilterOptions() ?>
+    <div id="contentContainer">
+       
+        <div class="d-flex justify-content-between">
+        <h1>
+            <?php echo count($data["listShow"]) . ' résulats trouvés ';
+            if (isset($_GET['search']) && $_GET["search"] != "") {
+                echo "pour \"" . $_GET['search'] . "\"";
+            } ?>
+        </h1>
+            <div>Filtrer par: 
+                <?php Components::showFilterOptions();?>
             </div>
-            
-            <div class="form-group">
-                <label class="mb-1">Prix</label><br>
-                <input type="range" name="price-max" id="price-max" value="800" min="0" max="1000">
-            </div>
-
-            <div class="form-group">
-                <label class="mb-1">Salle</label><br>
-                <?php echo Components::showFilterOptions() ?>
-            </div>
+           
         </div>
+        <table>
+            <?php
+            Components::showList($data["listShow"]);
+            ?>
+        </table>
     </div>
 </div>
+
 <script type="text/javascript">
     $(document).ready(function() {
-        $(".listingContainer").click(function() {
+        $("tr").click(function() {
             let theOne = this;
             if ($(theOne).height() >= 112) {
                 shrink($(theOne));

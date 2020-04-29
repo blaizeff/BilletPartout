@@ -42,9 +42,9 @@
                     </div>
                 </form>
                 <div id="filterButtonContainer">
-                    <button class="filterButton"><i class="smallIcon fas fa-map-marker-alt"></i><span>Salle</span></button>
+                    <button class="filterButton"><i class="smallIcon fas fa-map"></i><span>Salle</span></button>
                     <button class="filterButton"><i class="smallIcon fas fa-calendar-day"></i><span>Date</span></button>
-                    <button class="filterButton"><i class="smallIcon fas fa-theater-masks"></i><span>Type</span></button>
+                    <button class="filterButton"><i class="smallIcon fas fa-theater-masks"></i><span>Catégorie</span></button>
                     <button class="filterButton"><i class="smallIcon fas fa-dollar-sign"></i><span>Prix</span></button>
                 </div>
             </div>
