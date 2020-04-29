@@ -21,12 +21,15 @@ class ProfileController extends Controller
             {
                 //addr doesn't exist but it's in the DB so idk lol, for now null will do
                 //ADD PHONE NUMBER eventually
-                //
-                $data = [$_SESSION["user"]["idClient"],$_POST["nom"], $_POST["courriel"]];
+                if(filter_var($_POST["courriel"], FILTER_VALIDATE_EMAIL))
+                {
+                    $data = ["nomClient" => $_POST["nom"], "Courriel" => $_POST["courriel"]];
 
-                $user->updateUserProfile($data);
-                
-
+                    $result = $user->updateUserProfile($_SESSION["user"]["idClient"], $data);
+                }
+                else{
+                    //Some kind of warning
+                }
             }
             elseif(array_key_exists("submitPass",$_POST) && $_POST["submitPass"])
             {

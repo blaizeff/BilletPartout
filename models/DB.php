@@ -14,7 +14,7 @@ class DB
 
     public function get($table, $id)
     {
-        //ATTENTION: le get ne fonctionne pas de base avec la majorite des tables puisque la colonne ID ne s'apelle pas seulement ID dans la majorite des cas
+        //ATTENTION: le get ne fonctionne pas de base avec la majorite des tables: la solution c'est getWhere() ou getUserByID() si tu veux un user
         $stm = $this->pdo->prepare('SELECT * FROM ' . $table . ' WHERE `id` = :id');
         $stm->bindValue(':id', $id);
         $success = $stm->execute();
