@@ -8,6 +8,10 @@
     padding: 10px;
 }
 
+.listingContainer:hover {
+    background-color: #f8f9fa;
+}
+
 .showImage {
     border-radius: 5px;
     height: 70px;

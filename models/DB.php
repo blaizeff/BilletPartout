@@ -89,17 +89,45 @@ class DB
         return ($success);
     }
 
-    //This is in D
-    public function selectShow($id = '')
+    public function selectShow($filter)
     {
         $sqlString = 'Select s.idSpectacle,r.idRepresentation,s.idCategories,s.nomSpectacle,s.nomArtiste,sa.Adresse,r.Date,s.description from Spectacles s join Representation r on s.idSpectacle=r.idSpectacle join Salles sa on r.idSalle=sa.idSalle';
-        if ($id != '') {
-            $sqlString .= ' where s.idSpectacle = :id';
+
+        //If Id is set then find with id else show all 
+        //By default its show future show 
+        if (array_key_exists('id',$filter) && $filter['id'] != '') {
+            $sqlString .= ' WHERE s.idSpectacle = :id';
+        } else {
+            $sqlString .= ' WHERE r.date > CURDATE()';
         }
 
+        if (array_key_exists('search',$filter) && $filter['search'] != '') {
+            $filter['search'] = '%'.$filter['search'].'%';
+            $sqlString .= ' AND (s.nomSpectacle like :search 
+                            OR s.description like :search
+                            OR s.nomArtiste like :search)';
+        }
+        
+        $sqlString .= " ORDER BY ";
+        if (array_key_exists('order',$filter) && $filter['order'] != '') {
+            if ($filter['order'] == 'nameA-Z') {
+                $sqlString .="s.nomSpectacle ASC,r.date ASC";
+            } else if ($filter['order'] == 'nameZ-A') {
+                $sqlString .="s.nomSpectacle DESC,r.date ASC";
+            } 
+        } else {
+            $sqlString .= "r.date ASC";
+        }
+        //Prepare
         $stm = $this->pdo->prepare($sqlString);
-        if ($id != '') {
-            $stm->bindValue(':id', $id);
+
+
+        //BIND
+        if (array_key_exists('id',$filter) && $filter['id'] != '') {
+            $stm->bindValue(':id', $filter['id']);
+        }
+        if (array_key_exists('search',$filter) && $filter['search'] != '') {
+            $stm->bindValue(':search', $filter['search']);
         }
         $success = $stm->execute();
         $row = $stm->fetchAll(PDO::FETCH_ASSOC);

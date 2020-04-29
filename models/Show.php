@@ -19,8 +19,8 @@ class Show
         return $result;
     }
 
-    public function getAllShow() {
-        $DBresult = $this->DB->selectShow();
+    public function getAllShow($filter) {
+        $DBresult = $this->DB->selectShow($filter);
         $keys = [
             "idRepresentation" => "id",
             "nomSpectacle" => "title",

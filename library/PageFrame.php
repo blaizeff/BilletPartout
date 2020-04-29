@@ -12,10 +12,11 @@ class PageFrame
             </script>
             <nav>
                 <a style="margin-right:0px;" href="/"><img src="/public/images/logo_green.png" height="40px" width="232px" ></a>
-                <div class="navSearchBar">
+                <form action="/show/list" class="navSearchBar">
                     <input id="navSearchInput" name="search" type="text" placeholder="Rechercher un spectacle..">
                     <i class="navSearch fas fa-search"></i>
-                </div>
+                    <button id="submit" type="submit"></button>
+                </form>
                 <!--
                 <a href=""><span class="navButton">Concerts</span></a>
                 <a href=""><span class="navButton">Sports</span></a>

@@ -31,8 +31,8 @@ class Components
                                     <div id=\"desc\" class=\"hide\"><h4>$Desc</h4></div>
                                     <i class=\"expand fas fa-chevron-down\"></i>
                                 </div>
-                                <div>
-                                    <a href=\"/show/event-info?id=$Id\"><div class=\"next\">Voir Billets</div></a>
+                                <div style='text-align:right; display:flex; justify-content:flex-end;align-items:center;'>
+                                    <a href=\"/show/event-info?id=$Id\" ><div class=\"next\">Voir Billets</div></a>
                                 </div>
                                 </div>
                             </div>
@@ -138,5 +138,17 @@ class Components
     public static function dataValExist($data,$value)
     {
         echo array_key_exists($value,$data) ? $value : "";
+    }
+    public static function showFilterOptions() {
+        echo '<select onchange="location = this.value">
+                <option '.self::filterSelected('').' value="list?'.(isset($_GET["search"]) ? "search=".$_GET["search"] : "").'&order=">Date</option>
+                <option '.self::filterSelected('nameA-Z').' value="list?'.(isset($_GET["search"]) ? "search=".$_GET["search"] : "").'&order=nameA-Z">Nom A-Z</option>
+                <option '.self::filterSelected('nameZ-A').' value="list?'.(isset($_GET["search"]) ? "search=".$_GET["search"] : "").'&order=nameZ-A">Nom Z-A</option>
+            </select>';
+    }
+    private static function filterSelected($value) {
+        if (isset($_GET['order']) && $_GET['order'] == $value){
+            return 'selected=""';
+        } 
     }
 }
