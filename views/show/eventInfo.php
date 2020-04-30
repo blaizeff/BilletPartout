@@ -101,6 +101,7 @@
                 $("#salleButton").addClass("selected").removeClass("unselected");
                 $("#salleContainer").show();
                 $("#moreInfoContainer").hide();
+                $("html, body").animate({ scrollTop: $(document).height()-$(window).height()-100 }, 500);
             }
             function showInfo(){
                 $(".selected").addClass("unselected").removeClass("selected");
@@ -110,6 +111,7 @@
                 $("#moreInfoContainer").css("visibility","inherit");
                 $("#moreInfoContainer").css("position","relative");
                 $("#moreInfoContainer").css("top","0");
+                $("html, body").animate({ scrollTop: $(document).height()-$(window).height()-100 }, 500);
             }
             $("#sectionBilletsContainer a").click(function() {
                 $("#sectionError").hide();
@@ -154,12 +156,12 @@
             $( "a.aBuyButton" ).click(function( event ) {
                 event.preventDefault();
                 showCarte();
-                $("html, body").animate({ scrollTop: $($(this).attr("href")).offset().top }, 500);
+                $("html, body").animate({ scrollTop: $(document).height()-$(window).height()-100 }, 500);
             });
             $( "a.aVenue" ).click(function( event ) {
                 event.preventDefault();
                 showInfo();
-                $("html, body").animate({ scrollTop: $($(this).attr("href")).offset().top }, 500);
+                $("html, body").animate({ scrollTop: $(document).height()-$(window).height()-100 }, 500);
             });
         });
     </script>
