@@ -1,48 +1,56 @@
-body{
+body {
     background-color: #f8f9fa;
 }
-#contentContainer{
+
+#contentContainer {
     margin: 80px 200px 20px 200px;
     border-radius: 5px;
     background-color: white;
     border: 1px solid rgb(236, 238, 240);
 }
-hr{
-    width:95%;
+
+hr {
+    width: 95%;
 }
-#infoContainer{
-    display:flex;
+
+#infoContainer {
+    display: flex;
     flex-direction: row;
-    overflow:hidden;
+    overflow: hidden;
     padding: 10px 100px 20px 100px;
-    width:100%;
+    width: 100%;
 }
-#extraContainer{
+
+#extraContainer {
     margin: 10px 200px 50px 200px;
     border: 1px solid rgb(236, 238, 240);
-    overflow:hidden;
+    overflow: hidden;
     padding: 20px;
     border-radius: 5px;
     background-color: white;
 }
-#descriptionContainer{
-    width:100%;
+
+#descriptionContainer {
+    width: 100%;
     margin: 0 0 0 100px;
     padding: 0 0 20px 0;
 }
-.eventDetails{
-    margin:40px 0px 0px 50px;
+
+.eventDetails {
+    margin: 40px 0px 0px 50px;
 }
 
-.aBuyButton{
-    display:inline-block;
+.aBuyButton {
+    display: inline-block;
     margin-top: 10px;
-    width:200px;
+    width: 200px;
 }
-.buyButton,.checkoutButton {
+
+.buyButton,
+.checkoutButton {
     font-weight: 500;
     background-color: #21c87a;
-    width:200px;
+    width: 200px;
     border-radius: 5px;
     padding: 10px;
     font-size: 18px;
@@ -50,205 +58,237 @@ hr{
     color: white;
     transition: ease-in-out 50ms;
 }
-.checkoutButton{
-    margin-top:50px;
+
+.checkoutButton {
+    margin-top: 50px;
 }
-.checkoutButton:hover{
-    cursor:pointer;
+
+.checkoutButton:hover {
+    cursor: pointer;
     box-shadow: 0 1px 10px rgba(0, 0, 0, .3);
 }
-a:hover{
+
+a:hover {
     cursor: pointer;
 }
-#nbBilletsContainer a  div{
+
+#nbBilletsContainer a div {
     padding: 10px 0;
     text-align: center;
     width: 50px;
     border: 2px solid rgba(38, 38, 38, 0.1);
     border-radius: 5px;
     flex: 1;
-    display:inline-block;
+    display: inline-block;
 }
-#nbBilletsContainer div:hover:not(.selectedNb){
+
+#nbBilletsContainer div:hover:not(.selectedNb) {
     background-color: ghostwhite;
 }
-#sectionBilletsContainer a  div{
+
+#sectionBilletsContainer a div {
     padding: 10px 0;
     text-align: center;
     width: 200px;
     margin-bottom: 5px;
-    border: 2px solid rgba(38, 38, 38, 0.1);
     border-radius: 5px;
 }
-.selectedSection{
-    color:white;
+
+.selectedSection {
+    color: white;
 }
-#salleContainer{
-    display:flex;
+
+#salleContainer {
+    display: flex;
     flex-direction: row;
 }
-.ticketTitle{
-    margin-top:20px;
+
+.ticketTitle {
+    margin-top: 20px;
 }
+
 .buyButton:hover {
     background-color: #21c87a;
     box-shadow: 0 1px 10px rgba(0, 0, 0, .3);
 }
-.eventDetails > h1{
+
+.eventDetails>h1 {
     font-weight: 700;
-    width:900px;
+    width: 900px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    font-size:2em;
-    margin-bottom:10px;
+    font-size: 2em;
+    margin-bottom: 10px;
 }
-.eventDetails > h2{
-    color:rgb(70, 70, 70);
+
+.eventDetails>h2 {
+    color: rgb(70, 70, 70);
     font-weight: 500;
-    width:900px;
+    width: 900px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    font-size:1.4em;
+    font-size: 1.4em;
 }
-.eventDetails h3{
-    color:#333;
+
+.eventDetails h3 {
+    color: #333;
     font-weight: 500;
-    width:900px;
+    width: 900px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    font-size:1.3em;
+    font-size: 1.3em;
 }
-.eventDetails > h4{
-    color:#333;
+
+.eventDetails>h4 {
+    color: #333;
     font-weight: 400;
-    width:900px;
+    width: 900px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    font-size:1.1em;
+    font-size: 1.1em;
 }
-h4{
+
+h4 {
     color: #5e5e5e;
     font-size: 1em;
     font-weight: 400;
 }
-.smallIcon{
+
+.smallIcon {
     font-size: 25px;
-    color:#21c87a;
+    color: #21c87a;
 }
-.banner{
+
+.banner {
     border-radius: 5px;
 }
 
 a:hover {
     text-decoration: none;
 }
-#extraNav{
-    display:flex;
-    
+
+#extraNav {
+    display: flex;
     justify-content: center;
 }
-#salleButton{
+
+#salleButton {
     font-weight: 500;
     text-align: center;
-    width:200px;
+    width: 200px;
     border-radius: 5px;
     padding: 5px 5px 5px 10px;
-    margin-right:5px;
-    display:inline-block;
+    margin-right: 5px;
+    display: inline-block;
 }
-#moreInfoButton{
+
+#moreInfoButton {
     font-weight: 500;
     text-align: center;
-    width:200px;
+    width: 200px;
     border-radius: 5px;
     padding: 5px 10px 5px 5px;
-    display:inline-block;
+    display: inline-block;
 }
-.selected{
+
+.selected {
     background-color: #333;
-    color:white;
+    color: white;
     border: 2px solid #333;
 }
-.selected:hover{
+
+.selected:hover {
     background-color: rgb(44, 44, 44);
     border: 2px solid rgb(44, 44, 44);
-    cursor:pointer;
+    cursor: pointer;
 }
-.unselected{
-    color:#6c757d;
+
+.unselected {
+    color: #6c757d;
     background-color: white;
     border: 2px solid rgba(38, 38, 38, 0.1);
 }
-.unselected:hover{
-    cursor:pointer;
+
+.unselected:hover {
+    cursor: pointer;
     background-color: #edeff1;
-    color:#333;
+    color: #333;
 }
-.selectedNb{
+
+.selectedNb {
     background-color: #333;
-    color:white;
+    color: white;
 }
-.banner{
-    width:400px;
+
+.banner {
+    width: 400px;
 }
+
 .aVenue {
     display: inline-block;
 }
-a h3:hover{
+
+a h3:hover {
     text-decoration: underline;
-}   
-#map{
-    width: 100%; 
-    height: 600px; 
-    width:900px;
+}
+
+#map {
+    width: 100%;
+    height: 600px;
+    width: 900px;
     border-radius: 10px;
 }
-#mapContainer{
-    width:100%;
-    display:flex;
+
+#mapContainer {
+    width: 100%;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.slidecontainer{
-    margin-top:20px;
+
+.slidecontainer {
+    margin-top: 20px;
 }
+
 .slider {
     -webkit-appearance: none;
     width: 100%;
     height: 10px;
-    border-radius: 5px;  
+    border-radius: 5px;
     background: rgba(38, 38, 38, 0.1);
     outline: none;
     opacity: 1;
     -webkit-transition: .2s;
     transition: opacity .2s;
-  }
-  
-  .slider::-webkit-slider-thumb {
+}
+
+.slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%; 
-    background: #333;
-    cursor: pointer;
-  }
-  
-  .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
     border-radius: 50%;
     background: #333;
     cursor: pointer;
-  }
-  #ticketRange{
-      margin-bottom:5px;
-  }
-  #demoDiv{
-      text-align:center;
-  }
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #333;
+    cursor: pointer;
+}
+
+#ticketRange {
+    margin-bottom: 5px;
+}
+
+#demoDiv {
+    text-align: center;
+}
