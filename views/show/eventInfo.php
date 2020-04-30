@@ -1,6 +1,3 @@
-<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js'></script>
-<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css' rel='stylesheet' />
 <div class="layout">
     <?php
     PageFrame::loadBundle();
@@ -31,9 +28,65 @@
     $description = $data['description'];
     ?>
     <link rel="stylesheet" href="/public/css/details.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css' rel='stylesheet' />
     
+    <script src="https://unpkg.com/es6-promise@4.2.4/dist/es6-promise.auto.min.js"></script>
+    <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
     <script type="text/javascript">
         $( document ).ready(function() {
+            $(".checkoutButton").click(function(){
+                validate();
+            });
+            function validate(){
+                let nbTickets = null;
+                let sectionId = null;
+                $("#nbBilletsContainer div").each(function(){
+                    if($(this).hasClass("selectedNb")){
+                        if($(this).is("#5plus")){
+                            nbTickets = $("#demo").text();
+                        }
+                        else{
+                            nbTickets = $(this).text();
+                        }
+                    }
+                });
+                $(".sectionBillet").each(function(){
+                    if($(this).hasClass("selectedSection")){
+                        sectionId = $(this).attr("id").replace(/[a-z]/g,"");
+                    }
+                });
+                if(nbTickets === null){
+                    $("#nbError").show();
+                }
+                if(sectionId === null){
+                    $("#sectionError").show();
+                }
+                if(nbTickets !== null && sectionId !== null){
+                    postForm(nbTickets,sectionId);
+                }
+            }
+            function postForm(nbTickets, sectionId){
+                var form = document.createElement("form");
+                var element1 = document.createElement("input"); 
+                var element2 = document.createElement("input");  
+
+                form.method = "POST";
+                form.action = "login.php";   
+
+                element1.value=nbTickets;
+                element1.name="nbTickets";
+                form.appendChild(element1);  
+
+                element2.value=sectionId;
+                element2.name="sectionId";
+                form.appendChild(element2);
+
+                document.body.appendChild(form);
+
+                form.submit();
+            }
             $("#buttonContainer>div").click(function(){
                 if($(this).is("#salleButton")){
                     showCarte();
@@ -53,8 +106,12 @@
                 $("#moreInfoButton").addClass("selected").removeClass("unselected");
                 $("#salleContainer").hide();
                 $("#moreInfoContainer").show();
+                $("#moreInfoContainer").css("visibility","inherit");
+                $("#moreInfoContainer").css("position","relative");
+                $("#moreInfoContainer").css("top","0");
             }
             $("#sectionBilletsContainer a").click(function() {
+                $("#sectionError").hide();
                 $(".selectedSection").each(function() { $
                     let thisColor = $(this).css("background-color") ;
                     thisColor = thisColor.replace(/rgb/, "rgba");
@@ -83,8 +140,15 @@
                 }
             });
             $("#nbBilletsContainer div").click(function(){
+                $("#nbError").hide();
                 $("#nbBilletsContainer div").removeClass("selectedNb");
                 $(this).addClass("selectedNb");
+                console.log(this);
+                if($(this).is("#5plus")){
+                    $(".slidecontainer").show();
+                } else{
+                    $(".slidecontainer").hide();
+                }
             })
             $( "a.aBuyButton" ).click(function( event ) {
                 event.preventDefault();
@@ -97,11 +161,8 @@
                 $("html, body").animate({ scrollTop: $($(this).attr("href")).offset().top }, 500);
             });
         });
-        
     </script>
-    <script src="https://unpkg.com/es6-promise@4.2.4/dist/es6-promise.auto.min.js"></script>
-    <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
-    <script >
+    <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoiYmxhaXplZmYiLCJhIjoiY2s5bTYwZmlwMmRndzNmbzFpcjJoczlwMiJ9.cogH7m0a7U4jCtT7aH8WHg';
         var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
         mapboxClient.geocoding
@@ -126,14 +187,13 @@
                         center: feature.center,
                         zoom: 10
                     });
-                    map.on('load', function () {
-                        map.resize();
-                    });
+                    //map.on('load', () => {
+                    //    map.resize();
+                    //});  
                     new mapboxgl.Marker().setLngLat(feature.center).addTo(map);
                 }
-        });
+            });
     </script>
-
     <div id="contentContainer">
         <div id="infoContainer">
             <div>
@@ -169,28 +229,46 @@
                 <img id="sceneImg" src="/public/images/sceneCentreBell-0.png">
             </div>
             <div>
-                <h3 class="ticketTitle">Section</h3>
+                <h3 class="ticketTitle">Choisir la section</h3>
                 <div id="sectionBilletsContainer">
                     <a><div class="sectionBillet" id="section1" style="background-color: rgba(2, 108, 223,0.5)">Admission Générale</div></a>
                     <a><div class="sectionBillet" id="section2" style="background-color: rgba(223, 2, 108,0.5)">Section VIP</div></a>
                     <a><div class="sectionBillet" id="section3" style="background-color: rgba(108, 223, 2,0.5)">Section Plancher</div></a>
                 </div>
+                <p id="sectionError" style="color:red;display:none;">* Veuillez choisir la section</p>
                 <h3 class="ticketTitle">Nombre de billets</h3>
                 <div id="nbBilletsContainer">
                     <a><div>1</div></a>
                     <a><div>2</div></a>
                     <a><div>3</div></a>
                     <a><div>4</div></a>
-                    <a><div>5 +</div></a>
+                    <a><div id="5plus">5 +</div></a>
                 </div>
+                <div class="slidecontainer" style="display:none;">
+                    <input type="range" min="5" max="15" value="5" class="slider" id="ticketRange">
+                    <div id="demoDiv"><span id="demo"></span></div>
+                </div>
+                <p id="nbError" style="color:red;display:none;">* Veuillez choisir le nombre de billets</p>
+                <script>
+                    var slider = document.getElementById("ticketRange");
+                    var output = document.getElementById("demo");
+                    output.innerHTML = slider.value;
+
+                    slider.oninput = function() {
+                    output.innerHTML = this.value;
+                    }
+                </script>
+                <div class="checkoutButton">Passer la commande</div>
             </div>
         </div>
-        <div id="moreInfoContainer" style="display:none;">
-            <div style="margin-left:200px;">
-                <h3>Centre Bell</h3>
-                <h4>1909 Avn des Canadiens-de-Montréal, Montréal</h4>
-                <div id="map">
-
+        <div id="moreInfoContainer" style="visibility:hidden;position: absolute;top:-10000">
+            <div>
+                <div id="mapContainer">
+                    <div style="margin-top:30px;">
+                        <h3>Centre Bell</h3>
+                        <h4>1909 Avn des Canadiens-de-Montréal, Montréal</h4>
+                    </div>
+                    <div id='map'></div>
                 </div>
             </div>
         </div>

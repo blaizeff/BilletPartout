@@ -39,7 +39,7 @@ hr{
     margin-top: 10px;
     width:200px;
 }
-.buyButton {
+.buyButton,.checkoutButton {
     font-weight: 500;
     background-color: #21c87a;
     width:200px;
@@ -49,6 +49,13 @@ hr{
     text-align: center;
     color: white;
     transition: ease-in-out 50ms;
+}
+.checkoutButton{
+    margin-top:50px;
+}
+.checkoutButton:hover{
+    cursor:pointer;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, .3);
 }
 a:hover{
     cursor: pointer;
@@ -61,6 +68,9 @@ a:hover{
     border-radius: 5px;
     flex: 1;
     display:inline-block;
+}
+#nbBilletsContainer div:hover:not(.selectedNb){
+    background-color: ghostwhite;
 }
 #sectionBilletsContainer a  div{
     padding: 10px 0;
@@ -193,8 +203,52 @@ a h3:hover{
 }   
 #map{
     width: 100%; 
-    height: 400px; 
-    width:600px;
-    background-color: #333; 
-    border-radius: 5px;
+    height: 600px; 
+    width:900px;
+    border-radius: 10px;
 }
+#mapContainer{
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.slidecontainer{
+    margin-top:20px;
+}
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 10px;
+    border-radius: 5px;  
+    background: rgba(38, 38, 38, 0.1);
+    outline: none;
+    opacity: 1;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: #333;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #333;
+    cursor: pointer;
+  }
+  #ticketRange{
+      margin-bottom:5px;
+  }
+  #demoDiv{
+      text-align:center;
+  }
