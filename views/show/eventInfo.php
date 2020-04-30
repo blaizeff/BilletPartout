@@ -74,7 +74,7 @@
                 var element2 = document.createElement("input");  
 
                 form.method = "POST";
-                form.action = "login.php";   
+                form.action = "";   
 
                 element1.value=nbTickets;
                 element1.name="nbTickets";
