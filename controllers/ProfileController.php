@@ -54,13 +54,6 @@ class ProfileController extends Controller
                 }
 
             }
-            //this is for payment info modification
-            elseif(array_key_exists("submitPay",$_POST) && $_POST["submitPay"])
-            {
-                echo "Pay";
-                //there's no DB section for CC
-
-            }
         }
 
         //[GET]
