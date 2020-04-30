@@ -2,10 +2,13 @@ body{
     background-color: #f8f9fa;
 }
 #contentContainer{
-    margin: 80px 200px 50px 200px;
+    margin: 80px 200px 20px 200px;
     border-radius: 5px;
     background-color: white;
-    box-shadow: 0 1px 10px rgba(0, 0, 0, .3);
+    border: 1px solid rgb(236, 238, 240);
+}
+hr{
+    width:95%;
 }
 #infoContainer{
     display:flex;
@@ -15,20 +18,25 @@ body{
     width:100%;
 }
 #extraContainer{
+    margin: 10px 200px 50px 200px;
+    border: 1px solid rgb(236, 238, 240);
     overflow:hidden;
-    padding: 20px 200px 100px 200px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: white;
+}
+#descriptionContainer{
     width:100%;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background-color: #f8f9fa;
+    margin: 0 0 0 100px;
+    padding: 0 0 20px 0;
 }
 .eventDetails{
-    margin:50px 0px 0px 50px;
+    margin:40px 0px 0px 50px;
 }
 
 .aBuyButton{
     display:inline-block;
-    margin-top: 25px;
+    margin-top: 10px;
     width:200px;
 }
 .buyButton {
@@ -42,7 +50,45 @@ body{
     color: white;
     transition: ease-in-out 50ms;
 }
-
+a:hover{
+    cursor: pointer;
+}
+#nbBilletsContainer a  div{
+    padding: 10px 0;
+    text-align: center;
+    width: 50px;
+    border: 2px solid rgba(38, 38, 38, 0.1);
+    border-radius: 5px;
+    flex: 1;
+    display:inline-block;
+}
+#sectionBilletsContainer a  div{
+    padding: 10px 0;
+    text-align: center;
+    width: 200px;
+    margin-bottom: 5px;
+    border: 2px solid rgba(38, 38, 38, 0.1);
+    border-radius: 5px;
+}
+.selectedSection{
+    color:white;
+}
+#section1{
+    background-color:rgba(2, 108, 223,0.5);
+}
+#section2{
+    background-color:rgba(223, 2, 108,0.5);
+}
+#section3{
+    background-color:rgba(108, 223, 2,0.5);
+}
+#salleContainer{
+    display:flex;
+    flex-direction: row;
+}
+.ticketTitle{
+    margin-top:20px;
+}
 .buyButton:hover {
     background-color: #21c87a;
     box-shadow: 0 1px 10px rgba(0, 0, 0, .3);
