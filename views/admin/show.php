@@ -12,7 +12,7 @@ PageFrame::loadBundle();
     <div class="col-md-12 article">
         <a style="color:21c87a" href="<?php echo $data["returnLink"]; ?>">Retour au menu</a>
         <br>
-        <h2><?php echo $data["pageTitle"] ?></h2>
+        <h2><?php echo $data["pageState"] ?> un Spectacle</h2>
 
         <form id="form" class="row" method="POST" action="" enctype="multipart/form-data">
             <?php echo isset($_GET["id"]) && $_GET["id"] != '' ? "<input type='hidden' name='id' value=" . $_GET["id"] . ">" : "" ?>
@@ -44,7 +44,7 @@ PageFrame::loadBundle();
             </div>
 
             <div class="col-12 ">
-                <button type="submit" class="btn btn-primary green">Ajouter</button>
+                <button type="submit" class="btn btn-primary green"><?php echo $data["pageState"] ?></button>
             </div>
         </form>
     </div>

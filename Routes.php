@@ -14,7 +14,9 @@ Route::set('profile/homepage',function() {
 Route::set('profile/SignUp',function() {
     ProfileController::SignUpView("SignUp");
 });
-
+Route::set('profile/logout',function() {
+    ProfileController::Logout();
+});
 
 Route::set('cart/checkout',function() {
     CartController::View('checkout');

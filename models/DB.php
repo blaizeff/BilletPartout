@@ -91,7 +91,15 @@ class DB
 
     public function selectShow($filter)
     {
-        $sqlString = 'Select s.idSpectacle,r.idRepresentation,s.idCategories,s.nomSpectacle,s.nomArtiste,sa.Adresse,r.Date,s.description from Spectacles s join Representation r on s.idSpectacle=r.idSpectacle join Salles sa on r.idSalle=sa.idSalle';
+        $sqlString ='Select s.idSpectacle,
+                            r.idRepresentation,
+                            s.idCategories,
+                            s.nomSpectacle,
+                            s.nomArtiste,
+                            sa.Adresse,
+                            sa.nomSalle,
+                            r.Date,
+                            s.description from Spectacles s join Representation r on s.idSpectacle=r.idSpectacle join Salles sa on r.idSalle=sa.idSalle';
 
         //If Id is set then find with id else show all 
         //By default its show future show 
@@ -107,7 +115,10 @@ class DB
                             OR s.description like :search
                             OR s.nomArtiste like :search)';
         }
-        
+
+        if (array_key_exists('category',$filter) && $filter['category'] != '') {
+            $sqlString .= " AND s.idCategories = :category";
+        }
         $sqlString .= " ORDER BY ";
         if (array_key_exists('order',$filter) && $filter['order'] != '') {
             if ($filter['order'] == 'nameA-Z') {
@@ -128,6 +139,9 @@ class DB
         }
         if (array_key_exists('search',$filter) && $filter['search'] != '') {
             $stm->bindValue(':search', $filter['search']);
+        }
+        if (array_key_exists('category',$filter) && $filter['category'] != '') {
+            $stm->bindValue(':category', $filter['category']);
         }
         $success = $stm->execute();
         $row = $stm->fetchAll(PDO::FETCH_ASSOC);

@@ -4,36 +4,40 @@
     PageFrame::header();
     ?>
     <link rel="stylesheet" href="/public/css/list.css">
-    <div class="listContainers ">
+    <div class="listContainers">
+
+
         <div id="list">
-            <h1>
-                <?php echo count($data["listShow"]) . ' résulats trouvés ';
-                if (isset($_GET['search']) && $_GET["search"] != "") {
-                    echo "pour \"" . $_GET['search'] . "\"";
-                } ?>
-            </h1>
+            <div style="display: flex;justify-content: space-between;">
+                <h1>
+                    <?php echo count($data["listShow"]) . ' résulats trouvés ';
+                    if (isset($_GET['search']) && $_GET["search"] != "") {
+                        echo "pour \"" . $_GET['search'] . "\"";
+                    } ?>
+                </h1>
+
+                <div style="display:flex;flex-direction:row">
+                    <h4 style="width:200px">Trier par</h4>
+                    <?php echo Components::showFilterOptions() ?>
+                </div>
+            </div>
+
             <table>
-                <?php
-                Components::showList($data["listShow"]);
-                ?>
+                <?php Components::showList($data["listShow"]); ?>
             </table>
         </div>
 
         <div id="filter">
-            <h4>Filtre</h4>
             <div class="form-group">
-                <label class="mb-1">Catégorie</label>
-                <?php echo Components::showFilterOptions() ?>
-            </div>
-            
-            <div class="form-group">
-                <label class="mb-1">Prix</label><br>
-                <input type="range" name="price-max" id="price-max" value="800" min="0" max="1000">
+                <h5 class="mb-1">Catégorie</h5>
+                <div id="cat">
+                    <?php echo Components::showMenuCategory() ?>
+                </div>
             </div>
 
             <div class="form-group">
-                <label class="mb-1">Salle</label><br>
-                <?php echo Components::showFilterOptions() ?>
+                <label class="mb-1">Prix</label><br>
+                <input type="range" name="price-max" id="price-max" value="800" min="0" max="1000">
             </div>
         </div>
     </div>
@@ -67,7 +71,7 @@
     function shrink(target) {
         $(target).find("#desc").addClass("hide");
         $(target).animate({
-            height: "80px"
+            height: "100px"
         }, 200);
         $(target).children().find("img").animate({
             height: "70px",

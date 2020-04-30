@@ -7,7 +7,7 @@ class Components
             $Id = $value['id'];
             $Name = $value['title'];
             $Artist = $value['artist'];
-            $Location = $value['location'];
+            $Location = $value['venueName'];
             $Date = explode("-", explode(" ", $value['Date'])[0]);
             $month = self::frenchMonth($Date[1]);
             $day = $Date[2];
@@ -141,9 +141,9 @@ class Components
     }
     public static function showFilterOptions() {
         echo '<select onchange="location = this.value" class="form-control customSelect custom-select">
-                <option '.self::filterSelected('').' value="list?'.(isset($_GET["search"]) ? "search=".$_GET["search"] : "").'&order=">Date</option>
-                <option '.self::filterSelected('nameA-Z').' value="list?'.(isset($_GET["search"]) ? "search=".$_GET["search"] : "").'&order=nameA-Z">Nom A-Z</option>
-                <option '.self::filterSelected('nameZ-A').' value="list?'.(isset($_GET["search"]) ? "search=".$_GET["search"] : "").'&order=nameZ-A">Nom Z-A</option>
+                <option '.self::filterSelected('').' value="list?'.(self::addGetInUrl("search")).'&order=">Date</option>
+                <option '.self::filterSelected('nameA-Z').' value="list?'.(self::addGetInUrl("search")).'&order=nameA-Z">Nom A-Z</option>
+                <option '.self::filterSelected('nameZ-A').' value="list?'.(self::addGetInUrl("search")).'&order=nameZ-A">Nom Z-A</option>
             </select>';
     }
     private static function filterSelected($value) {
@@ -151,4 +151,20 @@ class Components
             return 'selected=""';
         } 
     }
+
+    private static function addGetInUrl($get){
+        return (isset($_GET[$get]) ? "$get=".$_GET[$get] : "");
+    }
+    public static function showMenuCategory()
+    {
+        require_once("./models/Show.php");
+
+        $show = new Show();
+        $html = "";
+        $categories = $show->getAllCategory();
+        foreach ($categories as $item) {
+            $html .= "<a href=list?".(self::addGetInUrl("search")).'&'.(self::addGetInUrl("order")).'&category='.$item["id"].">".$item["value"] . "</a>";
+        }
+        return $html;
+    }    
 }
