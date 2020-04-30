@@ -1,3 +1,6 @@
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css' rel='stylesheet' />
 <div class="layout">
     <?php
     PageFrame::loadBundle();
@@ -32,18 +35,25 @@
     <script type="text/javascript">
         $( document ).ready(function() {
             $("#buttonContainer>div").click(function(){
-                if($(this).hasClass("unselected")){
-                    $(".selected").addClass("unselected").removeClass("selected");
-                    $(this).addClass("selected").removeClass("unselected");
+                if($(this).is("#salleButton")){
+                    showCarte();
                 }
-                if($("#salleButton").hasClass("selected")){
-                    $("#salleContainer").show();
-                    $("#moreInfoContainer").hide();
-                } else {
-                    $("#salleContainer").hide();
-                    $("#moreInfoContainer").show();
+                else{
+                    showInfo();
                 }
             });
+            function showCarte(){
+                $(".selected").addClass("unselected").removeClass("selected");
+                $("#salleButton").addClass("selected").removeClass("unselected");
+                $("#salleContainer").show();
+                $("#moreInfoContainer").hide();
+            }
+            function showInfo(){
+                $(".selected").addClass("unselected").removeClass("selected");
+                $("#moreInfoButton").addClass("selected").removeClass("unselected");
+                $("#salleContainer").hide();
+                $("#moreInfoContainer").show();
+            }
             $("#sectionBilletsContainer a").click(function() {
                 $(".selectedSection").each(function() { $
                     let thisColor = $(this).css("background-color") ;
@@ -58,20 +68,17 @@
                 $(section).css("background-color",color);
                 if($(section).is("#section1")){
                     let src = $("#sceneImg").attr("src");
-                    src = src.replace(/[0-9]/,"");
-                    src = src.replace(/\.png/,"1.png");
+                    src = src.replace(/-[0-9]/,"-1");
                     $("#sceneImg").attr("src",src);
                 }
                 else if($(section).is("#section2")){
                     let src = $("#sceneImg").attr("src");
-                    src = src.replace(/[0-9]/,"");
-                    src = src.replace(/\.png/,"2.png");
+                    src = src.replace(/-[0-9]/,"-2");
                     $("#sceneImg").attr("src",src);
                 }
                 else if($(section).is("#section3")){
                     let src = $("#sceneImg").attr("src");
-                    src = src.replace(/[0-9]/,"");
-                    src = src.replace(/\.png/,"3.png");
+                    src = src.replace(/-[0-9]/,"-3");
                     $("#sceneImg").attr("src",src);
                 }
             });
@@ -81,8 +88,49 @@
             })
             $( "a.aBuyButton" ).click(function( event ) {
                 event.preventDefault();
+                showCarte();
                 $("html, body").animate({ scrollTop: $($(this).attr("href")).offset().top }, 500);
             });
+            $( "a.aVenue" ).click(function( event ) {
+                event.preventDefault();
+                showInfo();
+                $("html, body").animate({ scrollTop: $($(this).attr("href")).offset().top }, 500);
+            });
+        });
+        
+    </script>
+    <script src="https://unpkg.com/es6-promise@4.2.4/dist/es6-promise.auto.min.js"></script>
+    <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+    <script >
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYmxhaXplZmYiLCJhIjoiY2s5bTYwZmlwMmRndzNmbzFpcjJoczlwMiJ9.cogH7m0a7U4jCtT7aH8WHg';
+        var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
+        mapboxClient.geocoding
+            .forwardGeocode({
+                query: "<?php echo $venueAddress ?>",
+                autocomplete: false,
+                limit: 1
+            })
+            .send()
+            .then(function(response) {
+                if (
+                    response &&
+                    response.body &&
+                    response.body.features &&
+                    response.body.features.length
+                ) {
+                    var feature = response.body.features[0];
+
+                    var map = new mapboxgl.Map({
+                        container: 'map',
+                        style: 'mapbox://styles/mapbox/streets-v11',
+                        center: feature.center,
+                        zoom: 10
+                    });
+                    map.on('load', function () {
+                        map.resize();
+                    });
+                    new mapboxgl.Marker().setLngLat(feature.center).addTo(map);
+                }
         });
     </script>
 
@@ -96,7 +144,9 @@
                 <h1><?php echo $title ?></h1>
                 <h2><?php echo $date." &bull; ".$time ?></h2>
                 <h4><?php echo $artist ?></h4>
-                <h3><i class="smallIcon fas fa-map-marker-alt"></i>Centre Bell</h3>
+                <div>
+                    <a class="aVenue" href="#moreInfoContainer"><h3><i class="smallIcon fas fa-map-marker-alt"></i>Centre Bell</h3></a>
+                </div>
                 <a class="aBuyButton" href="#extraContainer"><div class="buyButton">Acheter Billets</div></a>
             </div>
         </div>
@@ -116,7 +166,7 @@
         <div id="salleContainer">
             <div>
                 <h2></h2>
-                <img id="sceneImg" src="/public/images/sceneCentreBell.png">
+                <img id="sceneImg" src="/public/images/sceneCentreBell-0.png">
             </div>
             <div>
                 <h3 class="ticketTitle">Section</h3>
@@ -133,12 +183,16 @@
                     <a><div>4</div></a>
                     <a><div>5 +</div></a>
                 </div>
-                <div>
             </div>
         </div>
         <div id="moreInfoContainer" style="display:none;">
-            <h3>Centre Bell</h3>
-            <h4>1909 Avn des Canadiens-de-Montréal, Montréal</h4>
+            <div style="margin-left:200px;">
+                <h3>Centre Bell</h3>
+                <h4>1909 Avn des Canadiens-de-Montréal, Montréal</h4>
+                <div id="map">
+
+                </div>
+            </div>
         </div>
     </div>
 </div>

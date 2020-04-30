@@ -29,7 +29,6 @@ class ShowController extends Controller {
         if (isset($_GET['id']) && is_int((int) $_GET["id"])) {
             $show = new Show();
             $data = $show->getEvent( $_GET['id'])[0];
-            print_r($data);
         }
         require_once("./Views/show/" . $page . ".php");
     }
