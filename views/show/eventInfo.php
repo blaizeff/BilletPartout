@@ -5,7 +5,7 @@
     $title = $data['title'];
     $artist = $data['artist'];
     //$venueName = $data['venueName'];
-    $venueAddress = $data['location'];
+    $venueAddress = $data['venueLocation'];
     $categoryName = "Categorie";
     $months = [
         0 => "Janvier",
