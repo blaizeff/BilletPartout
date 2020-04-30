@@ -110,9 +110,9 @@ PageFrame::header();
             </div>
         </form>
 
-        <hr>
+        <!-- <hr> -->
 
-        <h2>Paiement</h2>
+        <!-- <h2>Paiement</h2>
         <form class="row col-md-12" method="POST">
             <div class="row">
                 <div class="col-md-6 mb-3 form-group ">
@@ -159,10 +159,10 @@ PageFrame::header();
                 </div>
             </div>
             <input type="submit" class="btn btn-primary green" value="Mettre à jour" name="submitPay">
-        </form>
+        </form> -->
         
         <hr>
-        <h2>Historique d'achat</h2>
+        <!-- <h2>Historique d'achat</h2>
 
 
         <form class="row">
@@ -199,7 +199,7 @@ PageFrame::header();
                     </tbody>
                 </table>
             </div>
-        </form>
+        </form> -->
 
     </div>
 </div>
