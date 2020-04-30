@@ -1,8 +1,10 @@
 <?php
-    require_once("./models/Show.php");
+require_once("./models/Show.php");
 
-class ShowController extends Controller {
-    public static function ListView($page) {
+class ShowController extends Controller
+{
+    public static function ListView($page)
+    {
         //[GET]
         $filter = [];
         if (isset($_GET['search']) && $_GET['search'] != '') {
@@ -26,12 +28,36 @@ class ShowController extends Controller {
 
     public static function InfoView($page)
     {
+
         if (isset($_GET['id']) && is_int((int) $_GET["id"])) {
             $show = new Show();
-            $data = $show->getEvent( $_GET['id'])[0];
+            $data = $show->getEvent($_GET['id'])[0];
         }
+        $title = $data['title'];
+        $artist = $data['artist'];
+        //$venueName = $data['venueName'];
+        $venueAddress = $data['venueLocation'];
+        $venue = $data['venueName'];
+        $categoryName = "Categorie";
+        $months = [
+            0 => "Janvier",
+            1 => "Février",
+            2 => "Mars",
+            3 => "Avril",
+            4 => "Mai",
+            5 => "Juin",
+            6 => "Juillet",
+            7 => "Août",
+            8 => "Septembre",
+            9 => "Octobre",
+            10 => "Novembre",
+            11 => "Décembre"
+        ];
+        $dateRaw = explode("-", explode(" ", $data['Date'])[0]);
+        $date = $dateRaw[2] . " " . $months[intval($dateRaw[1])] . " " . $dateRaw[0];
+        $timeArray = explode(":", explode(" ", $data['Date'])[1]);
+        $time = $timeArray[0] . "h" . $timeArray[1];
+        $description = $data['description'];
         require_once("./Views/show/" . $page . ".php");
     }
-
 }
-?>
