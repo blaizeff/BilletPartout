@@ -90,7 +90,7 @@
         <div id="infoContainer">
             <div>
                 <h4><?php echo $categoryName ?> / <?php echo $artist ?></h4>
-                <img class="banner" src="/public/images/show/show1.jpg">
+                <img class="banner" src="/public/images/show/show<?php echo $data['idShow'] ?>.jpg">
             </div>
             <div class="eventDetails">
                 <h1><?php echo $title ?></h1>
