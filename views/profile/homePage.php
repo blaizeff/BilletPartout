@@ -6,9 +6,9 @@ PageFrame::header();
     $currentUser->loadUser($_SESSION["user"]["idClient"]);
 ?>
 
-<head>
+<!-- <head>
 <!-- for the datepicker -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -16,8 +16,8 @@ PageFrame::header();
     $( function() {
         $( "#datepicker" ).datepicker();
     } );
-    </script>
-</head>
+    </script> -->
+<!-- </head> -->
 <style>
     .info {
         background-color: #edeef6 ;
@@ -48,7 +48,7 @@ PageFrame::header();
                 <input type="text" class="form-control custominput">
             </div> -->
 
-            <div class="col-12 col-md-6 form-group">
+            <div class="col-12 form-group">
                 <label>Nom</label>
                 <input type="text" class="form-control custominput" name="nom" value="<?php echo $currentUser->get_nom() ?>" placeholder="Nom Complet">
             </div>
@@ -64,10 +64,10 @@ PageFrame::header();
                 
             </div>
         <!-- this isn't in any of our other documentation, idk if we need it -->
-            <div class="col-12 col-md-6 form-group">
+            <!-- <div class="col-12 col-md-6 form-group">
                 <label>Date de naissance</label>
                 <input type="text" class="form-control custominput" id="datepicker" name="date_de_naissance" value="<?php echo "" ?>" placeholder="04/16/1920">
-            </div>
+            </div> -->
 
             <div class="col-12 ">
                 <input type="submit" class="btn btn-primary green" value="Mettre à jour" name="submitProfile">
@@ -161,7 +161,7 @@ PageFrame::header();
             <input type="submit" class="btn btn-primary green" value="Mettre à jour" name="submitPay">
         </form> -->
         
-        <hr>
+        <!-- <hr> -->
         <!-- <h2>Historique d'achat</h2>
 
 

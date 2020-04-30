@@ -19,9 +19,11 @@ class PageFrame
                 </form>
                 <a class="login" id="login" href="/profile/login">
                 '.(isset($_SESSION["user"]) ? $_SESSION["user"]["nomClient"] : '').'<i class="profileIcon fas fa-user"></i></a>
+                
         </nav>
     </header>');
     }
+    //ajouter un drop down pour profile/logout si user est logged in sinon diriger vers la page de login
     public static function footer()
     {
         echo ('<footer>BilletPartout &copy; 2020</footer>');
