@@ -67,18 +67,18 @@ class Components
     }
 
     //Change Multiple keys in a sub array
-    public static function change_arrayKeys($data,$new_keys)
+    public static function change_arrayKeys($data, $new_keys)
     {
         $result = array();
         foreach ($data as $row) {
-            foreach($new_keys as $key => $value) {
+            foreach ($new_keys as $key => $value) {
                 $row = self::change_key($row, $key, $value);
             }
             $result[] = $row;
         }
         return $result;
     }
-    
+
     //return if the input contain a illegal char
     public static function validCharacter($input)
     {
@@ -135,25 +135,31 @@ class Components
     }
 
     //echo nothing if value is undefined
-    public static function dataValExist($data,$value)
+    public static function dataValExist($data, $value)
     {
-        echo array_key_exists($value,$data) ? $value : "";
+        echo array_key_exists($value, $data) ? $value : "";
     }
-    public static function showFilterOptions() {
+    public static function showFilterOptions()
+    {
         echo '<select onchange="location = this.value" class="form-control customSelect custom-select">
-                <option '.self::filterSelected('').' value="list?'.(self::addGetInUrl("search")).'&order=">Date</option>
-                <option '.self::filterSelected('nameA-Z').' value="list?'.(self::addGetInUrl("search")).'&order=nameA-Z">Nom A-Z</option>
-                <option '.self::filterSelected('nameZ-A').' value="list?'.(self::addGetInUrl("search")).'&order=nameZ-A">Nom Z-A</option>
+                <option ' . self::filterSelected('') . ' value="list?'.self::buildGetURL('search','').'">Date</option>
+                <option ' . self::filterSelected('nameA-Z') ." value=list?".self::buildGetURL('order','nameA-Z'). '>Nom A-Z</option>
+                <option ' . self::filterSelected('nameZ-A') ." value=list?".self::buildGetURL('order','nameZ-A'). '>Nom Z-A</option>
             </select>';
     }
-    private static function filterSelected($value) {
-        if (isset($_GET['order']) && $_GET['order'] == $value){
+    private static function filterSelected($value)
+    {
+        if (isset($_GET['order']) && $_GET['order'] == $value) {
             return 'selected=""';
-        } 
+        }
     }
 
-    private static function addGetInUrl($get){
-        return (isset($_GET[$get]) ? "$get=".$_GET[$get] : "");
+    public static function buildGetURL($key,$value)
+    {
+        $query = $_GET;
+        unset($query['url']);
+        $query[$key] =$value ;
+        return http_build_query($query);
     }
     public static function showMenuCategory()
     {
@@ -163,8 +169,8 @@ class Components
         $html = "";
         $categories = $show->getAllCategory();
         foreach ($categories as $item) {
-            $html .= "<a href=list?".(self::addGetInUrl("search")).'&'.(self::addGetInUrl("order")).'&category='.$item["id"].">".$item["value"] . "</a>";
+            $html .= "<a style='font-size:18' href=list?" . self::buildGetURL('category',$item['id']) .">" . $item["value"] . "</a>";
         }
         return $html;
-    }    
+    }
 }

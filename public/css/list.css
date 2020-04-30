@@ -14,7 +14,7 @@
 }
 
 .listingContainer:hover {
-    background-color: #f8f9fa;
+    background-color: #edeef6;
 }
 
 .listContainers {
@@ -42,13 +42,11 @@
 }
 
 #filter {
+    top: 120px;
+    position: sticky;
     width: 15vw;
-    margin-left: 2vw;
-    background-color: white;
+    margin-right: 2vw;
     height: 100%;
-    padding: 20px;
-    margin-top: 60px;
-    border: 1px solid rgb(236, 238, 240);
     border-radius: 5px;
 }
 

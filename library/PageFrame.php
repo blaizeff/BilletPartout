@@ -22,16 +22,17 @@ class PageFrame
                 {
                     echo('
                     <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:white; border:white">
-                    <t class="login" id="login" style="color:#A7A3A3">' . $_SESSION["user"]["nomClient"] . '<i class="profileIcon fas fa-user"></i></t>
-                    <span class="caret"></span></button>
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:white; border:white">
+                    <a class="login" id="login"><i class="profileIcon fas fa-user"></i>' . $_SESSION["user"]["nomClient"] . '</a>
+                    <span class="caret"></span>
+                    </button>
                     <ul class="dropdown-menu">
                         <li><a href="/profile/homepage" class="dropdown_text">Profile</a></li>
                         <li><a href="/profile/logout" class="dropdown_text">Logout</a></li>
                     </ul></div>');
 
                 }
-                else{ echo('<a class="login" id="login" href="/profile/login">Login<i class="profileIcon fas fa-user"></i></a>'); }
+                else{ echo('<a class="login" id="login" href="/profile/login"><i class="profileIcon fas fa-user"></i>Se connecter</a>'); }
                 //(isset($_SESSION["user"]) ? $_SESSION["user"]["nomClient"] : '') old in-line code by max
                 //ajouter un drop down pour profile/logout si user est logged in sinon diriger vers la page de login
                 //<t class="login" id="login" style="color:#A7A3A3">' . $_SESSION["user"]["nomClient"] . '<i class="profileIcon fas fa-user"></i></t></div>

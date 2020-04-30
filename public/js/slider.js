@@ -7,19 +7,23 @@ $('.slider').each(function(e) {
 
     let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('viewBox', '0 0 ' + width + ' 83');
+    const urlParams = new URLSearchParams(window.location.search);
+    const minPrice = Number.isInteger(parseInt(urlParams.get('minPrice'))) ? urlParams.get('minPrice') : 0;
+    const maxPrice = Number.isInteger(parseInt(urlParams.get('maxPrice'))) ? urlParams.get('maxPrice') : 500;
 
     slider.html(svg);
     slider.append($('<div>').addClass('active').html(svg.cloneNode(true)));
 
     slider.slider({
         range: true,
-        values: [0, 500],
+        values: [minPrice, maxPrice],
         min: 0,
         step: 5,
         minRange: 20,
         max: 500,
         create(event, ui) {
-
+            console.log(minPrice);
+            this.values = [20, 40];
             slider.find('.ui-slider-handle').append($('<div />'));
 
             $(slider.data('value-0')).html(slider.slider('values', 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '&thinsp;'));

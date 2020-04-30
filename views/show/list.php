@@ -7,7 +7,48 @@
     <link rel="stylesheet" href="/public/css/slider.css">
 
     <div class="listContainers">
+        <form id="filter" class="form-group" action="./list" method="get">
+            <input type="hidden" name="search" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+            <input type="hidden" name="category" value="<?php echo isset($_GET['category']) ? $_GET['category'] : ''; ?>">
+            <textarea style="display:none;" type="hidden" class="first" name="minPrice"></textarea>
+            <textarea style="display:none;" type="hidden" class="second" name="maxPrice"></textarea>
+            <input type="hidden" name="order" value="<?php echo isset($_GET['order']) ? $_GET['order'] : ''; ?>">
+            <div class="form-group">
+                <h4 class="mb-1">Catégorie 
+                    <?php 
+                    if (isset($_GET["category"]) && $_GET["category"] != "") 
+                    echo '<a style="font-size:18" href="list?'.Components::buildGetURL('category','')."\"><i style='color:#21c87a' class='far fa-times-circle'></i></a>"; ?>
+                </h4>
+                <div id="cat">
+                    <?php echo Components::showMenuCategory() ?>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <h4 class="mb-1">Prix</h4>
+                <div class="values" style="display: flex;justify-content: space-between;">
+                    <div><span class="first"></span>$</div>
+                    <div><span class="second"></span>$</div>
+                </div>
 
+
+                <div class="slider" data-value-0=".first" data-value-1=".second" data-range=".third"></div>
+                <br>
+            </div>
+            <hr>
+            <div>
+                <h4>Date</h4>
+                Date de début
+                <input type="date" name="startDate" class="custominput" style="width: 100%;border-radius:5px">
+                <br><br>
+                Date de fin
+                <input type="date" name="endDate" class="custominput" style="width: 100%;border-radius:5px">
+            </div>
+            <br>
+            <hr>
+            <button type="submit" class="btn btn-lg btn-block btn-primary green">Appliquer</button>
+
+        </form>
 
         <div id="list">
             <div style="display: flex;justify-content: space-between;">
@@ -29,25 +70,7 @@
             </table>
         </div>
 
-        <div id="filter">
-            <div class="form-group">
-                <h5 class="mb-1">Catégorie</h5>
-                <div id="cat">
-                    <?php echo Components::showMenuCategory() ?>
-                </div>
-            </div>
 
-            <form class="form-group">
-                <h5 class="mb-1">Prix</h5>
-                <div class="values" style="display: flex;justify-content: space-between;">
-                    <div><span id="first"></span>$</div>
-                    <div><span id="second"></span>$</div>
-                </div>
-                <div class="slider" data-value-0="#first" data-value-1="#second" data-range="#third"></div>
-                <br>
-                <button type="submit" class="btn btn-small  btn-primary green">Appliquer</button>
-            </form>
-        </div>
     </div>
 </div>
 <script type="text/javascript" src="/public/js/slider.js"></script>
