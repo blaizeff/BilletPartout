@@ -5,8 +5,6 @@ class ShowController extends Controller {
     public static function ListView($page) {
         //[GET]
         $filter = [];
-        
-
         if (isset($_GET['search']) && $_GET['search'] != '') {
             $filter["search"] = $_GET['search'];
         }
@@ -20,18 +18,17 @@ class ShowController extends Controller {
         $data["listShow"] = $events->getAllShow($filter);
         require_once("./Views/Show/" . $page . ".php");
     }
+
     public static function View($page)
     {
         require_once("./Views/show/" . $page . ".php");
     }
+
     public static function InfoView($page)
     {
         if (isset($_GET['id']) && is_int((int) $_GET["id"])) {
             $show = new Show();
-            $filter = [
-                "id" => $_GET['id']
-            ];
-            $data = $show->getAllShow($filter)[0];
+            $data = $show->getEvent( $_GET['id'])[0];
             print_r($data);
         }
         require_once("./Views/show/" . $page . ".php");
