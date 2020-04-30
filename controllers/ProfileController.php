@@ -131,6 +131,7 @@ class ProfileController extends Controller
         }
         else {
             ProfileController::Logout();
+            //infinite loop :O
         }
         
     }

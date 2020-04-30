@@ -16,14 +16,29 @@ class PageFrame
                     <input id="navSearchInput" name="search" type="text" placeholder="Rechercher un spectacle..">
                     <i class="navSearch fas fa-search"></i>
                     <button id="submit" type="submit"></button>
-                </form>
-                <a class="login" id="login" href="/profile/login">
-                '.(isset($_SESSION["user"]) ? $_SESSION["user"]["nomClient"] : '').'<i class="profileIcon fas fa-user"></i></a>
+                </form>');
                 
-        </nav>
+                if(isset($_SESSION["user"]))
+                {
+                    echo('
+                    <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:white; border:white">
+                    <t class="login" id="login" style="color:#A7A3A3">' . $_SESSION["user"]["nomClient"] . '<i class="profileIcon fas fa-user"></i></t>
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/profile/homepage" class="dropdown_text">Profile</a></li>
+                        <li><a href="/profile/logout" class="dropdown_text">Logout</a></li>
+                    </ul></div>');
+
+                }
+                else{ echo('<a class="login" id="login" href="/profile/login">Login<i class="profileIcon fas fa-user"></i></a>'); }
+                //(isset($_SESSION["user"]) ? $_SESSION["user"]["nomClient"] : '') old in-line code by max
+                //ajouter un drop down pour profile/logout si user est logged in sinon diriger vers la page de login
+                //<t class="login" id="login" style="color:#A7A3A3">' . $_SESSION["user"]["nomClient"] . '<i class="profileIcon fas fa-user"></i></t></div>
+
+        echo('</nav>
     </header>');
     }
-    //ajouter un drop down pour profile/logout si user est logged in sinon diriger vers la page de login
     public static function footer()
     {
         echo ('<footer>BilletPartout &copy; 2020</footer>');
