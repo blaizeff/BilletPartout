@@ -12,7 +12,7 @@
     <script src="https://unpkg.com/es6-promise@4.2.4/dist/es6-promise.auto.min.js"></script>
     <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
     <script src="/public/js/eventInfo.js"></script>
-    <script src="/public/js/map.js"></script>
+   
     <div id="contentContainer">
         <div id="infoContainer">
             <div>
@@ -97,3 +97,35 @@
 <?php
 PageFrame::footer();
 ?>
+ <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYmxhaXplZmYiLCJhIjoiY2s5bTYwZmlwMmRndzNmbzFpcjJoczlwMiJ9.cogH7m0a7U4jCtT7aH8WHg';
+        var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
+        mapboxClient.geocoding
+            .forwardGeocode({
+                query: "<?php echo $venueAddress ?>",
+                autocomplete: false,
+                limit: 1
+            })
+            .send()
+            .then(function(response) {
+                if (
+                    response &&
+                    response.body &&
+                    response.body.features &&
+                    response.body.features.length
+                ) {
+                    var feature = response.body.features[0];
+
+                    var map = new mapboxgl.Map({
+                        container: 'map',
+                        style: 'mapbox://styles/mapbox/streets-v11',
+                        center: feature.center,
+                        zoom: 10
+                    });
+                    //map.on('load', () => {
+                    //    map.resize();
+                    //});  
+                    new mapboxgl.Marker().setLngLat(feature.center).addTo(map);
+                }
+            });
+    </script>
