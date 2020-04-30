@@ -73,15 +73,6 @@ a:hover{
 .selectedSection{
     color:white;
 }
-#section1{
-    background-color:rgba(2, 108, 223,0.5);
-}
-#section2{
-    background-color:rgba(223, 2, 108,0.5);
-}
-#section3{
-    background-color:rgba(108, 223, 2,0.5);
-}
 #salleContainer{
     display:flex;
     flex-direction: row;
@@ -186,4 +177,8 @@ a:hover {
     cursor:pointer;
     background-color: #edeff1;
     color:#333;
+}
+.selectedNb{
+    background-color: #333;
+    color:white;
 }
