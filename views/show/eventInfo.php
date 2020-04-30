@@ -38,8 +38,7 @@
     <div id="extraContainer">
         <div id="extraNav">
             <div id="buttonContainer">
-                <div id="salleButton" class="selected">Carte de salle</div>
-                <div id="moreInfoButton" class="unselected">Information sur le lieu </div>
+                <div id="salleButton" class="selected" style="width:50%">Carte de salle</div><a href="#extraNav" id="moreInfoButton" class="unselected" style="width:50%">Information sur le lieu </a>
             </div>
         </div>
         <div id="salleContainer">
@@ -97,7 +96,7 @@
 <?php
 PageFrame::footer();
 ?>
- <script>
+<script>
         mapboxgl.accessToken = 'pk.eyJ1IjoiYmxhaXplZmYiLCJhIjoiY2s5bTYwZmlwMmRndzNmbzFpcjJoczlwMiJ9.cogH7m0a7U4jCtT7aH8WHg';
         var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
         mapboxClient.geocoding

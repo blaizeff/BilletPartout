@@ -51,7 +51,7 @@ $(document).ready(function() {
 
         form.submit();
     }
-    $("#buttonContainer>div").click(function() {
+    $("#buttonContainer>*").click(function() {
         if ($(this).is("#salleButton")) {
             showCarte();
         } else {
