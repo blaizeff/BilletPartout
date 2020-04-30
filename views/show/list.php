@@ -4,6 +4,8 @@
     PageFrame::header();
     ?>
     <link rel="stylesheet" href="/public/css/list.css">
+    <link rel="stylesheet" href="/public/css/slider.css">
+
     <div class="listContainers">
 
 
@@ -35,13 +37,21 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label class="mb-1">Prix</label><br>
-                <input type="range" name="price-max" id="price-max" value="800" min="0" max="1000">
-            </div>
+            <form class="form-group">
+                <h5 class="mb-1">Prix</h5>
+                <div class="values" style="display: flex;justify-content: space-between;">
+                    <div><span id="first"></span>$</div>
+                    <div><span id="second"></span>$</div>
+                </div>
+                <div class="slider" data-value-0="#first" data-value-1="#second" data-range="#third"></div>
+                <br>
+                <button type="submit" class="btn btn-small  btn-primary green">Appliquer</button>
+            </form>
         </div>
     </div>
 </div>
+<script type="text/javascript" src="/public/js/slider.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function() {
         $(".listingContainer").click(function() {
@@ -82,4 +92,6 @@
 </script>
 <?php
 PageFrame::footer();
+PageFrame::loadSlider();
+
 ?>
