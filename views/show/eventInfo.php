@@ -6,6 +6,7 @@
     $artist = $data['artist'];
     //$venueName = $data['venueName'];
     $venueAddress = $data['venueLocation'];
+    $venue = $data['venueName'];
     $categoryName = "Categorie";
     $months = [
         0 => "Janvier",
@@ -205,7 +206,7 @@
                 <h2><?php echo $date." &bull; ".$time ?></h2>
                 <h4><?php echo $artist ?></h4>
                 <div>
-                    <a class="aVenue" href="#moreInfoContainer"><h3><i class="smallIcon fas fa-map-marker-alt"></i>Centre Bell</h3></a>
+                    <a class="aVenue" href="#moreInfoContainer"><h3><i class="smallIcon fas fa-map-marker-alt"></i><?php echo $venue ?></h3></a>
                 </div>
                 <a class="aBuyButton" href="#extraContainer"><div class="buyButton">Acheter Billets</div></a>
             </div>

@@ -200,8 +200,12 @@
             background-color: #21c87a;
         }
         
+        .show {
+            border-radius: 0 !important;
+        }
+        
         .profileIcon {
-            margin: 15px 15px 0 0;
+            margin: 0;
             font-size: 32px;
             transition: all .2s ease-in-out;
             padding: 15px;

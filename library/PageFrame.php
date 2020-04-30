@@ -16,10 +16,28 @@ class PageFrame
                     <input id="navSearchInput" name="search" type="text" placeholder="Rechercher un spectacle..">
                     <i class="navSearch fas fa-search"></i>
                     <button id="submit" type="submit"></button>
-                </form>
-                <a class="login" id="login" href="/profile/login">
-                '.(isset($_SESSION["user"]) ? $_SESSION["user"]["nomClient"] : '').'<i class="profileIcon fas fa-user"></i></a>
-        </nav>
+                </form>');
+                
+                if(isset($_SESSION["user"]))
+                {
+                    echo('
+                    <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:white; border:white">
+                    <a class="login" id="login"><i class="profileIcon fas fa-user"></i>' . $_SESSION["user"]["nomClient"] . '</a>
+                    <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/profile/homepage" class="dropdown_text">Profile</a></li>
+                        <li><a href="/profile/logout" class="dropdown_text">Logout</a></li>
+                    </ul></div>');
+
+                }
+                else{ echo('<a class="login" id="login" href="/profile/login"><i class="profileIcon fas fa-user"></i>Se connecter</a>'); }
+                //(isset($_SESSION["user"]) ? $_SESSION["user"]["nomClient"] : '') old in-line code by max
+                //ajouter un drop down pour profile/logout si user est logged in sinon diriger vers la page de login
+                //<t class="login" id="login" style="color:#A7A3A3">' . $_SESSION["user"]["nomClient"] . '<i class="profileIcon fas fa-user"></i></t></div>
+
+        echo('</nav>
     </header>');
     }
     public static function footer()
@@ -35,5 +53,14 @@ class PageFrame
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="/public/css/MasterStyle.css">');
+    }
+
+    public static function loadSlider() {
+        echo (' 
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+        <script src="/public/js/slider.js"></script>');
     }
 }

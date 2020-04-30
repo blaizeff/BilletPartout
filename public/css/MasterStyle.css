@@ -86,7 +86,6 @@ footer {
 }
 
 .profileIcon {
-    margin: 5px 15px 0 0;
     font-size: 32px;
     padding: 15px;
     border-radius: 1em;
@@ -165,10 +164,21 @@ header {
     border: 2px solid rgb(220, 220, 220);
 }
 
+.login {
+    font-size: 18;
+    padding: 0;
+    color: #21c87a !important
+}
+
+.dropdown-toggle:focus {
+    box-shadow: none;
+}
+
+.login:hover,
 .login:hover * {
     transition: all .2s ease-in-out;
     background-color: rgba(255, 255, 255, .2);
-    color: #333;
+    color: #9d9da3 !important;
 }
 
 input::placeholder {

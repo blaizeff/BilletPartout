@@ -125,12 +125,15 @@ class ProfileController extends Controller
     }
 
     public static function Logout() {
-        if (isset($_GET['page'])) {
+        if (isset($_SESSION["user"])) {
             unset($_SESSION["user"]);
+        }
+        
+        if (isset($_GET['page'])) {
             header('Location: /'.$_GET['page']);
         }
         else {
-            ProfileController::Logout();
+            header('Location: /profile/login');
         }
         
     }
