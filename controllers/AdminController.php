@@ -41,12 +41,12 @@ class AdminController extends Controller
         if (isset($_GET['id']) && is_int((int) $_GET["id"])) {
             $show = new Show();
             $data = $show->get($_GET['id']);
-            $data['pageTitle'] = "Modifier un Spectacle";
+            $data['pageState'] = "Modifier";
             $data['returnLink'] = "./details?id=".$_GET["id"];
         } else {
             $data = [
                 'title' => '',
-                'pageTitle' => 'Ajouter un Spectacle',
+                'pageState' => 'Ajouter',
                 'returnLink' => './',
                 'description' => '',
                 'artist' =>'',

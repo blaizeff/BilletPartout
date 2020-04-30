@@ -25,7 +25,8 @@ class ProfileController extends Controller
                     $data = ["nomClient" => $_POST["nom"], "Courriel" => $_POST["courriel"], "numTelephone" => $_POST["telephone"]];
 
                     $result = $user->updateUserProfile($_SESSION["user"]["idClient"], $data);
-
+                    //Crer la session user
+                    $_SESSION["user"]=$user->getFromEmail($email);
                     echo "<meta http-equiv='refresh' content='0'>";
                 }
                 else{
@@ -51,13 +52,6 @@ class ProfileController extends Controller
                 else{
                     echo '<script>alert("SVP remplir toutes les cases pour modifier son mot de passe.")</script>';
                 }
-
-            }
-            //this is for payment info modification
-            elseif(array_key_exists("submitPay",$_POST) && $_POST["submitPay"])
-            {
-                echo "Pay";
-                //there's no DB section for CC
 
             }
         }

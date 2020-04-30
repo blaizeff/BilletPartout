@@ -13,6 +13,9 @@ class ShowController extends Controller {
         if (isset($_GET['order']) && $_GET['order'] != '') {
             $filter["order"] = $_GET['order'];
         }
+        if (isset($_GET['category']) && $_GET['category'] != '') {
+            $filter["category"] = $_GET['category'];
+        }
         $events = new Show();
         $data["listShow"] = $events->getAllShow($filter);
         require_once("./Views/Show/" . $page . ".php");
