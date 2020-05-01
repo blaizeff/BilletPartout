@@ -39,10 +39,10 @@
             <div>
                 <h4>Date</h4>
                 Date de début
-                <input type="date" name="startDate" class="custominput" style="width: 100%;border-radius:5px">
+                <input type="date" name="startDate" class="custominput"  value="<?php echo isset($_GET['startDate']) ? $_GET['startDate'] :'';?>" style="width: 100%;border-radius:5px">
                 <br><br>
                 Date de fin
-                <input type="date" name="endDate" class="custominput" style="width: 100%;border-radius:5px">
+                <input type="date" name="endDate" class="custominput" value="<?php echo isset($_GET['endDate']) ? $_GET['endDate'] :'';?>" style="width: 100%;border-radius:5px">
             </div>
             <br>
             <hr>

@@ -38,7 +38,7 @@
     <div id="extraContainer">
         <div id="extraNav">
             <div id="buttonContainer">
-                <div id="salleButton" class="selected" style="width:50%">Carte de salle</div><a href="#extraNav" id="moreInfoButton" class="unselected" style="width:50%">Information sur le lieu </a>
+                <div id="salleButton" class="selected" style="width:50%">Carte de salle</div><a id="moreInfoButton" class="unselected" style="width:50%">Information sur le lieu </a>
             </div>
         </div>
         <div id="salleContainer">

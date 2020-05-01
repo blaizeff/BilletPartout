@@ -16,6 +16,18 @@ class ShowController extends Controller
         if (isset($_GET['category']) && $_GET['category'] != '') {
             $filter["category"] = $_GET['category'];
         }
+        if (isset($_GET['minPrice']) && $_GET['minPrice'] != '') {
+            $filter["minPrice"] = $_GET['minPrice'];
+        }
+        if (isset($_GET['maxPrice']) && $_GET['maxPrice'] != '') {
+            $filter["maxPrice"] = $_GET['maxPrice'];
+        }
+        if (isset($_GET['startDate']) && $_GET['startDate'] != '') {
+            $filter["startDate"] = $_GET['startDate'];
+        }
+        if (isset($_GET['endDate']) && $_GET['endDate'] != '') {
+            $filter["endDate"] = $_GET['endDate'];
+        }
         $events = new Show();
         $data["listShow"] = $events->getAllShow($filter);
         require_once("./Views/Show/" . $page . ".php");

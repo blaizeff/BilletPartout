@@ -216,6 +216,7 @@ a:hover {
 .unselected {
     color: #6c757d;
     border: 2px solid #f8f9fa;
+    border-bottom: 2px solid rgb(233, 237, 241);
     background-color: #f8f9fa;
 }
 
@@ -226,8 +227,7 @@ a:hover {
 }
 
 .selectedNb {
-    background-color: #333;
-    color: white;
+    background-color: #edeef6;
 }
 
 .banner {
@@ -255,6 +255,8 @@ a h3:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 2px solid rgb(233, 237, 241);
+    border-top: 0;
 }
 
 .slidecontainer {
@@ -279,7 +281,7 @@ a h3:hover {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: #333;
+    background: #edeef6;
     cursor: pointer;
 }
 
@@ -287,7 +289,7 @@ a h3:hover {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: #333;
+    background: #edeef6;
     cursor: pointer;
 }
 
