@@ -28,7 +28,8 @@ class Show
             "Adresse" => "location",
             "idSpectacle" => "idShow",
             "idCategories" => "idCat",
-            "nomSalle" => "venueName"
+            "nomSalle" => "venueName",
+            "Description" => "categorie"
         ];
         return Components::change_arrayKeys($DBresult, $keys);
     }

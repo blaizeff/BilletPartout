@@ -17,13 +17,12 @@
     <script type="text/javascript">
         $(document).ready(function() {
             let overlayHidden = true;
-            $('.filterButton').on("click", () => {
-                let x = $(this).next();
-                if ($(x).hasClass("showFilter")) {
-                    alert();
-                    $(x).addClass("showFilter");
+            $('#salleFilterButton').on("click", () => {
+                let popup = $("#sallePopup");
+                if ($(popup).hasClass("showFilter")) {
+                    $(popup).addClass("showFilter");
                 } else { 
-                    $(x).removeClass("showFilter");
+                    $(popup).removeClass("showFilter");
                 }
             });
 
