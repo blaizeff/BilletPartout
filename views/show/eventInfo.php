@@ -2,7 +2,6 @@
     <?php
     PageFrame::loadBundle();
     PageFrame::header();
-    
     ?>
     <link rel="stylesheet" href="/public/css/details.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -16,8 +15,8 @@
     <div id="contentContainer">
         <div id="infoContainer">
             <div>
-                <h4><?php echo $categoryName ?> / <?php echo $artist ?></h4>
-                <img class="banner" src="/public/images/show/show<?php echo $data['idShow'] ?>.jpg">
+                <h4><a id="nav-link" href="/show/list?search=&category=<?php echo $categoryId ?>"><?php echo $categoryName ?></a> / <?php echo $artist ?></h4>
+                <img class="banner" src="/public/images/show/show<?php echo $data['idShow'] ?>.jpg">    
             </div>
             <div class="eventDetails">
                 <h1><?php echo $title ?></h1>
@@ -44,14 +43,24 @@
         <div id="salleContainer">
             <div>
                 <h2></h2>
-                <img id="sceneImg" src="/public/images/sceneCentreBell-0.png">
+                <img id="sceneImg" src="/public/images/scene/<?php echo $venueInfo['Id'] ?>/0.png">
             </div>
             <div>
                 <h3 class="ticketTitle">Choisir la section</h3>
                 <div id="sectionBilletsContainer">
-                    <a><div class="sectionBillet" id="section1" style="background-color: rgba(2, 108, 223,0.5)">Admission Générale</div></a>
-                    <a><div class="sectionBillet" id="section2" style="background-color: rgba(223, 2, 108,0.5)">Section VIP</div></a>
-                    <a><div class="sectionBillet" id="section3" style="background-color: rgba(108, 223, 2,0.5)">Section Plancher</div></a>
+                    <?php
+                        $colorScheme = [
+                            "rgba(2, 108, 223,0.5)",
+                            "rgba(223, 2, 108,0.5)",
+                            "rgba(108, 223, 2,0.5)",
+                            "rgba(223, 117, 2,0.5)"
+                        ];
+                        $currentSection = 1;
+                        foreach($venueInfo['Sections'] as $section){
+                            echo ('<a><div class="sectionBillet" id="section'.$currentSection.'" style="background-color: '.$colorScheme[$currentSection-1].'">'.$section.'</div></a>');
+                            $currentSection = $currentSection + 1;
+                        }
+                    ?>
                 </div>
                 <p id="sectionError" style="color:red;display:none;">* Veuillez choisir la section</p>
                 <h3 class="ticketTitle">Nombre de billets</h3>
@@ -83,8 +92,8 @@
             <div>
                 <div id="mapContainer">
                     <div style="margin-top:30px;">
-                        <h3>Centre Bell</h3>
-                        <h4>1909 Avn des Canadiens-de-Montréal, Montréal</h4>
+                        <h3><?php echo $venue ?></h3>
+                        <h4><?php echo $venueAddress ?></h4>
                     </div>
                     <div id='map'></div>
                 </div>

@@ -12,12 +12,40 @@
     <link rel="stylesheet" href="public/css/homePage.css">
 </head>
 
+<div id=overlay style="display:none"></div>
 <body>
     <script type="text/javascript">
         $(document).ready(function() {
+            let overlayHidden = true;
+            $('.filterButton').on("click", () => {
+                let x = $(this).next();
+                if ($(x).hasClass("showFilter")) {
+                    alert();
+                    $(x).addClass("showFilter");
+                } else { 
+                    $(x).removeClass("showFilter");
+                }
+            });
+
+            $('#searchBox').on("click", () => {
+                showOverlay();
+            });
+            $('#overlay').on("click", () => {
+                if(!overlayHidden){
+                    hideOverlay();
+                }
+            });
             $('.search').on("click", () => {
                 $("#submit").click();
             });
+
+            function showOverlay(){
+                $("#overlay").show();   
+                overlayHidden = false;
+            }
+            function hideOverlay(){
+                $("#overlay").hide();
+            }
         });
     </script>
     <!--<img id="background" src="/public/images/bg.png">-->
@@ -36,16 +64,28 @@
                 <form action="/show/list">
                     <div class="searchBar">
                         <div style="width:34px; height:10px; display:inline-block"></div>
-                        <input name="search" id="searchInput" type="text" placeholder="Nom de l'artiste, Nom du Groupe ou de l'évènement">
+                        <input autocomplete="off" name="search" id="searchInput" type="text" placeholder="Nom de l'artiste, Nom du Groupe ou de l'évènement">
                         <i class="search fas fa-search"></i>
                         <button id="submit" type="submit"></button>
                     </div>
                 </form>
                 <div id="filterButtonContainer">
-                    <button class="filterButton"><i class="smallIcon fas fa-map"></i><span>Salle</span></button>
-                    <button class="filterButton"><i class="smallIcon fas fa-calendar-day"></i><span>Date</span></button>
-                    <button class="filterButton"><i class="smallIcon fas fa-theater-masks"></i><span>Catégorie</span></button>
-                    <button class="filterButton"><i class="smallIcon fas fa-dollar-sign"></i><span>Prix</span></button>
+                    <button id="salleFilterButton" class="filterButton"><i class="smallIcon fas fa-map"></i><span>Salle</span></button>
+                    <div id="sallePopup" class="dropdown-content bar-block border">
+                        test
+                    </div>
+                    <button id="dateFilterButton" class="filterButton"><i class="smallIcon fas fa-calendar-day"></i><span>Date</span></button>
+                    <div id="datePopup" class="dropdown-content bar-block border">
+                        test
+                    </div>
+                    <button id="categorieFilterButton" class="filterButton"><i class="smallIcon fas fa-theater-masks"></i><span>Catégorie</span></button>
+                    <div id="categoriePopup" class="dropdown-content bar-block border">
+                        test
+                    </div>
+                    <button id="prixFilterButton" class="filterButton"><i class="smallIcon fas fa-dollar-sign"></i><span>Prix</span></button>
+                    <div id="prixPopup" class="dropdown-content bar-block border">
+                        test
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,44 +97,44 @@
         <section id="featuredSection">
             <h2 style="color:#333">En Vedette</h2>
             <section>
-                <a href="">
-                    <img style="cursor: pointer" width="100%" src="/public/images/show/show1.jpg">
+                <a href="/show/list?search=<?php echo $enVedette['title'] ?>">
+                    <img style="cursor: pointer" width="100%" src="/public/images/show/show<?php echo $enVedette['idShow'] ?>.jpg">
                 </a>
                 <div style="display: inline-block; text-align: left; width: 50%; padding-left:15px;">
-                    <h2>Yannick de Martino</h2>
-                    <h3>Comédie</h3>
+                    <h2><?php echo $enVedette['title'] ?></h2>
+                    <h3><?php echo $enVedette['categorie'] ?></h3>
                 </div>
                 <div style="display: inline-flex; justify-content: center; align-items: center; width: 40%;">
-                    <button style="position: relative; bottom:15px;" onclick="window.location.href=''">Voir Billets</button>
+                    <button style="position: relative; bottom:15px;" onclick="window.location.href='/show/list?search=<?php echo $enVedette['title'] ?>'">Voir Billets</button>
                 </div>
             </section>
             <h2 style="color:#333">Les Plus Vendus</h2>
             <div id="extraFeatured">
                 <section>
-                    <a href="">
-                        <img style="cursor: pointer" width="100%" height="60%" src="public/images/show/show4.jpg">
+                    <a href="/show/list?search=<?php echo $plusVendus[0]['title'] ?>">
+                        <img style="cursor: pointer" width="100%" height="60%" src="public/images/show/show<?php echo $plusVendus[0]['idShow'] ?>.jpg">
                     </a>
                     <div style="display: inline-block; text-align: left; width: 50%; padding-left:15px;">
-                        <h2>Calgary Stampeders</h2>
-                        <h3>Sports</h3>
+                        <h2><?php echo $plusVendus[0]['title'] ?></h2>
+                        <h3><?php echo $plusVendus[0]['categorie'] ?></h3>
                     </div>
                 </section>
                 <section>
-                    <a href="">
-                        <img style="cursor: pointer" width="100%" height="60%" src="/public/images/show/show3.jpg">
+                    <a href="/show/list?search=<?php echo $plusVendus[1]['title'] ?>">
+                        <img style="cursor: pointer" width="100%" height="60%" src="/public/images/show/show<?php echo $plusVendus[1]['idShow'] ?>.jpg">
                     </a>
                     <div style="display: inline-block; text-align: left; width: 50%; padding-left:15px;">
-                        <h2>The Weeknd</h2>
-                        <h3>Musique</h3>
+                        <h2><?php echo $plusVendus[1]['title'] ?></h2>
+                        <h3><?php echo $plusVendus[1]['categorie'] ?></h3>
                     </div>
                 </section>
                 <section>
-                    <a href="">
-                        <img style="cursor: pointer" width="100%" height="60%" src="/public/images/show/show2.jpg">
+                    <a href="/show/list?search=<?php echo $plusVendus[2]['title'] ?>">
+                        <img style="cursor: pointer" width="100%" height="60%" src="/public/images/show/show<?php echo $plusVendus[2]['idShow'] ?>.jpg">
                     </a>
                     <div style="display: inline-block; text-align: left; width: 50%; padding-left:15px;">
-                        <h2>Justin Bieber</h2>
-                        <h3>Musique</h3>
+                        <h2><?php echo $plusVendus[2]['title'] ?></h2>
+                        <h3><?php echo $plusVendus[2]['categorie'] ?></h3>
                     </div>
                 </section>
             </div>

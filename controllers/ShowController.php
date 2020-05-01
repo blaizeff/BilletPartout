@@ -38,7 +38,16 @@ class ShowController extends Controller
         //$venueName = $data['venueName'];
         $venueAddress = $data['venueLocation'];
         $venue = $data['venueName'];
-        $categoryName = "Categorie";
+        $categoryName = $data["categorie"];
+        $show = new Show();
+        $categories = $show->getAllCategory();
+        $categoryId = "";
+        foreach($categories as $value){
+            if($value['value'] == $categoryName)
+            {
+                $categoryId = $value['id'];
+            }
+        }
         $months = [
             0 => "Janvier",
             1 => "Février",
@@ -54,10 +63,65 @@ class ShowController extends Controller
             11 => "Décembre"
         ];
         $dateRaw = explode("-", explode(" ", $data['Date'])[0]);
-        $date = $dateRaw[2] . " " . $months[intval($dateRaw[1])] . " " . $dateRaw[0];
+        $date = $dateRaw[2] . " " . $months[intval($dateRaw[1])-1] . " " . $dateRaw[0];
         $timeArray = explode(":", explode(" ", $data['Date'])[1]);
         $time = $timeArray[0] . "h" . $timeArray[1];
         $description = $data['description'];
+        $venues = [
+            [
+                "Id" => 1,
+                "Name" => "Centre Bell",
+                "Address" => "1909 Avn des Canadiens-de-Montréal, Montréal",
+                "Sections" => [
+                    "Admission Générale",
+                    "Section VIP",
+                    "Section Plancher"
+                ]
+            ],
+            [
+                "Id" => 2,
+                "Name" => "Place Bell",
+                "Address" => "1950 Rue Claude-Gagné, Laval, QC H7N 5H9",
+                "Sections" => [
+                    "Section A",
+                    "Section B",
+                    "Section C"
+                ]
+            ],
+            [
+                "Id" => 3,
+                "Name" => "Théatre Saint-Jérome",
+                "Address" => "118 Rue de la Gare, Saint-Jérôme",
+                "Sections" => [
+                    "Admission Générale",
+                    "Section De Luxe"
+                ]
+            ],
+            [
+                "Id" => 4,
+                "Name" => "Théâtre Lionel-Groulx",
+                "Address" => "100 rue Duquet, Sainte-Thérèse",
+                "Sections" => [
+                    "Admission Générale",
+                    "Section VIP",
+                    "Section Extra VIP",
+                    "Section Avant-Scène"
+                ]
+            ],
+        ];
+        $venueInfo = [];
+        if($venue == "Centre Bell"){
+            $venueInfo = $venues[0];
+        }
+        else if($venue == "Place Bell"){
+            $venueInfo = $venues[1];
+        }
+        else if($venue == "Théatre Saint-Jérome"){
+            $venueInfo = $venues[2];
+        }
+        else if($venue == "Théâtre Lionel-Groulx"){
+            $venueInfo = $venues[3];
+        }
         require_once("./Views/show/" . $page . ".php");
     }
 }
