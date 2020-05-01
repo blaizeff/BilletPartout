@@ -26,7 +26,7 @@ class ProfileController extends Controller
 
                     $result = $user->updateUserProfile($_SESSION["user"]["idClient"], $data);
                     //Crer la session user
-                    $_SESSION["user"]=$user->getFromEmail($email); //this line seems to affect the ability of the page to populate the form after a profile modification
+                    $_SESSION["user"]=$user->get($_SESSION["user"]["idClient"]); 
                     echo "<meta http-equiv='refresh' content='0'>";
                 }
                 else{
