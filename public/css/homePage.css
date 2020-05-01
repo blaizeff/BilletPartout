@@ -88,7 +88,7 @@
             font-size: 1.1em;
             line-height: 18px;
             border-radius: 5px;
-            border: 1px solid #21c87a;
+            border: 1px solid white;
             transition: all .2s ease-in-out;
             box-shadow: 0 1px 10px rgba(0, 0, 0, .2);
         }
@@ -100,14 +100,24 @@
         .searchBar input:hover {
             border-color: #333;
         }
-        
         .filterButton {
             border-radius: 6px;
             background-color: white;
-            border: 1px solid #21c87a;
-            width: 150px;
+            border: none;
+            width: 145px;
+            margin: 0 2px;
             height: 45px;
             box-shadow: 0 1px 10px rgba(0, 0, 0, .2);
+        }
+        .dropdown-content{
+            cursor:auto;color:#000;background-color:#fff;display:none;position:absolute;min-width:160px;margin:0;padding:0;z-index:15
+        }
+        .show-block,.showFilter{
+            display:block!important
+        }
+
+        #filterButtonContainer{
+            margin:0 -8px;
         }
         
         h1 {
@@ -250,5 +260,15 @@
         #searchBox {
             margin-top: 10px;
             border-radius: 5px;
-            padding: 20px 100px 20px 100px;
+            margin: 20px 100px 20px 100px;
+            z-index:10;
+        }
+        #overlay{
+            position: fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            z-index: 5;
+            background-color: rgba(0, 0, 0, .3);
         }

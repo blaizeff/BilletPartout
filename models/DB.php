@@ -99,7 +99,8 @@ class DB
                             sa.Adresse,
                             sa.nomSalle,
                             r.Date,
-                            s.description from Spectacles s join Representation r on s.idSpectacle=r.idSpectacle join Salles sa on r.idSalle=sa.idSalle';
+                            cat.Description,
+                            s.description from Spectacles s join Representation r on s.idSpectacle=r.idSpectacle join Salles sa on r.idSalle=sa.idSalle join Categories cat on s.idCategories = cat.idCategories';
 
         //If Id is set then find with id else show all 
         //By default its show future show 

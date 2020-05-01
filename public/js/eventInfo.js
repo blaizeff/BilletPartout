@@ -93,15 +93,19 @@ $(document).ready(function() {
         $(section).css("background-color", color);
         if ($(section).is("#section1")) {
             let src = $("#sceneImg").attr("src");
-            src = src.replace(/-[0-9]/, "-1");
+            src = src.replace(/[0-9].png/, "1.png");
             $("#sceneImg").attr("src", src);
         } else if ($(section).is("#section2")) {
             let src = $("#sceneImg").attr("src");
-            src = src.replace(/-[0-9]/, "-2");
+            src = src.replace(/[0-9].png/, "2.png");
             $("#sceneImg").attr("src", src);
         } else if ($(section).is("#section3")) {
             let src = $("#sceneImg").attr("src");
-            src = src.replace(/-[0-9]/, "-3");
+            src = src.replace(/[0-9].png/, "3.png");
+            $("#sceneImg").attr("src", src);
+        } else if ($(section).is("#section4")) {
+            let src = $("#sceneImg").attr("src");
+            src = src.replace(/[0-9].png/, "4.png");
             $("#sceneImg").attr("src", src);
         }
     });

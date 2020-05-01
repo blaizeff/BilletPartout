@@ -45,7 +45,12 @@ hr {
     margin-top: 10px;
     width: 200px;
 }
-
+#nav-link{
+    color:#333;
+}
+#nav-link:hover{
+    text-decoration: underline;
+}
 .buyButton,
 .checkoutButton {
     font-weight: 500;
