@@ -3,20 +3,20 @@
     PageFrame::loadBundle();
     PageFrame::header();
     ?>
-    <link rel="stylesheet" href="/public/css/details.css">
+    <link rel="stylesheet" href="<?php echo $_SERVER["basePath"] ?>public/css/details.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css' rel='stylesheet' />
     
     <script src="https://unpkg.com/es6-promise@4.2.4/dist/es6-promise.auto.min.js"></script>
     <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
-    <script src="/public/js/eventInfo.js"></script>
+    <script src="<?php echo $_SERVER["basePath"] ?>public/js/eventInfo.js"></script>
    
     <div id="contentContainer">
         <div id="infoContainer">
             <div>
-                <h4><a id="nav-link" href="/show/list?search=&category=<?php echo $categoryId ?>"><?php echo $categoryName ?></a> / <?php echo $artist ?></h4>
-                <img class="banner" src="/public/images/show/show<?php echo $data['idShow'] ?>.jpg">    
+                <h4><a id="nav-link" href="list?search=&category=<?php echo $categoryId ?>"><?php echo $categoryName ?></a> / <?php echo $artist ?></h4>
+                <img class="banner" src="<?php echo $_SERVER["basePath"] ?>public/images/show/show<?php echo $data['idShow'] ?>.jpg">    
             </div>
             <div class="eventDetails">
                 <h1><?php echo $title ?></h1>
@@ -43,7 +43,7 @@
         <div id="salleContainer" classs="row">
             <div class="col-9">
                 <h2></h2>
-                <img id="sceneImg" src="/public/images/scene/<?php echo $venueInfo['Id'] ?>/0.png">
+                <img id="sceneImg" src="<?php echo $_SERVER["basePath"] ?>public/images/scene/<?php echo $venueInfo['Id'] ?>/0.png">
             </div>
             <div class="col-3">
                 <h3 class="ticketTitle">Choisir la section</h3>

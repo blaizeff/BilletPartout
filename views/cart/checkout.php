@@ -1,7 +1,7 @@
 <head>
     <title>Checkout - BilletPartout</title>
-    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/public/css/checkout.css" rel="stylesheet">
+    <link href="<?php echo $_SERVER['basePath']?>public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo $_SERVER['basePath']?>public/css/checkout.css" rel="stylesheet">
     <style>
         .container {
             max-width: 960px;

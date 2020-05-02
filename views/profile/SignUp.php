@@ -3,7 +3,7 @@
     PageFrame::header();
     PageFrame::loadBundle();
     ?>
-    <link rel="stylesheet" href="/public/css/login.css">
+    <link rel="stylesheet" href="<?php echo $_SERVER['basePath'] ?>public/css/login.css">
 
     <form id="form" class="container" method="POST" action="">
         <div class="row align-items-center justify-content-center no-gutters ">

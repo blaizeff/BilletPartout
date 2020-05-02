@@ -3,7 +3,7 @@
     PageFrame::loadBundle();
     PageFrame::header();
     ?>
-    <link rel="stylesheet" href="/public/css/details.css">
+    <link rel="stylesheet" href="<?php echo $_SERVER['basePath']?>public/css/details.css">
     
     <div id="contentContainer">
         

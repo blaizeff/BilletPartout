@@ -1,5 +1,5 @@
 <div class="layout">
-<link rel="stylesheet" href="/public/css/login.css">
+<link rel="stylesheet" href="<?php echo $_SERVER['basePath'] ?>public/css/login.css">
     <?php
     PageFrame::loadBundle();
     PageFrame::header();

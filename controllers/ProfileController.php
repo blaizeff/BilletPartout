@@ -80,7 +80,7 @@ class ProfileController extends Controller
                 //Crer la session user
                 $_SESSION["user"]=$user->getFromEmail($email);
                 if (UserAcess::isAdmin()) {
-                    header('location: /admin/');
+                    header('location: '.$_SERVER["basePath"].'admin/');
                 } else {
                     header('location: homepage');
                 }
@@ -130,10 +130,10 @@ class ProfileController extends Controller
         }
         
         if (isset($_GET['page'])) {
-            header('Location: /'.$_GET['page']);
+            header('Location: '.$_SERVER['basePath'].$_GET['page']);
         }
         else {
-            header('Location: /profile/login');
+            header('Location: '.$_SERVER['basePath'].'profile/login');
         }
         
     }

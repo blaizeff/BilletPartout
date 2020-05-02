@@ -2,7 +2,7 @@
 PageFrame::header();
 PageFrame::loadBundle();
 ?>
-<link rel="stylesheet" href="/public/css/admin.css">
+<link rel="stylesheet" href="<?php echo $_SERVER['basePath']?>public/css/admin.css">
 <div class="container">
     <div class="col-md-12 article">
         <a style="color:21c87a" href="./.">Retour au menu</a>

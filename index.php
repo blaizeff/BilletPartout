@@ -1,4 +1,5 @@
  <?php
+    $_SERVER["basePath"] = '/';
     /* Author : Max-Antoine Clément
      * The client is always redirected to this page.
      * This page load essentials files and finaly load routes.php

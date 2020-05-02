@@ -3,8 +3,8 @@
     PageFrame::loadBundle();
     PageFrame::header();
     ?>
-    <link rel="stylesheet" href="/public/css/list.css">
-    <link rel="stylesheet" href="/public/css/slider.css">
+    <link rel="stylesheet" href="<?php echo $_SERVER['basePath']?>public/css/list.css">
+    <link rel="stylesheet" href="<?php echo $_SERVER['basePath']?>public/css/slider.css">
 
     <div class="listContainers">
         <form id="filter" class="form-group" action="./list" method="get">
@@ -73,7 +73,7 @@
 
     </div>
 </div>
-<script type="text/javascript" src="/public/js/slider.js"></script>
+<script type="text/javascript" src="<?php echo $_SERVER['basePath']?>public/js/slider.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function() {

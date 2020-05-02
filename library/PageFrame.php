@@ -6,13 +6,13 @@ class PageFrame
                 <script type="text/javascript">
                 $( document ).ready(function() {
                     $(".navSearch").on("click",()=>{
-                        document.location.href = "/show/list?search="+$("#navSearchInput").val();
+                        document.location.href = "'.$_SERVER['basePath'].'show/list?search="+$("#navSearchInput").val();
                     });
                 });
             </script>
             <nav>
-                <a style="margin-right:0px;" href="/"><img src="/public/images/logo_green.png" height="40px" width="232px" ></a>
-                <form action="/show/list" class="navSearchBar">
+                <a style="margin-right:0px;" href="'.$_SERVER['basePath'].'"><img src="'.$_SERVER['basePath'].'public/images/logo_green.png" height="40px" width="232px" ></a>
+                <form action="'.$_SERVER['basePath'].'show/list" class="navSearchBar">
                     <input id="navSearchInput" name="search" type="text" placeholder="Rechercher un spectacle..">
                     <i class="navSearch fas fa-search"></i>
                     <button id="submit" type="submit"></button>
@@ -27,12 +27,12 @@ class PageFrame
                     <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="/profile/homepage" class="dropdown_text">Profile</a></li>
-                        <li><a href="/profile/logout" class="dropdown_text">Logout</a></li>
+                        <li><a href="'.$_SERVER['basePath'].'profile/homepage" class="dropdown_text">Profile</a></li>
+                        <li><a href="'.$_SERVER['basePath'].'profile/logout" class="dropdown_text">Logout</a></li>
                     </ul></div>');
 
                 }
-                else{ echo('<a class="login" id="login" href="/profile/login"><i class="profileIcon fas fa-user"></i>Se connecter</a>'); }
+                else{ echo('<a class="login" id="login" href="'.$_SERVER['basePath'].'profile/login"><i class="profileIcon fas fa-user"></i>Se connecter</a>'); }
                 //(isset($_SESSION["user"]) ? $_SESSION["user"]["nomClient"] : '') old in-line code by max
                 //ajouter un drop down pour profile/logout si user est logged in sinon diriger vers la page de login
                 //<t class="login" id="login" style="color:#A7A3A3">' . $_SESSION["user"]["nomClient"] . '<i class="profileIcon fas fa-user"></i></t></div>
@@ -52,7 +52,7 @@ class PageFrame
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="/public/css/MasterStyle.css">');
+        <link rel="stylesheet" href="'.$_SERVER['basePath'].'public/css/MasterStyle.css">');
     }
 
     public static function loadSlider() {
@@ -61,6 +61,6 @@ class PageFrame
         <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
-        <script src="/public/js/slider.js"></script>');
+        <script src="'.$_SERVER['basePath'].'public/js/slider.js"></script>');
     }
 }

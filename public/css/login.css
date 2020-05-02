@@ -8,7 +8,7 @@
     }
     
     body {
-        background-image: url("/public/images/bgold.png");
+        background-image: url("../images/bgold.png");
         background-repeat: no-repeat;
         background-position: top right;
         background-color: #f8f9fa;

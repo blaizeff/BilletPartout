@@ -54,13 +54,13 @@
 
             </div>
             <div class="navRight" style="text-align: right">
-                <a href="/profile/login"><i class="profileIcon fas fa-user"></i></a>
+                <a href="profile/login"><i class="profileIcon fas fa-user"></i></a>
             </div>
         </nav>
         <div id="searchContainer">
-            <img src="/public/images/logo_white.png" height="80px" width="466px">
+            <img src="public/images/logo_white.png" height="80px" width="466px">
             <div id="searchBox">
-                <form action="/show/list">
+                <form action="show/list">
                     <div class="searchBar">
                         <div style="width:34px; height:10px; display:inline-block"></div>
                         <input autocomplete="off" name="search" id="searchInput" type="text" placeholder="Nom de l'artiste, Nom du Groupe ou de l'évènement">
@@ -96,21 +96,21 @@
         <section id="featuredSection">
             <h2 style="color:#333">En Vedette</h2>
             <section>
-                <a href="/show/list?search=<?php echo $enVedette['title'] ?>">
-                    <img style="cursor: pointer" width="100%" src="/public/images/show/show<?php echo $enVedette['idShow'] ?>.jpg">
+                <a href="show/list?search=<?php echo $enVedette['title'] ?>">
+                    <img style="cursor: pointer" width="100%" src="public/images/show/show<?php echo $enVedette['idShow'] ?>.jpg">
                 </a>
                 <div style="display: inline-block; text-align: left; width: 50%; padding-left:15px;">
                     <h2><?php echo $enVedette['title'] ?></h2>
                     <h3><?php echo $enVedette['categorie'] ?></h3>
                 </div>
                 <div style="display: inline-flex; justify-content: center; align-items: center; width: 40%;">
-                    <button style="position: relative; bottom:15px;" onclick="window.location.href='/show/list?search=<?php echo $enVedette['title'] ?>'">Voir Billets</button>
+                    <button style="position: relative; bottom:15px;" onclick="window.location.href='show/list?search=<?php echo $enVedette['title'] ?>'">Voir Billets</button>
                 </div>
             </section>
             <h2 style="color:#333">Les Plus Vendus</h2>
             <div id="extraFeatured">
                 <section>
-                    <a href="/show/list?search=<?php echo $plusVendus[0]['title'] ?>">
+                    <a href="show/list?search=<?php echo $plusVendus[0]['title'] ?>">
                         <img style="cursor: pointer" width="100%" height="60%" src="public/images/show/show<?php echo $plusVendus[0]['idShow'] ?>.jpg">
                     </a>
                     <div style="display: inline-block; text-align: left; width: 50%; padding-left:15px;">
@@ -119,8 +119,8 @@
                     </div>
                 </section>
                 <section>
-                    <a href="/show/list?search=<?php echo $plusVendus[1]['title'] ?>">
-                        <img style="cursor: pointer" width="100%" height="60%" src="/public/images/show/show<?php echo $plusVendus[1]['idShow'] ?>.jpg">
+                    <a href="show/list?search=<?php echo $plusVendus[1]['title'] ?>">
+                        <img style="cursor: pointer" width="100%" height="60%" src="public/images/show/show<?php echo $plusVendus[1]['idShow'] ?>.jpg">
                     </a>
                     <div style="display: inline-block; text-align: left; width: 50%; padding-left:15px;">
                         <h2><?php echo $plusVendus[1]['title'] ?></h2>
@@ -128,8 +128,8 @@
                     </div>
                 </section>
                 <section>
-                    <a href="/show/list?search=<?php echo $plusVendus[2]['title'] ?>">
-                        <img style="cursor: pointer" width="100%" height="60%" src="/public/images/show/show<?php echo $plusVendus[2]['idShow'] ?>.jpg">
+                    <a href="show/list?search=<?php echo $plusVendus[2]['title'] ?>">
+                        <img style="cursor: pointer" width="100%" height="60%" src="public/images/show/show<?php echo $plusVendus[2]['idShow'] ?>.jpg">
                     </a>
                     <div style="display: inline-block; text-align: left; width: 50%; padding-left:15px;">
                         <h2><?php echo $plusVendus[2]['title'] ?></h2>

@@ -2,7 +2,7 @@
 PageFrame::header();
 PageFrame::loadBundle();
 ?>
-<link rel="stylesheet" href="/public/css/admin.css">
+<link rel="stylesheet" href="<?php echo $_SERVER['basePath']?>public/css/admin.css">
 <div class="container">
     <div class="section">
         <div style="padding:20px">
@@ -28,14 +28,14 @@ function listShow($data)
     $category = $data["idCat"];
     $html .= "<tr>
                     <th class='listingContainer'>
-                        <img class='showImage' src='/public/images/show/show$IdShow.jpg'>
+                        <img class='showImage' src='".$_SERVER['basePath']."public/images/show/show$IdShow.jpg'>
                     </th>
                     <th>$Name</td>
                     <th>$category</td>
                     <th>$Artist</td>
                     <th
                     <div style=\"text-align:right; display:flex; justify-content:flex-end;align-items:center;\">
-                        <a href=\"/admin/show?id=$IdShow\"><div class=\"next\">Modifier</div></a>
+                        <a href=\"show?id=$IdShow\"><div class=\"next\">Modifier</div></a>
                     </div>
                     </th>
                 </tr>";

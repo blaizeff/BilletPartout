@@ -18,7 +18,7 @@ class Components
             echo "<tr><td>
                         <div class=\"listingContainer\">
                             <div style=\"display:grid; grid-template-columns:1fr 1fr;\">
-                                <img class=\"showImage\" src=\"/public/images/show/show$IdShow.jpg\">
+                                <img class=\"showImage\" src=\"".$_SERVER['basePath']."public/images/show/show$IdShow.jpg\">
                                 <div style=\"margin-left:15px\">
                                     <h2>$day $month</h2>
                                     <h3>" . $Hour . "h" . $min . "</h3>
@@ -32,7 +32,7 @@ class Components
                                     <i class=\"expand fas fa-chevron-down\"></i>
                                 </div>
                                 <div style='text-align:right; display:flex; justify-content:flex-end;align-items:center;'>
-                                    <a href=\"/show/event-info?id=$Id\" ><div class=\"next\">Voir Billets</div></a>
+                                    <a href=\"event-info?id=$Id\" ><div class=\"next\">Voir Billets</div></a>
                                 </div>
                                 </div>
                             </div>

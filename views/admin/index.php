@@ -8,7 +8,7 @@ PageFrame::loadBundle();
 
     }
 </style>
-<link rel="stylesheet" href="/public/css/admin.css">
+<link rel="stylesheet" href="<?php echo $_SERVER['basePath']?>public/css/admin.css">
 
 <div class="container">
     <div class="section">
@@ -50,14 +50,14 @@ PageFrame::footer();
         $category = $value["idCat"];
         $html .= "<tr>
                     <th class='listingContainer'>
-                        <img class='showImage' src='/public/images/show/show$IdShow.jpg'>
+                        <img class='showImage' src='".$_SERVER['basePath']."public/images/show/show$IdShow.jpg'>
                     </th>
                     <th>$Name</td>
                     <th>$category</td>
                     <th>$Artist</td>
                     <th
                     <div style=\"text-align:right; display:flex; justify-content:flex-end;align-items:center;\">
-                        <a href=\"/admin/details?id=$IdShow\"><div class=\"next\">Détails</div></a>
+                        <a href=\"".$_SERVER['basePath']."admin/details?id=$IdShow\"><div class=\"next\">Détails</div></a>
                     </div>
                     </th>
                 </tr>";
@@ -82,7 +82,7 @@ function locationList($data)
                     <th>$address</td>
                     <th
                     <div style=\"text-align:right; display:flex; justify-content:flex-end;align-items:center;\">
-                        <a href=\"/admin/location?id=$id\"><div class=\"next\">Modifier</div></a>
+                        <a href=\"".$_SERVER['basePath']."admin/location?id=$id\"><div class=\"next\">Modifier</div></a>
                     </div>
                     </th>
                 </tr>";
