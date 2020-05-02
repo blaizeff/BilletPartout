@@ -65,6 +65,7 @@
     margin-right: 25px;
     font-size: 18px;
     color: white;
+    width: 110px;
     transition: ease-in-out 50ms;
 }
 

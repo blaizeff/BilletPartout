@@ -40,12 +40,12 @@
                 <div id="salleButton" class="selected" style="width:50%">Carte de salle</div><a id="moreInfoButton" class="unselected" style="width:50%">Information sur le lieu </a>
             </div>
         </div>
-        <div id="salleContainer">
-            <div>
+        <div id="salleContainer" classs="row">
+            <div class="col-9">
                 <h2></h2>
                 <img id="sceneImg" src="/public/images/scene/<?php echo $venueInfo['Id'] ?>/0.png">
             </div>
-            <div>
+            <div class="col-3">
                 <h3 class="ticketTitle">Choisir la section</h3>
                 <div id="sectionBilletsContainer">
                     <?php

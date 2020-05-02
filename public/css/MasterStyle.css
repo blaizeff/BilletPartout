@@ -92,6 +92,17 @@ footer {
     color: #21c87a;
 }
 
+.dropdown-menu {
+    margin-left: 20px;
+    border: none;
+    width: 200px;
+}
+
+.dropdown-menu * {
+    text-align: center;
+    font-size: 18;
+}
+
 header a {
     text-decoration: none;
     color: 21c87a;

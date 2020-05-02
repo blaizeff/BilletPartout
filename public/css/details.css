@@ -3,12 +3,15 @@ body {
 }
 
 #contentContainer {
-    margin: 80px 200px 20px 200px;
+    margin: 80px 10vw 20px 10vw;
     border-radius: 5px;
     background-color: white;
-    padding: 50px;
+    padding: 2.5vw;
     background-color: white;
     border: 2px solid rgb(233, 237, 241);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 hr {
@@ -19,12 +22,11 @@ hr {
     display: flex;
     flex-direction: row;
     overflow: hidden;
-    padding: 10px 100px 20px 100px;
     width: 100%;
 }
 
 #extraContainer {
-    margin: 50px 200px 50px 200px;
+    margin: 50px 10vw 50px 10vw;
     overflow: hidden;
     border-radius: 5px;
     background-color: white;
@@ -32,7 +34,6 @@ hr {
 
 #descriptionContainer {
     width: 100%;
-    margin: 0 0 0 100px;
     padding: 0 0 20px 0;
 }
 
@@ -45,12 +46,15 @@ hr {
     margin-top: 10px;
     width: 200px;
 }
-#nav-link{
-    color:#333;
+
+#nav-link {
+    color: #333;
 }
-#nav-link:hover{
+
+#nav-link:hover {
     text-decoration: underline;
 }
+
 .buyButton,
 .checkoutButton {
     font-weight: 500;
@@ -278,6 +282,10 @@ a h3:hover {
     opacity: 1;
     -webkit-transition: .2s;
     transition: opacity .2s;
+}
+
+#sceneImg {
+    width: 100%;
 }
 
 .slider::-webkit-slider-thumb {
