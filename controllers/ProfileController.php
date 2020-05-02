@@ -26,7 +26,7 @@ class ProfileController extends Controller
 
                     $result = $user->updateUserProfile($_SESSION["user"]["idClient"], $data);
                     //Crer la session user
-                    $_SESSION["user"]=$user->getFromEmail($email);
+                    $_SESSION["user"]=$user->get($_SESSION["user"]["idClient"]); 
                     echo "<meta http-equiv='refresh' content='0'>";
                 }
                 else{
