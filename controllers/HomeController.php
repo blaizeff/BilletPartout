@@ -1,5 +1,6 @@
 <?php
 require_once("./models/Show.php");
+require_once("./models/UserAcess.php");
 
 class HomeController extends Controller {
     public static function View($page)
@@ -11,7 +12,7 @@ class HomeController extends Controller {
             $show->getAllShow(["id" => "3"])[0],
             $show->getAllShow(["id" => "4"])[0],
         ];
-        require_once("./Views/home.php");
+        require_once("./views/home.php");
     }
 }
 ?>

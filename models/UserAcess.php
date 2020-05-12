@@ -8,6 +8,9 @@ class UserAcess
             header('Location: /profile/login');
         }
     }
+    public static function isUser() {
+        return isset($_SESSION["user"]);
+    }
     public static function isAdmin()
     {
         return isset($_SESSION["user"]) && $_SESSION["user"]["Admin"];

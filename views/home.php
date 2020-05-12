@@ -54,7 +54,15 @@
 
             </div>
             <div class="navRight" style="text-align: right">
-                <a href="profile/login"><i class="profileIcon fas fa-user"></i></a>
+            <?php if (UserAcess::isAdmin()) {
+                echo '<a href="admin/"><i class="profileIcon fas fa-user"></i></a>';
+            } else if (UserAcess::isUser()) {
+                echo '<a href="profile/homepage"><i class="profileIcon fas fa-user"></i></a>';
+            } else {
+                echo '<a href="profile/login"><i class="profileIcon fas fa-user"></i></a>';
+            }
+
+            ?>
             </div>
         </nav>
         <div id="searchContainer">

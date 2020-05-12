@@ -14,7 +14,7 @@ class AdminController extends Controller
         $location = new Location();
         $data["showList"] = $show->selectAll();
         $data["locationList"] = $location->selectAll();
-        require_once("./Views/admin/" . $viewName . ".php");
+        require_once("./views/admin/" . $viewName . ".php");
     }
 
     public static function showView($viewName)
@@ -53,12 +53,12 @@ class AdminController extends Controller
                 'idCat' =>'',
             ]; 
         }
-        require_once("./Views/admin/" . $viewName . ".php");
+        require_once("./views/admin/" . $viewName . ".php");
     }
 
     public static function eventView($viewName)
     {
-        require_once("./Views/admin/" . $viewName . ".php");
+        require_once("./views/admin/" . $viewName . ".php");
     }
 
     public static function detailsView($viewName)
@@ -66,9 +66,9 @@ class AdminController extends Controller
         if (isset($_GET["id"]) && is_int((int) $_GET["id"])) {
             $show = new Show();
             $data = $show->get($_GET["id"]);
-            require_once("./Views/admin/" . $viewName . ".php");
+            require_once("./views/admin/" . $viewName . ".php");
         } else {
-            require_once("./Views/invalidPage.php");
+            require_once("./views/invalidPage.php");
         }
     }
 
@@ -100,7 +100,7 @@ class AdminController extends Controller
                 'address' => '',
             ]; 
         }
-        require_once("./Views/admin/" . $viewName . ".php");
+        require_once("./views/admin/" . $viewName . ".php");
     }
 }
 ?>

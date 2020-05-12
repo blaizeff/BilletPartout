@@ -33,9 +33,6 @@ class PageFrame
 
                 }
                 else{ echo('<a class="login" id="login" href="'.$_SERVER['basePath'].'profile/login"><i class="profileIcon fas fa-user"></i>Se connecter</a>'); }
-                //(isset($_SESSION["user"]) ? $_SESSION["user"]["nomClient"] : '') old in-line code by max
-                //ajouter un drop down pour profile/logout si user est logged in sinon diriger vers la page de login
-                //<t class="login" id="login" style="color:#A7A3A3">' . $_SESSION["user"]["nomClient"] . '<i class="profileIcon fas fa-user"></i></t></div>
 
         echo('</nav>
     </header>');

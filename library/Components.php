@@ -14,11 +14,12 @@ class Components
             $Hour = explode(":", explode(" ", $value['Date'])[1])[0];
             $min =  explode(":", explode(" ", $value['Date'])[1])[1];
             $Desc = $value['description'];
+            $basePrice = $value["basePrice"];
             $IdShow = $value["idShow"];
             echo "<tr><td>
                         <div class=\"listingContainer\">
                             <div style=\"display:grid; grid-template-columns:1fr 1fr;\">
-                                <img class=\"showImage\" src=\"".$_SERVER['basePath']."public/images/show/show$IdShow.jpg\">
+                                <img class=\"showImage\" src=\"" . $_SERVER['basePath'] . "public/images/show/show$IdShow.jpg\">
                                 <div style=\"margin-left:15px\">
                                     <h2>$day $month</h2>
                                     <h3>" . $Hour . "h" . $min . "</h3>
@@ -32,7 +33,7 @@ class Components
                                     <i class=\"expand fas fa-chevron-down\"></i>
                                 </div>
                                 <div style='text-align:right; display:flex; justify-content:flex-end;align-items:center;'>
-                                    <a href=\"event-info?id=$Id\" ><div class=\"next\">Voir Billets</div></a>
+                                    <a href=\"event-info?id=$Id\" ><div class=\"next\">À partir de $basePrice$</div></a>
                                 </div>
                                 </div>
                             </div>
@@ -142,9 +143,9 @@ class Components
     public static function showFilterOptions()
     {
         echo '<select onchange="location = this.value" class="form-control customSelect custom-select">
-                <option ' . self::filterSelected('') . ' value="list?'.self::buildGetURL('search','').'">Date</option>
-                <option ' . self::filterSelected('nameA-Z') ." value=list?".self::buildGetURL('order','nameA-Z'). '>Nom A-Z</option>
-                <option ' . self::filterSelected('nameZ-A') ." value=list?".self::buildGetURL('order','nameZ-A'). '>Nom Z-A</option>
+                <option ' . self::filterSelected('') . ' value="list?' . self::buildGetURL('search', '') . '">Date</option>
+                <option ' . self::filterSelected('nameA-Z') . " value=list?" . self::buildGetURL('order', 'nameA-Z') . '>Nom A-Z</option>
+                <option ' . self::filterSelected('nameZ-A') . " value=list?" . self::buildGetURL('order', 'nameZ-A') . '>Nom Z-A</option>
             </select>';
     }
     private static function filterSelected($value)
@@ -154,11 +155,11 @@ class Components
         }
     }
 
-    public static function buildGetURL($key,$value)
+    public static function buildGetURL($key, $value)
     {
         $query = $_GET;
         unset($query['url']);
-        $query[$key] =$value ;
+        $query[$key] = $value;
         return http_build_query($query);
     }
     public static function showMenuCategory()
@@ -169,7 +170,7 @@ class Components
         $html = "";
         $categories = $show->getAllCategory();
         foreach ($categories as $item) {
-            $html .= "<a style='font-size:18' href=list?" . self::buildGetURL('category',$item['id']) .">" . $item["value"] . "</a>";
+            $html .= "<a style='font-size:18' href=list?" . self::buildGetURL('category', $item['id']) . ">" . $item["value"] . "</a>";
         }
         return $html;
     }

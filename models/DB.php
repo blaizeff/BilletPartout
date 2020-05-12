@@ -97,6 +97,7 @@ class DB
                             s.nomSpectacle,
                             s.nomArtiste,
                             sa.Adresse,
+                            s.prix_de_base,
                             sa.nomSalle,
                             r.Date,
                             cat.Description,
@@ -116,10 +117,17 @@ class DB
                             OR s.description like :search
                             OR s.nomArtiste like :search)';
         }
-
         if (array_key_exists('category',$filter) && $filter['category'] != '') {
             $sqlString .= " AND s.idCategories = :category";
         }
+        if(array_key_exists('minPrice',$filter) && $filter['minPrice'] != '') {
+            $sqlString .= " AND s.prix_de_base >= :minPrice";
+        }
+        if(array_key_exists('maxPrice',$filter) && $filter['maxPrice'] != '') {
+            $sqlString .= " AND s.prix_de_base <= :maxPrice";
+        }
+
+        //ORDER
         $sqlString .= " ORDER BY ";
         if (array_key_exists('order',$filter) && $filter['order'] != '') {
             if ($filter['order'] == 'nameA-Z') {
@@ -143,6 +151,12 @@ class DB
         }
         if (array_key_exists('category',$filter) && $filter['category'] != '') {
             $stm->bindValue(':category', $filter['category']);
+        }
+        if(array_key_exists('minPrice',$filter) && $filter['minPrice'] != '') {
+            $stm->bindValue(':minPrice', $filter['minPrice']);
+        }
+        if(array_key_exists('maxPrice',$filter) && $filter['maxPrice'] != '') {
+            $stm->bindValue(':maxPrice', $filter['maxPrice']);
         }
         $success = $stm->execute();
         $row = $stm->fetchAll(PDO::FETCH_ASSOC);

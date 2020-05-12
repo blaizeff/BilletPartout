@@ -7,7 +7,7 @@ class CartController extends Controller {
 
             case "checkout":
         }  
-        require_once("./Views/cart/" . $page . ".php");
+        require_once("./views/cart/" . $page . ".php");
     }
 }
 ?>

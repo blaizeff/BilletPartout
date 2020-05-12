@@ -29,7 +29,8 @@ class Show
             "idSpectacle" => "idShow",
             "idCategories" => "idCat",
             "nomSalle" => "venueName",
-            "Description" => "categorie"
+            "Description" => "categorie",
+            "prix_de_base" => "basePrice"
         ];
         return Components::change_arrayKeys($DBresult, $keys);
     }

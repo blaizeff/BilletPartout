@@ -30,12 +30,12 @@ class ShowController extends Controller
         }
         $events = new Show();
         $data["listShow"] = $events->getAllShow($filter);
-        require_once("./Views/Show/" . $page . ".php");
+        require_once("./views/Show/" . $page . ".php");
     }
 
     public static function View($page)
     {
-        require_once("./Views/show/" . $page . ".php");
+        require_once("./views/show/" . $page . ".php");
     }
 
     public static function InfoView($page)
@@ -134,6 +134,6 @@ class ShowController extends Controller
         else if($venue == "Théâtre Lionel-Groulx"){
             $venueInfo = $venues[3];
         }
-        require_once("./Views/show/" . $page . ".php");
+        require_once("./views/show/" . $page . ".php");
     }
 }

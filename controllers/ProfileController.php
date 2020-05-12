@@ -7,7 +7,7 @@ class ProfileController extends Controller
     {
         
         UserAcess::restrictPage();
-        require_once("./Views/profile/" . $viewName . ".php");
+        require_once("./views/profile/" . $viewName . ".php");
 
         //THIS IS WHERE I WILL BE WORKING
         //Note a mathieu don't delete: https://www.sitepoint.com/community/t/multiple-forms-on-one-page/43577
@@ -57,7 +57,7 @@ class ProfileController extends Controller
         }
 
         //[GET]
-        require_once("./Views/profile/" . $viewName . ".php");
+        require_once("./views/profile/" . $viewName . ".php");
         
 
     }
@@ -89,7 +89,7 @@ class ProfileController extends Controller
             }
         }
         //[GET]
-        require_once("./Views/profile/" . $viewName . ".php");
+        require_once("./views/profile/" . $viewName . ".php");
     }
 
     public static function SignUpView($viewName)
@@ -121,7 +121,7 @@ class ProfileController extends Controller
         }
 
         //[GET]
-        require_once("./Views/profile/" . $viewName . ".php");
+        require_once("./views/profile/" . $viewName . ".php");
     }
 
     public static function Logout() {
