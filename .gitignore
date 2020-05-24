@@ -12,3 +12,7 @@ wampthemes/modern/
 wampthemes/no-style/
 
 wampthemes/simple/
+add_vhost.php
+favicon.ico
+test_sockets.php
+testmysql.php
