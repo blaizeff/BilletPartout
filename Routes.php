@@ -19,10 +19,11 @@ Route::set('profile/logout',function() {
 });
 
 Route::set('cart/checkout',function() {
-    CartController::View('checkout');
+    CartController::checkoutView('checkout');
 });
-
-
+Route::set('cart/invoice',function() {
+    CartController::invoiceView('invoice');
+});
 
 Route::set('show/details',function() {
     ShowController::View('details');

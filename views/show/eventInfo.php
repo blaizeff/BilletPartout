@@ -21,6 +21,7 @@
             <div class="eventDetails">
                 <h1><?php echo $title ?></h1>
                 <h2><?php echo $date." &bull; ".$time ?></h2>
+                <br>
                 <h4><?php echo $artist ?></h4>
                 <div>
                     <a class="aVenue" href="#moreInfoContainer"><h3><i class="smallIcon fas fa-map-marker-alt"></i><?php echo $venue ?></h3></a>
