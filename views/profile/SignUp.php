@@ -17,7 +17,7 @@
                     <button type="submit" name="submit" class="btn btn-lg btn-block btn-primary green">Se connecter</button>
 
                     <div class="text-center">
-                        Déjà un compte. <a href="login" style="color:#01bd1d">Connectez-vous</a>.
+                        Déjà un compte. <a href="login<?php echo isset($_GET['redirect']) ? '?redirect='.$_GET['redirect']: ''?>" style="color:#01bd1d">Connectez-vous</a>.
                     </div>
                 </div>
             </div>

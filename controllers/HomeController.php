@@ -1,6 +1,4 @@
 <?php
-require_once("./models/Show.php");
-require_once("./models/UserAcess.php");
 
 class HomeController extends Controller {
     public static function View($page)

@@ -2,7 +2,6 @@
 <?php
 require_once("./models/Show.php");
 require_once("./models/Location.php");
-
 require_once("./models/UserAcess.php");
 
 class AdminController extends Controller

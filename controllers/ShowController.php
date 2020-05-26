@@ -1,5 +1,4 @@
 <?php
-require_once("./models/Show.php");
 
 class ShowController extends Controller
 {
@@ -7,27 +6,13 @@ class ShowController extends Controller
     {
         //[GET]
         $filter = [];
-        if (isset($_GET['search']) && $_GET['search'] != '') {
-            $filter["search"] = $_GET['search'];
+        $validGet = ['search','order','category','minPrice','maxPrice','startDate','endDate'];
+        foreach($validGet as $get) {
+            if (isset($_GET[$get]) && $_GET[$get] != '') {
+                $filter[$get] = $_GET[$get];
+            }
         }
-        if (isset($_GET['order']) && $_GET['order'] != '') {
-            $filter["order"] = $_GET['order'];
-        }
-        if (isset($_GET['category']) && $_GET['category'] != '') {
-            $filter["category"] = $_GET['category'];
-        }
-        if (isset($_GET['minPrice']) && $_GET['minPrice'] != '') {
-            $filter["minPrice"] = $_GET['minPrice'];
-        }
-        if (isset($_GET['maxPrice']) && $_GET['maxPrice'] != '') {
-            $filter["maxPrice"] = $_GET['maxPrice'];
-        }
-        if (isset($_GET['startDate']) && $_GET['startDate'] != '') {
-            $filter["startDate"] = $_GET['startDate'];
-        }
-        if (isset($_GET['endDate']) && $_GET['endDate'] != '') {
-            $filter["endDate"] = $_GET['endDate'];
-        }
+        
         $events = new Show();
         $data["listShow"] = $events->getAllShow($filter);
         require_once("./views/Show/" . $page . ".php");
@@ -40,7 +25,16 @@ class ShowController extends Controller
 
     public static function InfoView($page)
     {
+        //[POST]
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && Components::verifyPostValue(["nbTickets", "sectionId"]) 
+            && isset($_GET['id']) && is_int((int) $_GET["id"])) {
+                $_SESSION['cart']['id'] = $_GET['id'];
+                $_SESSION['cart']['sectionId'] = $_POST['sectionId'];
+                $_SESSION['cart']['nbTickets'] = $_POST['nbTickets'];
+            header('Location: ../cart/checkout');
+        }
 
+        //[GET]
         if (isset($_GET['id']) && is_int((int) $_GET["id"])) {
             $show = new Show();
             $data = $show->getEvent($_GET['id'])[0];

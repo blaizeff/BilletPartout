@@ -14,7 +14,6 @@ class DB
 
     public function get($table, $id)
     {
-        //ATTENTION: le get ne fonctionne pas de base avec la majorite des tables: la solution c'est getWhere() ou getUserByID() si tu veux un user
         $stm = $this->pdo->prepare('SELECT * FROM ' . $table . ' WHERE `id` = :id');
         $stm->bindValue(':id', $id);
         $success = $stm->execute();
@@ -89,6 +88,27 @@ class DB
         return ($success);
     }
 
+    public function getFunction($function) {
+        $stm = $this->pdo->prepare('SELECT '.$function);
+        $success = $stm->execute();
+        $rows = $stm->fetchAll(PDO::FETCH_ASSOC);
+        return ($success) ? $rows : [];
+    }
+
+    //for now, it doesn't allow for out param
+    public function callProcedure($procedure,$data) {
+        $columns = array_keys($data);
+        $columnSql = implode(',', $columns);
+        $bindingSql = ':' . implode(',:', $columns);
+        $sql = "CALL $procedure($bindingSql)";
+        $stm = $this->pdo->prepare($sql);
+        foreach ($data as $key => $value) {
+            $stm->bindValue(':' . $key, $value);
+        }
+        $status = $stm->execute();
+        return ($status);
+    }
+
     public function selectShow($filter)
     {
         $sqlString ='Select s.idSpectacle,
@@ -126,7 +146,12 @@ class DB
         if(array_key_exists('maxPrice',$filter) && $filter['maxPrice'] != '') {
             $sqlString .= " AND s.prix_de_base <= :maxPrice";
         }
-
+        if(array_key_exists('startDate',$filter) && $filter['startDate'] != '') {
+            $sqlString .=" AND r.Date >= :startDate";
+        }
+        if(array_key_exists('endDate',$filter) && $filter['endDate'] != '') {
+            $sqlString .=" AND r.Date <= :endDate";
+        }
         //ORDER
         $sqlString .= " ORDER BY ";
         if (array_key_exists('order',$filter) && $filter['order'] != '') {
@@ -157,6 +182,12 @@ class DB
         }
         if(array_key_exists('maxPrice',$filter) && $filter['maxPrice'] != '') {
             $stm->bindValue(':maxPrice', $filter['maxPrice']);
+        }
+        if(array_key_exists('startDate',$filter) && $filter['startDate'] != '') {
+            $stm->bindValue(':startDate', $filter['startDate']);
+        }
+        if(array_key_exists('endDate',$filter) && $filter['endDate'] != '') {
+            $stm->bindValue(':endDate', $filter['endDate']);
         }
         $success = $stm->execute();
         $row = $stm->fetchAll(PDO::FETCH_ASSOC);

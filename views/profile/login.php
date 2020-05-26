@@ -24,7 +24,7 @@
                 <button type="submit" name="submit" class="btn btn-lg btn-block btn-primary green">Se connecter</button>
 
                 <div class="text-center">
-                    Première visite. <a href="SignUp" style="color:#21c87a">Créer un compte</a>.
+                    Première visite. <a href="SignUp<?php echo isset($_GET['redirect']) ? '?redirect='.$_GET['redirect']: ''?>" style="color:#21c87a">Créer un compte</a>.
                 </div>
             </div>
             </div>
