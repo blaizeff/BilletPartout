@@ -32,6 +32,7 @@
 <?php
 PageFrame::loadBundle();
 PageFrame::header();
+
 ?>
 <div class="container ">
     <form class="row" style="margin-top:50px" method="POST" action="invoice">
@@ -101,7 +102,7 @@ PageFrame::header();
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="cc-expiration">CVV</label>
-                    <input type="text" class="form-control customInput" id="cc-cvv" pattern="/^[0-9]{3,4}$/" placeholder="000 ou 0000" required>
+                    <input type="text" class="form-control customInput" id="cc-cvv" pattern="^[0-9]{3,4}$" placeholder="000 ou 0000" required>
                 </div>
             </div>
         </div>
