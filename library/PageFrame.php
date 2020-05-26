@@ -27,7 +27,7 @@ class PageFrame
                     <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        '.(UserAcess::isAdmin() ? '<li><a href="'.$_SERVER['basePath'].'admin/events" class="dropdown_text">Admin</a></li>' : "").'
+                        '.(UserAcess::isAdmin() ? '<li><a href="'.$_SERVER['basePath'].'admin/showlist" class="dropdown_text">Admin</a></li>' : "").'
                         <li><a href="'.$_SERVER['basePath'].'profile/homepage" class="dropdown_text">Profile</a></li>
                         <li><a href="'.$_SERVER['basePath'].'profile/logout" class="dropdown_text">Logout</a></li>
                     </ul></div>');

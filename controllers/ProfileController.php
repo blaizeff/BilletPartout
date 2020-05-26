@@ -72,7 +72,7 @@ class ProfileController extends Controller
                 if (isset($_GET['redirect'])) {
                     header('location: ../' . $_GET['redirect']);
                 } else if (UserAcess::isAdmin()) {
-                    header('location: ' . $_SERVER["basePath"] . 'admin/');
+                    header('location: ' . $_SERVER["basePath"] . 'admin/showlist');
                 } else {
                     header('location: homepage');
                 }
