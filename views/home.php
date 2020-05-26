@@ -17,12 +17,28 @@
     <script type="text/javascript">
         $(document).ready(function() {
             let overlayHidden = true;
-            $('#salleFilterButton').on("click", () => {
-                let popup = $("#sallePopup");
-                if ($(popup).hasClass("showFilter")) {
-                    $(popup).addClass("showFilter");
-                } else { 
-                    $(popup).removeClass("showFilter");
+            $('#salleDropdown').on("click", () => {
+                if (!$('#sallePopup').hasClass('showFilter')){
+                    $('.dropdown-content').removeClass('showFilter');
+                    $('#sallePopup').addClass('showFilter');
+                }
+            });
+            $('#dateDropdown').on("click", () => {
+                if (!$('#datePopup').hasClass('showFilter')){
+                    $('.dropdown-content').removeClass('showFilter');
+                    $('#datePopup').addClass('showFilter');
+                }
+            });
+            $('#categorieDropdown').on("click", () => {
+                if (!$('#categoriePopup').hasClass('showFilter')){
+                    $('.dropdown-content').removeClass('showFilter');
+                    $('#categoriePopup').addClass('showFilter');
+                }
+            });
+            $('#prixDropdown').on("click", () => {
+                if (!$('#prixPopup').hasClass('showFilter')){
+                    $('.dropdown-content').removeClass('showFilter');
+                    $('#prixPopup').addClass('showFilter');
                 }
             });
 
@@ -44,6 +60,8 @@
             }
             function hideOverlay(){
                 $("#overlay").hide();
+                $('.dropdown-content').removeClass('showFilter');
+                overlayHidden = true;
             }
         });
     </script>
@@ -77,21 +95,33 @@
                     </div>
                 </form>
                 <div id="filterButtonContainer">
-                    <button id="salleFilterButton" class="filterButton"><i class="smallIcon fas fa-map"></i><span>Salle</span></button>
-                    <div id="sallePopup" class="dropdown-content bar-block border">
-                        test
+                    <div id="salleDropdown" class="dropdown">
+                        <button id="salleFilterButton" class="filterButton"><i class="smallIcon fas fa-map"></i><span>Salle</span></button>
+                        <div id="sallePopup" class="dropdown-content">
+                            test
+                        </div>
                     </div>
-                    <button id="dateFilterButton" class="filterButton"><i class="smallIcon fas fa-calendar-day"></i><span>Date</span></button>
-                    <div id="datePopup" class="dropdown-content bar-block border">
-                        test
+                    <div id="dateDropdown" class="dropdown">
+                        <button id="dateFilterButton" class="filterButton"><i class="smallIcon fas fa-calendar-day"></i><span>Date</span></button>
+                        <div id="datePopup" class="dropdown-content">
+                            Date de début
+                            <input type="date" name="startDate" class="custominput"  value="<?php echo isset($_GET['startDate']) ? $_GET['startDate'] :'';?>" style="width: 100%;border-radius:5px">
+                            <br><br>
+                            Date de fin
+                            <input type="date" name="endDate" class="custominput" value="<?php echo isset($_GET['endDate']) ? $_GET['endDate'] :'';?>" style="width: 100%;border-radius:5px">
+                        </div>
                     </div>
-                    <button id="categorieFilterButton" class="filterButton"><i class="smallIcon fas fa-theater-masks"></i><span>Catégorie</span></button>
-                    <div id="categoriePopup" class="dropdown-content bar-block border">
-                        test
+                    <div id="categorieDropdown" class="dropdown">
+                        <button id="categorieFilterButton" class="filterButton"><i class="smallIcon fas fa-theater-masks"></i><span>Catégorie</span></button>
+                        <div id="categoriePopup" class="dropdown-content">
+                            test
+                        </div>
                     </div>
-                    <button id="prixFilterButton" class="filterButton"><i class="smallIcon fas fa-dollar-sign"></i><span>Prix</span></button>
-                    <div id="prixPopup" class="dropdown-content bar-block border">
-                        test
+                    <div id="prixDropdown" class="dropdown">
+                        <button id="prixFilterButton" class="filterButton"><i class="smallIcon fas fa-dollar-sign"></i><span>Prix</span></button>
+                        <div id="prixPopup" class="dropdown-content">
+                            test
+                        </div>
                     </div>
                 </div>
             </div>
