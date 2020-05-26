@@ -27,7 +27,7 @@ class PageFrame
                     <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        '.(UserAcess::isAdmin() ? '<li><a href="'.$_SERVER['basePath'].'admin/" class="dropdown_text">Admin</a></li>' : "").'
+                        '.(UserAcess::isAdmin() ? '<li><a href="'.$_SERVER['basePath'].'admin/events" class="dropdown_text">Admin</a></li>' : "").'
                         <li><a href="'.$_SERVER['basePath'].'profile/homepage" class="dropdown_text">Profile</a></li>
                         <li><a href="'.$_SERVER['basePath'].'profile/logout" class="dropdown_text">Logout</a></li>
                     </ul></div>');
@@ -60,5 +60,43 @@ class PageFrame
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
         <script src="'.$_SERVER['basePath'].'public/js/slider.js"></script>');
+    }
+    public static function AdminNav() {
+        echo ('<div class="left-nav">
+        <div>
+            <h4>GESTION</h4>
+        </div>
+            <a href="/admin/showlist">
+                <div class="nav-link '.($_GET['url'] == "admin/showlist" ? 'selectedNav':"").'">
+                    <i class="fas fa-theater-masks"></i> 
+                    &nbsp; Spectacles
+                    <i class="fas fa-angle-right"></i>
+                </div>
+            </a>
+            <a href="/admin/locationlist">
+                <div class="nav-link '.($_GET['url'] == "admin/locationlist" ? 'selectedNav':"").'">
+                    <i class="fas fa-map-marked"></i> 
+                    &nbsp; Salles
+                    <i class="fas fa-angle-right"></i>
+                </div>
+            </a>
+            <div>
+                <h4>CLIENTS</h4>
+            </div>
+            <a href="/admin/clientlist">
+                <div class="nav-link '.($_GET['url'] == "admin/clientlist" ? 'selectedNav':"").'">
+                    <i class="fas fa-id-card"></i> 
+                    &nbsp; Informations clients
+                    <i class="fas fa-angle-right"></i>
+                </div>
+            </a>
+            <a href="/admin/fidelitylist">
+                <div class="nav-link '.($_GET['url'] == "admin/fidelitylist" ? 'selectedNav':"").'">
+                    <i class="fas fa-star"></i> 
+                    &nbsp; Fidelité
+                    <i class="fas fa-angle-right"></i>
+                </div>
+            </a>
+        </div>');
     }
 }

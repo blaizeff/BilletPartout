@@ -35,9 +35,7 @@ Route::set('show/list',function() {
     ShowController::ListView('list');
 });
 
-Route::set('admin/',function() {
-    AdminController::indexView("index");
-});
+
 Route::set('admin/show',function() {
     AdminController::showView("Show");
 });
@@ -50,17 +48,17 @@ Route::set('admin/details',function() {
 Route::set('admin/location',function() {
     AdminController::locationView("location");
 });
-Route::set('admin/spectacles',function() {
-    AdminController::spectaclesView("spectacles");
+Route::set('admin/showlist',function() {
+    AdminController::showListView("showList");
 });
-Route::set('admin/salles',function() {
-    AdminController::sallesView("salles");
+Route::set('admin/locationlist',function() {
+    AdminController::locationListView("locationList");
 });
-Route::set('admin/infoClients',function() {
-    AdminController::infoClientsView("infoClients");
+Route::set('admin/clientlist',function() {
+    AdminController::clientListView("clientList");
 });
-Route::set('admin/fidelite',function() {
-    AdminController::fideliteView("fidelite");
+Route::set('admin/fidelitylist',function() {
+    AdminController::fidelityListView("fidelityList");
 });
 
 if(!in_array($_GET['url'],Route::$validRoute)) {
