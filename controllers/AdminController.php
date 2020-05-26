@@ -2,6 +2,7 @@
 <?php
 require_once("./models/Show.php");
 require_once("./models/Location.php");
+
 require_once("./models/UserAcess.php");
 
 class AdminController extends Controller
@@ -23,6 +24,86 @@ class AdminController extends Controller
 
     public static function eventView($viewName)
     {
+        require_once("./views/admin/" . $viewName . ".php");
+    }
+    public static function spectaclesView($viewName){
+        //[POST]
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && Components::verifyPostValue(["title", "description", "artist", "showCategory"])) {
+            $show = new Show();
+
+            if (Components::verifyPostValue(["id"])) {
+                $id = $_POST["id"];
+                echo $show->update($id,$_POST["title"], $_POST["description"], $_POST["artist"], $_POST["showCategory"]);
+            } else {
+                $id = $show->create($_POST["title"], $_POST["description"], $_POST["artist"], $_POST["showCategory"]);
+            }
+
+            if ($id)
+                Components::uploadImage("show", "show" . $id.".jpg");
+
+            header('Location: ./');
+        }
+
+        //[GET]
+        //render page Modify a Show else render paghe Create a Show
+        if (isset($_GET['id']) && is_int((int) $_GET["id"])) {
+            $show = new Show();
+            $data = $show->get($_GET['id']);
+            $data['pageState'] = "Modifier";
+            $data['returnLink'] = "./details?id=".$_GET["id"];
+        } else {
+            $data = [
+                'title' => '',
+                'pageState' => 'Ajouter',
+                'returnLink' => './',
+                'description' => '',
+                'artist' =>'',
+                'idCat' =>'',
+            ]; 
+        }
+        require_once("./views/admin/" . $viewName . ".php");
+    }
+    public static function sallesView($viewName){
+        //[POST]
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && Components::verifyPostValue(["title", "description", "artist", "showCategory"])) {
+            $show = new Show();
+
+            if (Components::verifyPostValue(["id"])) {
+                $id = $_POST["id"];
+                echo $show->update($id,$_POST["title"], $_POST["description"], $_POST["artist"], $_POST["showCategory"]);
+            } else {
+                $id = $show->create($_POST["title"], $_POST["description"], $_POST["artist"], $_POST["showCategory"]);
+            }
+
+            if ($id)
+                Components::uploadImage("show", "show" . $id.".jpg");
+
+            header('Location: ./');
+        }
+
+        //[GET]
+        //render page Modify a Show else render paghe Create a Show
+        if (isset($_GET['id']) && is_int((int) $_GET["id"])) {
+            $show = new Show();
+            $data = $show->get($_GET['id']);
+            $data['pageState'] = "Modifier";
+            $data['returnLink'] = "./details?id=".$_GET["id"];
+        } else {
+            $data = [
+                'title' => '',
+                'pageState' => 'Ajouter',
+                'returnLink' => './',
+                'description' => '',
+                'artist' =>'',
+                'idCat' =>'',
+            ]; 
+        }
+        require_once("./views/admin/" . $viewName . ".php");
+    }
+    public static function infoClientsView($viewName){
+        require_once("./views/admin/" . $viewName . ".php");
+    }
+    public static function fideliteView($viewName){
         require_once("./views/admin/" . $viewName . ".php");
     }
 
