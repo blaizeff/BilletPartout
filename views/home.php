@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="public/css/MasterStyle.css">
     <link rel="stylesheet" href="public/css/homePage.css">
+    <link rel="stylesheet" href="<?php echo $_SERVER['basePath']?>public/css/slider.css">
 </head>
 
 <div id=overlay style="display:none"></div>
@@ -41,9 +42,28 @@
                     $('#prixPopup').addClass('showFilter');
                 }
             });
+            $('.menuOption').on("click", function() {
+                console.log($(this));
+                if($(this).hasClass('optionSelected')){
+                    $(this).removeClass('optionSelected');
+                } else {
+                    $('.menuOption').removeClass('optionSelected');
+                    $(this).addClass('optionSelected');
+                }
+            });
 
             $('#searchBox').on("click", () => {
                 showOverlay();
+            });
+
+            $('#submit').on("click", function() {
+                if($('.menuOption').hasClass('optionSelected')){
+                    $("input[name='category']").val($('.optionSelected').attr("href").substr(-3));
+                }
+                //if($('span.first').text() !== 0 && $('span.second').text() !== 500){
+                //    searchString = searchString + "&amp;minPrice=" + $('span.first').text();
+                //    searchString = searchString + "&amp;maxPrice=" + $('span.second').text();
+                //}
             });
             $('#overlay').on("click", () => {
                 if(!overlayHidden){
@@ -90,19 +110,15 @@
                     <div class="searchBar">
                         <div style="width:34px; height:10px; display:inline-block"></div>
                         <input autocomplete="off" name="search" id="searchInput" type="text" placeholder="Nom de l'artiste, Nom du Groupe ou de l'évènement">
+                        <input type="hidden" name="category" value="">
+                        <textarea style="display:none;" type="hidden" class="first" name="minPrice"></textarea>
+                        <textarea style="display:none;" type="hidden" class="second" name="maxPrice"></textarea>
                         <i class="search fas fa-search"></i>
                         <button id="submit" type="submit"></button>
                     </div>
-                </form>
-                <div id="filterButtonContainer">
-                    <div id="salleDropdown" class="dropdown">
-                        <button id="salleFilterButton" class="filterButton"><i class="smallIcon fas fa-map"></i><span>Salle</span></button>
-                        <div id="sallePopup" class="dropdown-content">
-                            test
-                        </div>
-                    </div>
+                    <div id="filterButtonContainer">
                     <div id="dateDropdown" class="dropdown">
-                        <button id="dateFilterButton" class="filterButton"><i class="smallIcon fas fa-calendar-day"></i><span>Date</span></button>
+                        <div id="dateFilterButton" class="filterButton"><i class="smallIcon fas fa-calendar-day"></i><span>Date</span></div>
                         <div id="datePopup" class="dropdown-content">
                             Date de début
                             <input type="date" name="startDate" class="custominput"  value="<?php echo isset($_GET['startDate']) ? $_GET['startDate'] :'';?>" style="width: 100%;border-radius:5px">
@@ -112,17 +128,24 @@
                         </div>
                     </div>
                     <div id="categorieDropdown" class="dropdown">
-                        <button id="categorieFilterButton" class="filterButton"><i class="smallIcon fas fa-theater-masks"></i><span>Catégorie</span></button>
+                        <div id="categorieFilterButton" class="filterButton"><i class="smallIcon fas fa-theater-masks"></i><span>Catégorie</span></div>
                         <div id="categoriePopup" class="dropdown-content">
-                            test
+                            <div class="menuCategory">
+                                <?php echo Components::showMainMenuCategory() ?>
+                            </div>
                         </div>
                     </div>
                     <div id="prixDropdown" class="dropdown">
-                        <button id="prixFilterButton" class="filterButton"><i class="smallIcon fas fa-dollar-sign"></i><span>Prix</span></button>
+                        <div id="prixFilterButton" class="filterButton"><i class="smallIcon fas fa-dollar-sign"></i><span>Prix</span></div>
                         <div id="prixPopup" class="dropdown-content">
-                            test
-                        </div>
+                            <div class="values" style="display: flex;justify-content: space-between;">
+                                <div><span class="first"></span>$</div>
+                                <div><span class="second"></span>$</div>
+                            </div>
+                            <div class="slider" data-value-0=".first" data-value-1=".second" data-range=".third"></div>
+                            </div>
                     </div>
+                </form>
                 </div>
             </div>
         </div>
@@ -178,7 +201,8 @@
         </section>
     </div>
     <?php
-    PageFrame::footer()
+    PageFrame::footer();
+    PageFrame::loadSlider();
     ?>
 </body>
 
