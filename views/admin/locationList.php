@@ -22,9 +22,7 @@ PageFrame::loadBundle();
             <h2>Salles</h2>
             <button onclick="window.location.href='location'" class="btn btn-primary green">Ajouter une salle</button>
         </div>
-        <?php locationList($data["locationList"]);
-        ?>
-
+        <?php locationList($data["locationList"]);?>
     </div>
 </div>
 

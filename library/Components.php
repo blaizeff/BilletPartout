@@ -220,17 +220,39 @@ class Components
         if (!empty($sections)) {
 
             foreach ($sections as $section) {
-                $html .= '<tr>
-            <td><input type="text" name="section' . $section["idSection"] . '[]" class="form-control customInputHidden" value=' . $section["name"] . '></td>
-            <th><input type="text" name="section' . $section["idSection"] . '[]" class="form-control customInputHidden" value=' . $section["priceRatio"] . '></th>
-            <th><input type="text" name="section' . $section["idSection"] . '[]" class="form-control customInputHidden" value=' . $section["color"] . '></th>
-            <th><input type="text" name="section' . $section["idSection"] . '[]" class="form-control customInputHidden" value=' . $section["capacity"] . '></th>
-            <td><button type="submit" onclick="deleteSection(' . $section["idSection"] . ')"class="btn btn-danger ">Supprimer</button></td>
+                $html .= '<tr><input type="hidden" name="section' . $section["idSection"] .'[id]" value='.$section["idSection"].'>
+            <td><input type="text" name="section' . $section["idSection"] . '[name]" class="form-control customInputHidden" value=' . $section["name"] . '></td>
+            <th><input type="text" name="section' . $section["idSection"] . '[priceRatio]" class="form-control customInputHidden" value=' . $section["priceRatio"] . '></th>
+            <th><input type="text" name="section' . $section["idSection"] . '[color]" class="form-control customInputHidden" value=' . $section["color"] . '></th>
+            <th><input type="text" name="section' . $section["idSection"] . '[capacity]" class="form-control customInputHidden" value=' . $section["capacity"] . '></th>
+            <td><input type="button" onclick="deleteSection(' . $section["idSection"] . ')" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" value="Supprimer"></td>
             </tr>';
             }
         }
 
-        $html .= '</table>';
+        $html .= '</table><script>
+        function deleteSection(id) {
+            document.getElementById("sectionId").value = id;
+        }
+        </script>';
+        $html .='<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Êtes-vous sûr de vouloir supprimer cette section ?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="" method="get">
+        <input type="hidden" id="sectionId" name="sectionId"><br><br>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Non</button>
+          <button type="submit" formmethod="post" class="btn btn-primary">Oui</button>
+        </div>
+      </div>
+    </div>
+  </div>';
         return $html;
     }
 }

@@ -36,6 +36,7 @@ class Show
         ];
         return Components::change_arrayKeys($DBresult, $keys);
     }
+    
     public function getEvent($idShow)
     {
         $DBresult = $this->DB->getEvent($idShow);

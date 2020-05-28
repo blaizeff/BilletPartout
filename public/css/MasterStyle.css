@@ -148,7 +148,6 @@ header {
     position: relative;
     right: 45px;
     color: #21c87a;
-    transition: all .2s ease-in-out;
     padding: 9px;
     border-radius: 1em;
 }
@@ -172,7 +171,6 @@ header {
     line-height: 18px;
     border-radius: 5px;
     border: 2px solid rgb(241, 244, 248);
-    transition: all .2s ease-in-out;
     outline: none;
 }
 
