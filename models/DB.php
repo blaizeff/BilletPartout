@@ -47,6 +47,14 @@ class DB
         return ($success) ? $rows : [];
     }
 
+    public function selectAllWhere($table,$column,$value)
+    {
+        $stm = $this->pdo->prepare('SELECT * FROM ' . $table . ' WHERE  ' . $column . '= :value');
+        $stm->bindValue(':value', $value);
+        $success = $stm->execute();
+        $rows = $stm->fetchAll(PDO::FETCH_ASSOC);
+        return ($success) ? $rows : [];
+    }
     public function create($table, $data)
     {
         $columns = array_keys($data);

@@ -50,4 +50,26 @@ class Location
     public function delete($id) {
         $this->DB->deleteWhere($this->table,'idSalle',$id);
     }
+
+    public function getSections($id) {
+        $result = ($this->DB->selectAllWhere("Sections","idSalle",$id));
+        $keys = [
+            "idSalle" => "idLocation",
+            "Couleur" => "color",
+            "fm_Prix" => "priceRatio",
+            "nomSection" => "name",
+            "capacite" => "capacity",
+        ];
+        return Components::change_arrayKeys($result, $keys);
+    }
+    public function addSection($id,$name,$priceRatio,$color,$capacity) {
+        $data = [
+            "idSalle"=>$id,
+            "Couleur"=>$color,
+            "fm_prix"=>$priceRatio,
+            "nomSection"=>$name,
+            "capacite"=>$capacity
+        ];
+        $this->DB->create("Sections",$data);
+    }
 }

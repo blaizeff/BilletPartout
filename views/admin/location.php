@@ -2,7 +2,7 @@
 PageFrame::header();
 PageFrame::loadBundle();
 ?>
-<link rel="stylesheet" href="<?php echo $_SERVER['basePath']?>public/css/admin.css">
+<link rel="stylesheet" href="<?php echo $_SERVER['basePath'] ?>public/css/admin.css">
 <div class="container">
     <div class="col-md-12 article">
         <a style="color:21c87a" href="./locationlist">Retour au menu</a>
@@ -20,7 +20,9 @@ PageFrame::loadBundle();
                 <label class="mb-1">Adresse</label>
                 <input name="address" type="text" class="form-control custominput" value='<?php echo $data["address"] ?>'>
             </div>
-
+            <div class="col-12 form-group">
+            <?php echo Components::SectionList($data["sections"]) ?>
+            </div>
             <div class="col-12 ">
                 <button type="submit" class="btn btn-primary green"><?php echo $data["pageState"] ?></button>
             </div>

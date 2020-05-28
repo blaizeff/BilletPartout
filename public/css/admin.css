@@ -29,7 +29,7 @@ a {
     color: black;
 }
 
-.container {
+.listcontainer {
     font-family: 'Ubuntu', sans-serif;
     display: flex;
     flex-direction: row;

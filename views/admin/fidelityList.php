@@ -10,7 +10,7 @@ PageFrame::loadBundle();
 </style>
 <link rel="stylesheet" href="/public/css/admin.css">
 
-<div class="container">
+<div class="listcontainer">
 <?php PageFrame::AdminNav();?>
     <div class="section">
         <div class="d-flex justify-content-between" style="padding:20px">

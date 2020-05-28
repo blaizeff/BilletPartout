@@ -196,6 +196,40 @@ class Components
         foreach ($categories as $item) {
             $html .= "<a class='categoryButton' style='font-size:18' href=/show/list?" . self::buildGetURL('category', $item['id']) . ">" . $item["value"] . "</a>";
         }
+
+
+    public static function SectionList($sections)
+    {
+        $html = '<table>
+        <tr>
+            <th>Nom de la section</th>
+            <th>Ratio Prix</th>
+            <th>Couleur</th>
+            <th>Capacité</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td><input type="text" name="addSection[name]" class="form-control custominput"></td>
+            <td><input type="number" name="addSection[priceRatio]" class="form-control custominput"></td>
+            <td><input type="text" name="addSection[color]" class="form-control custominput"></td>
+            <td><input type="number" name="addSection[capacity]" class="form-control custominput"></td>
+            <td><button type="submit" class="btn btn-primary green">Ajouter</button> </td>
+        </tr>';
+
+        if (!empty($sections)) {
+
+            foreach ($sections as $section) {
+                $html .= '<tr>
+            <td><input type="text" name="section' . $section["idSection"] . '[]" class="form-control customInputHidden" value=' . $section["name"] . '></td>
+            <th><input type="text" name="section' . $section["idSection"] . '[]" class="form-control customInputHidden" value=' . $section["priceRatio"] . '></th>
+            <th><input type="text" name="section' . $section["idSection"] . '[]" class="form-control customInputHidden" value=' . $section["color"] . '></th>
+            <th><input type="text" name="section' . $section["idSection"] . '[]" class="form-control customInputHidden" value=' . $section["capacity"] . '></th>
+            <td><button type="submit" onclick="deleteSection(' . $section["idSection"] . ')"class="btn btn-danger ">Supprimer</button></td>
+            </tr>';
+            }
+        }
+
+        $html .= '</table>';
         return $html;
     }
 }
