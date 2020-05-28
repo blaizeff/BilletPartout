@@ -32,6 +32,7 @@
 <?php
 PageFrame::loadBundle();
 PageFrame::header();
+
 ?>
 <div class="container ">
     <form class="row" style="margin-top:50px" method="POST" action="invoice">
@@ -39,19 +40,21 @@ PageFrame::header();
             <h3>Adresse de facturations</h3>
 
             <div class="row">
-                <div class="col-md-6 mb-3 form-group">
-                    <label for="firstName">Prénom</label>
-                    <input type="text" class="form-control customInput" id="firstName" required>
+                <div class="col-md-12 mb-3 form-group">
+                    <label for="firstName">Nom Complet</label>
+                    <input type="text" class="form-control customInput" id="firstName" required 
+                    value="<?php if(isset($_SESSION['user']['nomClient'])){echo $_SESSION['user']['nomClient'];} ?>" >
                 </div>
 
-                <div class="col-md-6 mb-3 form-group">
+                <!-- <div class="col-md-6 mb-3 form-group">
                     <label for="lastName">Nom</label>
                     <input type="text" class="form-control customInput" id="lastName" required>
-                </div>
+                </div> -->
 
                 <div class="col-md-12 mb-3 form-group">
                     <label for="email">Courriel <span class="text-muted">(Optionel)</span></label>
-                    <input type="email" class="form-control customInput" id="email" placeholder="vous@exemple.ca">
+                    <input type="email" class="form-control customInput" id="email" placeholder="vous@exemple.ca"
+                    value="<?php if(isset($_SESSION['user']['Courriel'])){echo $_SESSION['user']['Courriel'];} ?>" >
                 </div>
 
                 <div class="col-md-12 mb-3 form-group">
@@ -83,14 +86,6 @@ PageFrame::header();
                 </div>
             </div>
 
-
-            <div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="save-info">
-                    <label class="custom-control-label" for="save-info">Sauvegarder cette information pour la prochaine fois</label>
-                </div>
-            </div>
-
             <hr>
 
             <h3>Paiment</h3>
@@ -98,16 +93,16 @@ PageFrame::header();
             <div class="row">
                 <div class="col-md-6 mb-3 ">
                     <label for="cc-number">Numéro de la carte</label>
-                    <input type="text" class="form-control customInput" id="cc-number" required>
+                    <input type="text" class="form-control customInput" id="cc-number" pattern="^((4\d{3})|(5[1-5]\d{2})|(6011))-?\d{4}-?\d{4}-?\d{4}|3[4,7]\d{13}$" placeholder="0000-0000-0000-0000" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label for="cc-expiration">Date d'expiration</label>
-                    <input type="text" class="form-control customInput" id="cc-expiration" required>
+                    <input type="text" class="form-control customInput" id="cc-expiration" pattern="^\d{2}\/\d{2}$" placeholder="MM/AA" required>
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="cc-expiration">CVV</label>
-                    <input type="text" class="form-control customInput" id="cc-cvv" required>
+                    <input type="text" class="form-control customInput" id="cc-cvv" pattern="^[0-9]{3,4}$" placeholder="000 ou 0000" required>
                 </div>
             </div>
         </div>

@@ -165,12 +165,24 @@ class Components
     public static function showMenuCategory()
     {
         require_once("./models/Show.php");
-
+        $isMenu = true;
         $show = new Show();
         $html = "";
         $categories = $show->getAllCategory();
         foreach ($categories as $item) {
             $html .= "<a style='font-size:18' href=list?" . self::buildGetURL('category', $item['id']) . ">" . $item["value"] . "</a>";
+        }
+        return $html;
+    }
+    public static function showMainMenuCategory()
+    {
+        require_once("./models/Show.php");
+        $isMenu = true;
+        $show = new Show();
+        $html = "";
+        $categories = $show->getAllCategory();
+        foreach ($categories as $item) {
+            $html .= "<div class='menuOption' style='font-size:18' href=list?" . self::buildGetURL('category', $item['id']) . ">" . $item["value"] . "</div>";
         }
         return $html;
     }

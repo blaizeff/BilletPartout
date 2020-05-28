@@ -27,6 +27,18 @@ class CartController extends Controller {
     }
     public static function invoiceView($page)
     {
+        //[POST]
+        if ($_SERVER['REQUEST_METHOD'] === 'POST')
+        {
+            $DB = new DB;
+            $data = [
+                "pidBillet" => $_SESSION['cart']['id'],
+                "pidCLient" => $_SESSION['user']['idClient'],
+                "nbBillet" => $_SESSION['cart']['nbTickets']
+            ];
+            $DB->callProcedure("insertAchat", $data);
+        }
+        
         require_once("./views/cart/" . $page . ".php");
     }
 
