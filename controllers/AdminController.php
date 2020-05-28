@@ -9,6 +9,7 @@ class AdminController extends Controller
 {
     public static function showView($viewName)
     {
+        UserAcess::adminPage();
 
         //[POST]
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && Components::verifyPostValue(["title", "description", "artist", "showCategory"])) {
@@ -24,7 +25,7 @@ class AdminController extends Controller
             if ($id)
                 Components::uploadImage("show", "show" . $id.".jpg");
 
-            header('Location: /admin/showlist');
+            header('Location: ./');
         }
 
         //[GET]
@@ -55,12 +56,6 @@ class AdminController extends Controller
     public static function showListView($viewName){
         UserAcess::adminPage();
         $show = new Show();
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && Components::verifyPostValue(["showId"])) {
-            $show = new Show();
-            $id = $_POST["showId"];
-            printf($id);
-            $show->delete($id);   
-        }
         $data["showList"] = $show->selectAll();
         require_once("./views/admin/" . $viewName . ".php");
     }

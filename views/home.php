@@ -147,7 +147,6 @@
                     </div>
                 </form>
                 </div>
-                
             </div>
         </div>
         <!--
@@ -199,12 +198,6 @@
                     </div>
                 </section>
             </div>
-                <h2 style="color:#333;margin-bottom:0">Toujours rien à votre goût?</h2>
-                <h3 style="color:#333;position:relative;bottom:25px">Découvrez plus de spectacles.</h3>
-                <div id="categoryButtonsContainer"style="position:relative;bottom:55px">
-                    <?php echo Components::showMainMenuCategoryButtons(); ?>
-                </div>
-        
         </section>
     </div>
     <?php

@@ -112,54 +112,14 @@
         .searchBar input:hover {
             border-color: #333;
         }
-
-        #categoryButtonsContainer{
-            display: flex;
-            flex-direction: row;
-        }
-        .categoryButton{
-            line-height: 45px;
-            cursor:pointer;
-            border-radius: 6px;
-            background-color: white;
-            border: #21c87a 2px solid;
-            padding: 0 10px;
-            margin: 0 4px;
-            height: 45px;
-            font-weight: bold;
-            box-shadow: 0 1px 10px rgba(0, 0, 0, .2);
-            color:#333;
-        }
-        .categoryButton:hover{
-            text-decoration: none;
-            background-color: #21c87a;
-            border: white 2px solid;
-            color:#333;
-            font-weight: bold;
-        }
+        
         .filterButton {
             line-height: 45px;
             cursor:pointer;
             border-radius: 6px;
             background-color: white;
-            border: 1px white solid;
-            width: 145px;
-            margin: 0 2px;
-            height: 45px;
-            box-shadow: 0 1px 10px rgba(0, 0, 0, .2);
-            transition: all .2s ease-in-out;
-        }
-        .filterButton:hover{
-            border-color: black;
-        }
-        
-        .showAllButton {
-            line-height: 45px;
-            cursor:pointer;
-            border-radius: 6px;
-            background-color: white;
             border: none;
-            width: 345px;
+            width: 145px;
             margin: 0 2px;
             height: 45px;
             box-shadow: 0 1px 10px rgba(0, 0, 0, .2);
