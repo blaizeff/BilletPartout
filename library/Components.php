@@ -186,6 +186,16 @@ class Components
         }
         return $html;
     }
+    public static function showMainMenuCategoryButtons()
+    {
+        require_once("./models/Show.php");
+        $isMenu = true;
+        $show = new Show();
+        $html = "";
+        $categories = $show->getAllCategory();
+        foreach ($categories as $item) {
+            $html .= "<a class='categoryButton' style='font-size:18' href=/show/list?" . self::buildGetURL('category', $item['id']) . ">" . $item["value"] . "</a>";
+        }
 
 
     public static function SectionList($sections)
