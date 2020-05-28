@@ -17,13 +17,13 @@ class AdminController extends Controller
 
             if (Components::verifyPostValue(["id"])) {
                 $id = $_POST["id"];
-                echo $show->update($id,$_POST["title"], $_POST["description"], $_POST["artist"], $_POST["showCategory"]);
+                echo $show->update($id, $_POST["title"], $_POST["description"], $_POST["artist"], $_POST["showCategory"]);
             } else {
                 $id = $show->create($_POST["title"], $_POST["description"], $_POST["artist"], $_POST["showCategory"]);
             }
 
             if ($id)
-                Components::uploadImage("show", "show" . $id.".jpg");
+                Components::uploadImage("show", "show" . $id . ".jpg");
 
             header('Location: ./');
         }
@@ -41,9 +41,9 @@ class AdminController extends Controller
                 'pageState' => 'Ajouter',
                 'returnLink' => './showlist',
                 'description' => '',
-                'artist' =>'',
-                'idCat' =>'',
-            ]; 
+                'artist' => '',
+                'idCat' => '',
+            ];
         }
         require_once("./views/admin/" . $viewName . ".php");
     }
@@ -53,17 +53,19 @@ class AdminController extends Controller
         require_once("./views/admin/" . $viewName . ".php");
     }
 
-    public static function showListView($viewName){
+    public static function showListView($viewName)
+    {
         UserAcess::adminPage();
         $show = new Show();
         $data["showList"] = $show->selectAll();
         require_once("./views/admin/" . $viewName . ".php");
     }
 
-    public static function locationListView($viewName){
+    public static function locationListView($viewName)
+    {
         UserAcess::adminPage();
         $location = new Location();
-        $data['error']=false;
+        $data['error'] = false;
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && Components::verifyPostValue(["locationId"])) {
             $id = $_POST["locationId"];
             $show = new Show();
@@ -77,21 +79,22 @@ class AdminController extends Controller
                 }
             }
             if (!$data['error']) {
-                print_r($id);
-                $location->delete($id);   
+                $location->delete($id);
             }
         }
         $data["locationList"] = $location->selectAll();
         require_once("./views/admin/" . $viewName . ".php");
     }
 
-    public static function clientListView($viewName){
+    public static function clientListView($viewName)
+    {
         UserAcess::adminPage();
 
         require_once("./views/admin/" . $viewName . ".php");
     }
 
-    public static function fidelityListView($viewName){
+    public static function fidelityListView($viewName)
+    {
         UserAcess::adminPage();
 
         require_once("./views/admin/" . $viewName . ".php");
@@ -113,16 +116,29 @@ class AdminController extends Controller
     public static function locationView($viewName)
     {
         UserAcess::adminPage();
-        
+        //[POST]
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && Components::verifyPostValue(["title", "address"])) {
             $location = new Location();
+
+            //UPDATE
             if (Components::verifyPostValue(["id"])) {
                 $id = $_POST["id"];
-                 $location->update($id,$_POST["title"], $_POST["address"]);
+                $location->update($id, $_POST["title"], $_POST["address"]);
+                if ($_POST['addSection']['name'] != '' && $_POST['addSection']['priceRatio'] != '' && $_POST['addSection']['color'] != '' && $_POST['addSection']['capacity'] != '') {
+                    $location->addSection($id,$_POST['addSection']['name'], $_POST['addSection']['priceRatio'], $_POST['addSection']['color'], $_POST['addSection']['capacity']);
+                } else {
+                    foreach($_POST as $row) {
+                        if (substr($row,0,7) === 'section') {
+                            $location->update(substr($row,7,8))
+                        }
+                    }
+                    //header('Location: ./locationlist');
+                }
+            //CREATE
             } else {
                 $id = $location->create($_POST["title"], $_POST["address"]);
+                header('Location: ./locationlist');
             }
-            header('Location: ./locationlist');
         }
 
         //GET
@@ -131,12 +147,14 @@ class AdminController extends Controller
             $location = new Location();
             $data = $location->get($_GET['id']);
             $data['pageState'] = "Modifier";
+            $data["sections"] = $location->getSections($_GET["id"]);
         } else {
             $data = [
                 'name' => '',
                 'pageState' => 'Ajouter',
                 'address' => '',
-            ]; 
+                'sections' => ''
+            ];
         }
         require_once("./views/admin/" . $viewName . ".php");
     }

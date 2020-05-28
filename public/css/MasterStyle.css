@@ -75,6 +75,12 @@ footer {
     padding: 15px 20px 15px 20px !important;
 }
 
+.customInputHidden {
+    background-color: white !important;
+    border: none !important;
+    padding: 15px 20px 15px 20px !important;
+}
+
 .customSelect {
     background-color: #edeef6 !important;
     border: none !important;
