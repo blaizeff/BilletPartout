@@ -48,6 +48,7 @@ class Location
     }
 
     public function delete($id) {
+        $this->DB->deleteWhere("Sections",'idSalle',$id);
         $this->DB->deleteWhere($this->table,'idSalle',$id);
     }
 
@@ -71,5 +72,19 @@ class Location
             "capacite"=>$capacity
         ];
         $this->DB->create("Sections",$data);
+    }
+
+    public function updateSection($id,$data) {
+        $data =Components::change_key($data, "name", "NomSection");
+        $data =Components::change_key($data, "idVenue", "idSalle");
+        $data =Components::change_key($data, "priceRatio", "fm_prix");
+        $data =Components::change_key($data, "color", "couleur");
+        $data =Components::change_key($data, "capacity", "capacite");
+
+        $this->DB->update("Sections",$id,$data,"idSection");
+    }
+
+    public function deleteSection($id) {
+        $this->DB->deleteWhere("Sections",'idSection',$id);
     }
 }

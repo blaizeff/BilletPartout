@@ -45,12 +45,14 @@ class PageFrame
     public static function loadBundle()
     {
         echo ('
+        <head>
         <script src="https://kit.fontawesome.com/c681f65641.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="'.$_SERVER['basePath'].'public/css/MasterStyle.css">');
+        <link rel="stylesheet" href="'.$_SERVER['basePath'].'public/css/MasterStyle.css">
+        </head>');
     }
     public static function loadJquery() {
         echo ('<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>');
@@ -85,6 +87,7 @@ class PageFrame
             <div>
                 <h4>CLIENTS</h4>
             </div>
+            <!-- 
             <a href="/admin/clientlist">
                 <div class="nav-link '.($_GET['url'] == "admin/clientlist" ? 'selectedNav':"").'">
                     <i class="fas fa-id-card"></i> 
@@ -92,6 +95,7 @@ class PageFrame
                     <i class="fas fa-angle-right"></i>
                 </div>
             </a>
+             -->
             <a href="/admin/fidelitylist">
                 <div class="nav-link '.($_GET['url'] == "admin/fidelitylist" ? 'selectedNav':"").'">
                     <i class="fas fa-star"></i> 

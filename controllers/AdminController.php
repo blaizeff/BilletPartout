@@ -119,22 +119,27 @@ class AdminController extends Controller
         //[POST]
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && Components::verifyPostValue(["title", "address"])) {
             $location = new Location();
-
             //UPDATE
             if (Components::verifyPostValue(["id"])) {
                 $id = $_POST["id"];
                 $location->update($id, $_POST["title"], $_POST["address"]);
+                //Add Section
                 if ($_POST['addSection']['name'] != '' && $_POST['addSection']['priceRatio'] != '' && $_POST['addSection']['color'] != '' && $_POST['addSection']['capacity'] != '') {
-                    $location->addSection($id,$_POST['addSection']['name'], $_POST['addSection']['priceRatio'], $_POST['addSection']['color'], $_POST['addSection']['capacity']);
-                } else {
-                    foreach($_POST as $row) {
-                        if (substr($row,0,7) === 'section') {
-                            $location->update(substr($row,7,8))
-                        }
-                    }
-                    //header('Location: ./locationlist');
+                    $location->addSection($id, $_POST['addSection']['name'], $_POST['addSection']['priceRatio'], $_POST['addSection']['color'], $_POST['addSection']['capacity']);
                 }
-            //CREATE
+                //Update Section
+                foreach ($_POST as $row) {
+                    if (isset($row['id']) && isset($row['name'])) {
+                        $location->updateSection($row['id'], $row);
+                    }
+                }
+                //DeleteSection
+                if (Components::verifyPostValue(["sectionId"])) {
+                    $location->deleteSection($_POST['sectionId']);
+                }
+                //header('Location: ./locationlist');
+
+                //CREATE
             } else {
                 $id = $location->create($_POST["title"], $_POST["address"]);
                 header('Location: ./locationlist');

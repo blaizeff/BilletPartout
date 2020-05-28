@@ -3,6 +3,10 @@ PageFrame::header();
 PageFrame::loadBundle();
 ?>
 <link rel="stylesheet" href="<?php echo $_SERVER['basePath'] ?>public/css/admin.css">
+<body data-gr-c-s-loaded="true">
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
 <div class="container">
     <div class="col-md-12 article">
         <a style="color:21c87a" href="./locationlist">Retour au menu</a>
@@ -33,3 +37,4 @@ PageFrame::loadBundle();
 <?php
 PageFrame::footer();
 ?>
+</body>
