@@ -46,4 +46,8 @@ class Location
         ];
         return $this->DB->update($this->table, $id, $data, "idSalle");
     }
+
+    public function delete($id) {
+        $this->DB->deleteWhere($this->table,'idSalle',$id);
+    }
 }

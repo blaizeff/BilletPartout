@@ -52,7 +52,9 @@ class PageFrame
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="'.$_SERVER['basePath'].'public/css/MasterStyle.css">');
     }
-
+    public static function loadJquery() {
+        echo ('<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>');
+    }
     public static function loadSlider() {
         echo (' 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

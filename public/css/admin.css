@@ -6,50 +6,56 @@
     width: 100%;
 }
 
-h4{
-    margin-top:20px;
-    margin-bottom:0;
-    font-size:0.8em;
+h4 {
+    margin-top: 20px;
+    margin-bottom: 0;
+    font-size: 0.8em;
 }
-.fa-angle-right{
+
+.fa-angle-right {
     font-size: small;
-    float:right;
+    float: right;
     position: relative;
-    top:5px;
+    top: 5px;
 }
-a{
+
+a {
     text-decoration: none;
     color: #292929;
 }
-.selectedNav{
-    background-color: rgb(217,224,231);
-    color:black;
+
+.selectedNav {
+    background-color: rgb(217, 224, 231);
+    color: black;
 }
-.container{
+
+.container {
     font-family: 'Ubuntu', sans-serif;
     display: flex;
     flex-direction: row;
-    margin: 0;
     padding: 0;
     width: 100% !important;
     max-width: 100% !important;
     min-width: 100% !important;
 }
-.left-nav{
+
+.left-nav {
     position: sticky;
-    left:0;
-    bottom:0;
-    top:0;
-    width:360px;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    width: 360px;
     background-color: rgb(233, 237, 241);
     border: 2px solid rgb(233, 237, 241);
 }
+
 .left-nav div {
     padding: 10px 30px;
 }
+
 .left-nav .nav-link:hover {
-    background-color: rgb(217,224,231);
-    color:black;
+    background-color: rgb(217, 224, 231);
+    color: black;
 }
 
 table * {

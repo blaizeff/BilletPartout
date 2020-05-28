@@ -87,7 +87,13 @@ class DB
         $success = $stm->execute();
         return ($success);
     }
-
+    public function deleteWhere($table,$column, $id)
+    {
+        $stm = $this->pdo->prepare('DELETE FROM ' . $table . ' WHERE '.$column.' = :id');
+        $stm->bindParam(':id', $id);
+        $success = $stm->execute();
+        return ($success);
+    }
     public function getFunction($function) {
         $stm = $this->pdo->prepare('SELECT '.$function);
         $success = $stm->execute();

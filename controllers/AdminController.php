@@ -9,7 +9,8 @@ class AdminController extends Controller
 {
     public static function showView($viewName)
     {
-        
+        UserAcess::adminPage();
+
         //[POST]
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && Components::verifyPostValue(["title", "description", "artist", "showCategory"])) {
             $show = new Show();
@@ -60,21 +61,46 @@ class AdminController extends Controller
     }
 
     public static function locationListView($viewName){
+        UserAcess::adminPage();
         $location = new Location();
+        $data['error']=false;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && Components::verifyPostValue(["locationId"])) {
+            $id = $_POST["locationId"];
+            $show = new Show();
+
+            $venueName = $location->get($id)['name'];
+            $events = $show->getAllShow([]);
+            foreach ($events as $event) {
+                if ($event["venueName"] == $venueName) {
+                    $data['error'] = true;
+                    break;
+                }
+            }
+            if (!$data['error']) {
+                print_r($id);
+                $location->delete($id);   
+            }
+        }
         $data["locationList"] = $location->selectAll();
         require_once("./views/admin/" . $viewName . ".php");
     }
 
     public static function clientListView($viewName){
+        UserAcess::adminPage();
+
         require_once("./views/admin/" . $viewName . ".php");
     }
 
     public static function fidelityListView($viewName){
+        UserAcess::adminPage();
+
         require_once("./views/admin/" . $viewName . ".php");
     }
 
     public static function detailsView($viewName)
     {
+        UserAcess::adminPage();
+
         if (isset($_GET["id"]) && is_int((int) $_GET["id"])) {
             $show = new Show();
             $data = $show->get($_GET["id"]);
@@ -86,8 +112,8 @@ class AdminController extends Controller
 
     public static function locationView($viewName)
     {
-
-        //POST
+        UserAcess::adminPage();
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && Components::verifyPostValue(["title", "address"])) {
             $location = new Location();
             if (Components::verifyPostValue(["id"])) {
@@ -96,7 +122,7 @@ class AdminController extends Controller
             } else {
                 $id = $location->create($_POST["title"], $_POST["address"]);
             }
-            header('Location: ./');
+            header('Location: ./locationlist');
         }
 
         //GET

@@ -10,7 +10,6 @@ $('.slider').each(function(e) {
     const urlParams = new URLSearchParams(window.location.search);
     const minPrice = Number.isInteger(parseInt(urlParams.get('minPrice'))) ? urlParams.get('minPrice') : 0;
     const maxPrice = Number.isInteger(parseInt(urlParams.get('maxPrice'))) ? urlParams.get('maxPrice') : 500;
-
     slider.html(svg);
     slider.append($('<div>').addClass('active').html(svg.cloneNode(true)));
 
