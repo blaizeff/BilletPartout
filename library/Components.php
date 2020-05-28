@@ -196,8 +196,7 @@ class Components
         foreach ($categories as $item) {
             $html .= "<a class='categoryButton' style='font-size:18' href=/show/list?" . self::buildGetURL('category', $item['id']) . ">" . $item["value"] . "</a>";
         }
-
-
+    }
     public static function SectionList($sections)
     {
         $html = '<table>
