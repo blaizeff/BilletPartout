@@ -125,4 +125,8 @@ class Show
         $html .= "</select>";
         return $html;
     }
+
+    public function delete($id) {
+        $this->DB->deleteWhere($this->table,'idSpectacle',$id);
+    }
 }
