@@ -134,7 +134,7 @@ class AdminController extends Controller
                 } else {
                     foreach($_POST as $row) {
                         if (substr($row,0,7) === 'section') {
-                            $location->update(substr($row,7,8))
+                            $location->update(substr($row,7,8));
                         }
                     }
                     //header('Location: ./locationlist');
