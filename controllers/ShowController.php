@@ -73,6 +73,7 @@ class ShowController extends Controller
         $timeArray = explode(":", explode(" ", $data['Date'])[1]);
         $time = $timeArray[0] . "h" . $timeArray[1];
         $description = $data['description'];
+
         $venues = [
             [
                 "Id" => 1,
@@ -82,6 +83,11 @@ class ShowController extends Controller
                     "Admission Générale",
                     "Section VIP",
                     "Section Plancher"
+                ],
+                "multipSection" => [
+                    "Admission Générale" => 1.00,
+                    "Section VIP" => 2.00,
+                    "Section Plancher" => 3.00
                 ]
             ],
             [
@@ -92,6 +98,11 @@ class ShowController extends Controller
                     "Section A",
                     "Section B",
                     "Section C"
+                ],
+                "multipSection" => [
+                    "Section A" => 1.00,
+                    "Section B" => 2.00,
+                    "Section C" => 3.00
                 ]
             ],
             [
@@ -101,6 +112,10 @@ class ShowController extends Controller
                 "Sections" => [
                     "Admission Générale",
                     "Section De Luxe"
+                ],
+                "multipSection" => [
+                    "Admission Générale" => 1.00,
+                    "Section De Luxe" => 2.00
                 ]
             ],
             [
@@ -112,6 +127,12 @@ class ShowController extends Controller
                     "Section VIP",
                     "Section Extra VIP",
                     "Section Avant-Scène"
+                ],
+                "multipSection" => [
+                    "Admission Générale" => 1.00,
+                    "Section VIP" => 2.00,
+                    "Section Extra VIP" => 3.00,
+                    "Section Avant-Scène" => 4.00
                 ]
             ],
         ];
