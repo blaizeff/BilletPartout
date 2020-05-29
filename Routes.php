@@ -59,7 +59,7 @@ if(!in_array($_GET['url'],Route::$validRoute)) {
     InvalidPageController::View('InvalidPage');
 
     //!!! Pour Développement seulement !!! 
-    echo ("Votre Url est: ".$_GET['url']."<br> Les URL valides sont: ");
-    print_r(Route::$validRoute);
+    //echo ("Votre Url est: ".$_GET['url']."<br> Les URL valides sont: ");
+    //print_r(Route::$validRoute);
 }
 ?>

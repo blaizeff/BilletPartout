@@ -38,9 +38,9 @@ class Show
         return Components::change_arrayKeys($DBresult, $keys);
     }
 
-    public function getEvent($idEvent)
+    public function getEventWhere($idEvent,$column='idRepresentation')
     {
-        $DBresult = $this->DB->getEvent($idEvent);
+        $DBresult = $this->DB->getEvent($idEvent,$column);
         $keys = [
             "idRepresentation" => "id",
             "idSpectacle" => "idShow",
@@ -50,6 +50,7 @@ class Show
             "Description" => "categorie",
             "description" => "description",
             "nomSalle" => "venueName",
+            "idSalle"=>"locationId",
         ];
         return Components::change_arrayKeys($DBresult, $keys);
     }
@@ -87,13 +88,14 @@ class Show
         return Components::change_arrayKeys($DBresult, $keys);
     }
 
-    public function create($title, $desc, $artist, $category)
+    public function create($title, $desc, $artist, $category,$basePrice)
     {
         $data = [
             "nomSpectacle" => $title,
             "description" => $desc,
             "idCategories" => $category,
             "nomArtiste" => $artist,
+            "prix_de_base"=> $basePrice,
         ];
         return $this->DB->create($this->table, $data);
     }
@@ -131,5 +133,18 @@ class Show
 
     public function delete($id) {
         $this->DB->deleteWhere($this->table,'idSpectacle',$id);
+    }
+
+    public function addEvent($idLocation,$date,$idEvent) {
+        $this->DB->create("Representation",["idSalle"=>$idLocation,"Date"=>$date,"idSpectacle"=>$idEvent]);
+    }
+    public function updateEvent($id,$data) {
+        $data = Components::change_key($data, "name", "idSalle");
+        $data = Components::change_key($data, "date", "Date");
+        $data = Components::change_key($data, "locationId", "idSalle");
+        $this->DB->update("Representation",$id,$data,"idRepresentation");
+    }
+    public function deleteEvent($id) {
+        $this->DB->deleteWhere("Representation","idRepresentation",$id);
     }
 }

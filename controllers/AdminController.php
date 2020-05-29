@@ -13,18 +13,30 @@ class AdminController extends Controller
         //[POST]
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && Components::verifyPostValue(["title", "description", "artist", "showCategory"])) {
             $show = new Show();
-
             if (Components::verifyPostValue(["id"])) {
                 $id = $_POST["id"];
-                echo $show->update($id, $_POST["title"], $_POST["description"], $_POST["artist"], $_POST["showCategory"],$_POST["basePrice"]);
+                $show->update($id, $_POST["title"], $_POST["description"], $_POST["artist"], $_POST["showCategory"],$_POST["basePrice"]);
+                 //Add Section
+                 if ($_POST['addEvent']['idLocation'] != '' && $_POST['addEvent']['date'] != '') {
+                    $show->addEvent($_POST['addEvent']['idLocation'],$_POST['addEvent']['date'],$_POST["id"]);
+                }
+                //Update Section
+                foreach ($_POST as $row) {
+                    if (isset($row['id']) && isset($row['date'])) {
+                        $row["idSpectacle"] = $_POST["id"];
+                        $show->updateEvent($row['id'], $row);
+                    }
+                }
+                //DeleteSection
+                if (Components::verifyPostValue(["eventId"])) {
+                    $show->deleteEvent($_POST['eventId']);
+                }
             } else {
-                $id = $show->create($_POST["title"], $_POST["description"], $_POST["artist"], $_POST["showCategory"]);
+                $id = $show->create($_POST["title"], $_POST["description"], $_POST["artist"], $_POST["showCategory"],$_POST["basePrice"]);
             }
 
             if ($id)
                 Components::uploadImage("show", "show" . $id . ".jpg");
-
-            header('Location: /admin/showlist');
         }
 
         //[GET]
@@ -34,6 +46,7 @@ class AdminController extends Controller
             $data = $show->get($_GET['id']);
             $data['pageState'] = "Modifier";
             $data['returnLink'] = "./showlist";
+            $data["events"] = ($show->getEventWhere($_GET['id'],"idSpectacle"));
         } else {
             $data = [
                 'title' => '',
@@ -98,7 +111,9 @@ class AdminController extends Controller
     public static function fidelityListView($viewName)
     {
         UserAcess::adminPage();
-
+        $purchase = new Purchase();
+        $data = $purchase->getFidelityList();
+        ($data);
         require_once("./views/admin/" . $viewName . ".php");
     }
 

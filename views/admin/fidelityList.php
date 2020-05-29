@@ -15,8 +15,9 @@ PageFrame::loadBundle();
     <div class="section">
         <div class="d-flex justify-content-between" style="padding:20px">
             <h2>Fidelité</h2>
+           
         </div>
-
+        <?php Components::fidelityList($data) ?>
     </div>
 </div>
 

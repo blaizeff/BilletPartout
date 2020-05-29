@@ -29,6 +29,20 @@ class Location
         return Components::change_arrayKeys($DBresult, $keys);
     }
 
+    public function selectLocation($name,$selectedId='',$style='customSelect') {
+        $locations = $this->selectAll();
+        $html = "<select class=\"form-control browser-default  custom-select $style\" name='".$name."'>";
+        foreach ($locations as $item) {
+            $html .= "<option value='" . $item["id"] . "'";
+            if ($selectedId == $item["id"]) {
+                $html .= " selected";
+            }
+            $html .= ">" . $item["name"] . "</option>";
+        }
+        $html .= "</select>";
+        return $html;
+    }
+    
     public function create($title, $address)
     {
         $data = [

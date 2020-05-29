@@ -208,7 +208,7 @@ class DB
         return ($success) ? $row : [];
     }
 
-    public function getEvent($id) {
+    public function getEvent($id,$column) {
         $sqlString = 'SELECT    s.idSpectacle,
                                 r.idRepresentation,
                                 s.nomSpectacle,
@@ -216,13 +216,24 @@ class DB
                                 s.description,
                                 cat.Description,
                                 r.Date,
+                                sa.idSalle,
                                 sa.nomSalle,
                                 sa.Adresse from Spectacles s join Representation r on s.idSpectacle=r.idSpectacle join Salles sa on r.idSalle=sa.idSalle join Categories cat on s.idCategories=cat.idCategories' ;
-        $sqlString .= ' WHERE r.idRepresentation = :id';
+        $sqlString .= ' WHERE r.'.$column.' = :id';
         $stm = $this->pdo->prepare($sqlString);
         $stm->bindValue(':id',$id);
         $success = $stm->execute();
         $row = $stm->fetchAll(PDO::FETCH_ASSOC);
         return ($success) ? $row : [];
+    }
+    public function getFidelity ()
+    {
+        $stm = $this->pdo->prepare('SELECT C.nomClient, C.Courriel, COUNT(A.idAchat) as nbAchats FROM Achats A
+        JOIN Clients C on A.idClient = C.idClient
+        GROUP BY C.idClient
+        ORDER BY nbAchats DESC;');
+        $success = $stm->execute();
+        $rows = $stm->fetchAll(PDO::FETCH_ASSOC);
+        return ($success) ? $rows : [];
     }
 }

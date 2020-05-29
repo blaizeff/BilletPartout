@@ -13,13 +13,12 @@ class CartController extends Controller {
                 'nbTickets' => $_SESSION['cart']['nbTickets'],
                 'price'=> $ticket->get($_SESSION['cart']['id'],$_SESSION['cart']['sectionId']),
                 'section'=> $show->getSection($_SESSION['cart']['sectionId'])['name'],
-                'eventName'=> $show->getEvent($_SESSION['cart']['id'])[0]['title'],
+                'eventName'=> $show->getEventWhere($_SESSION['cart']['id'])[0]['title'],
             ];    
             $data['subTotal'] = number_format($data['nbTickets'] * $data['price'],2);
             $data['TPS'] = number_format($data['subTotal'] * 0.05,2);
             $data['TVQ'] = number_format($data['subTotal'] * 0.09975,2);
             $data['total'] = number_format($data['subTotal'] + $data['TPS'] + $data['TVQ'],2);
-            print_r($data);
             require_once("./views/cart/" . $page . ".php");
         } else {
         header('Location: ../show/list');

@@ -81,6 +81,11 @@ footer {
     padding: 15px 20px 15px 20px !important;
 }
 
+.customSelectHidden {
+    background-color: white !important;
+    border: none !important;
+}
+
 .customSelect {
     background-color: #edeef6 !important;
     border: none !important;

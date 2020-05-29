@@ -1,6 +1,6 @@
 <?php
 include_once 'DB.php';
-class Show
+class Purchase
 {
     private $DB;
     private $table = "Spectacles";
@@ -9,14 +9,12 @@ class Show
         $this->DB = new DB();
     }
 
-    public function getFidelityList($id)
+    public function getFidelityList()
     {
-        $result = $this->DB->getWhere($this->table, "idSpectacle", $id);
-        $result = Components::change_key($result, "idSpectacle", "idShow");
-        $result = Components::change_key($result, "nomSpectacle", "title");
-        $result = Components::change_key($result, "nomArtiste", "artist");
-        $result = Components::change_key($result, "Adresse", "location");
-        $result = Components::change_key($result, "idCategories", "idCat");
+        $result = $this->DB->getFidelity();
+        $result = Components::change_key($result, "nomClient", "name");
+        $result = Components::change_key($result, "courriel", "email");
+        $result = Components::change_key($result, "nbAchats", "nb");
         return $result;
     }
 }

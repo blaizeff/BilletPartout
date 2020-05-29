@@ -37,7 +37,7 @@ class ShowController extends Controller
         //[GET]
         if (isset($_GET['id']) && is_int((int) $_GET["id"])) {
             $show = new Show();
-            $data = $show->getEvent($_GET['id'])[0];
+            $data = $show->getEventWhere($_GET['id'])[0];
         }
         $title = $data['title'];
         $artist = $data['artist'];

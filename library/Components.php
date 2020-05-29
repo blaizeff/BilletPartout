@@ -218,7 +218,6 @@ class Components
         </tr>';
 
         if (!empty($sections)) {
-
             foreach ($sections as $section) {
                 $html .= '<tr><input type="hidden" name="section' . $section["idSection"] .'[id]" value='.$section["idSection"].'>
             <td><input type="text" name="section' . $section["idSection"] . '[name]" class="form-control customInputHidden" value=' . $section["name"] . '></td>
@@ -258,45 +257,47 @@ class Components
 
     public static function eventList($events)
     {
+        $location = new Location(); 
+
         $html = '<table>
         <tr>
             <th>Date</th>
-            <th>Salle de Spectable</th>
+            <th>Salle de Spectacle</th>
             <th></th>
         </tr>
         <tr>
-            <td><input type="text" name="addSection[name]" class="form-control custominput"></td>
-            <td><input type="number" name="addSection[priceRatio]" class="form-control custominput"></td>
-            <td><input type="text" name="addSection[color]" class="form-control custominput"></td>
-            <td><input type="number" name="addSection[capacity]" class="form-control custominput"></td>
+            <td><input type="text" name="addEvent[date]" class="form-control custominput"></td>
+            <td>'.$location->selectLocation("addEvent[idLocation]").'</td>
             <td><button type="submit" class="btn btn-primary green">Ajouter</button> </td>
         </tr>';
 
         if (!empty($events)) {
             foreach ($events as $event) {
-                $html .= '<tr><input type="hidden" name="section' . $event["idEvent"] .'[id]" value='.$event["idEvent"].'>
-            <td><input type="text" name="section' . $event["idEvent"] . '[name]" class="form-control customInputHidden" value=' . $event["name"] . '></td>
-            <td><input type="button" onclick="deleteSection(' . $event["idEvent"] . ')" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" value="Supprimer"></td>
+                $html .= '<tr><input type="hidden" name="event' . $event["id"] .'[id]" value='.$event["id"].'>
+                <input type="hidden" name="event' . $event["id"] .'[locationId]" value='.$event["locationId"].'>
+            <td><input type="text" name="event' . $event["id"] . '[date]" class="form-control customInputHidden" value="' . $event["Date"] . '"></td>
+            <td>'.$location->selectLocation("event".$event["id"]."[name]",$event["locationId"],'customSelectHidden').'</td>
+            <td><input type="button" onclick="deleteEvent(' . $event["id"] . ')" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" value="Supprimer"></td>
             </tr>';
             }
         }
 
         $html .= '</table><script>
-        function deleteSection(id) {
-            document.getElementById("sectionId").value = id;
+        function deleteEvent(id) {
+            document.getElementById("eventId").value = id;
         }
         </script>';
         $html .='<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="ModalLabel">Êtes-vous sûr de vouloir supprimer cette section ?</h5>
+          <h5 class="modal-title" id="ModalLabel">Êtes-vous sûr de vouloir supprimer cette représentation ?</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <form action="" method="get">
-        <input type="hidden" id="sectionId" name="sectionId"><br><br>
+        <input type="hidden" id="eventId" name="eventId"><br><br>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Non</button>
           <button type="submit" formmethod="post" class="btn btn-primary">Oui</button>
@@ -304,6 +305,24 @@ class Components
       </div>
     </div>
   </div>';
-        return $html;
+        echo $html;
+    }
+
+    public static function fidelityList($data) {
+        $html = "<br><table>";
+        $html .= "<tr><th>NomClient</th>
+        <th>Adresse Courriel</th>
+        <th>Nombre d'achats</th></tr>";
+
+        foreach($data as $item) {
+            $html .= "<tr>
+            <td>".$item["nomClient"]."</td>
+            <td>".$item["Courriel"]."</td>
+            <td>".$item["nbAchats"]."</td>
+            </tr>";
+        }
+        $html .="</table>";
+
+        echo $html;
     }
 }
