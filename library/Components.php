@@ -253,4 +253,55 @@ class Components
   </div>';
         return $html;
     }
+
+    public static function eventList($events)
+    {
+        $html = '<table>
+        <tr>
+            <th>Date</th>
+            <th>Salle de Spectable</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td><input type="text" name="addSection[name]" class="form-control custominput"></td>
+            <td><input type="number" name="addSection[priceRatio]" class="form-control custominput"></td>
+            <td><input type="text" name="addSection[color]" class="form-control custominput"></td>
+            <td><input type="number" name="addSection[capacity]" class="form-control custominput"></td>
+            <td><button type="submit" class="btn btn-primary green">Ajouter</button> </td>
+        </tr>';
+
+        if (!empty($events)) {
+            foreach ($events as $event) {
+                $html .= '<tr><input type="hidden" name="section' . $event["idEvent"] .'[id]" value='.$event["idEvent"].'>
+            <td><input type="text" name="section' . $event["idEvent"] . '[name]" class="form-control customInputHidden" value=' . $event["name"] . '></td>
+            <td><input type="button" onclick="deleteSection(' . $event["idEvent"] . ')" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" value="Supprimer"></td>
+            </tr>';
+            }
+        }
+
+        $html .= '</table><script>
+        function deleteSection(id) {
+            document.getElementById("sectionId").value = id;
+        }
+        </script>';
+        $html .='<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Êtes-vous sûr de vouloir supprimer cette section ?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="" method="get">
+        <input type="hidden" id="sectionId" name="sectionId"><br><br>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Non</button>
+          <button type="submit" formmethod="post" class="btn btn-primary">Oui</button>
+        </div>
+      </div>
+    </div>
+  </div>';
+        return $html;
+    }
 }

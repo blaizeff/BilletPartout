@@ -43,6 +43,14 @@ PageFrame::loadBundle();
                 <img id="blah"  src="#" alt="" />
             </div>
 
+            <div class="col-12 form-group">
+                <label class="mb-1">Prix de Base</label>
+                <input name="basePrice" type="number" class="form-control custominput" value='<?php echo $data["basePrice"] ?>'>
+            </div>
+
+            <div class="col-12 form-group">
+               <?php Components::eventList($data["events"])?>
+            </div>
             <div class="col-12 ">
                 <button type="submit" class="btn btn-primary green"><?php echo $data["pageState"] ?></button>
             </div>

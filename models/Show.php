@@ -17,6 +17,7 @@ class Show
         $result = Components::change_key($result, "nomArtiste", "artist");
         $result = Components::change_key($result, "Adresse", "location");
         $result = Components::change_key($result, "idCategories", "idCat");
+        $result = Components::change_key($result, "prix_de_base", "basePrice");
         return $result;
     }
 
@@ -36,10 +37,10 @@ class Show
         ];
         return Components::change_arrayKeys($DBresult, $keys);
     }
-    
-    public function getEvent($idShow)
+
+    public function getEvent($idEvent)
     {
-        $DBresult = $this->DB->getEvent($idShow);
+        $DBresult = $this->DB->getEvent($idEvent);
         $keys = [
             "idRepresentation" => "id",
             "idSpectacle" => "idShow",
@@ -97,13 +98,14 @@ class Show
         return $this->DB->create($this->table, $data);
     }
 
-    public function update($id, $title, $desc, $artist, $category)
+    public function update($id, $title, $desc, $artist, $category,$basePrice)
     {
         $data = [
             "nomSpectacle" => $title,
             "description" => $desc,
             "idCategories" => $category,
             "nomArtiste" => $artist,
+            "prix_de_base"=> $basePrice,
         ];
         return $this->DB->update($this->table, $id, $data, "idSpectacle");
     }

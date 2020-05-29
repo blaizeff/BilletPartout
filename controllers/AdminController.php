@@ -16,7 +16,7 @@ class AdminController extends Controller
 
             if (Components::verifyPostValue(["id"])) {
                 $id = $_POST["id"];
-                echo $show->update($id, $_POST["title"], $_POST["description"], $_POST["artist"], $_POST["showCategory"]);
+                echo $show->update($id, $_POST["title"], $_POST["description"], $_POST["artist"], $_POST["showCategory"],$_POST["basePrice"]);
             } else {
                 $id = $show->create($_POST["title"], $_POST["description"], $_POST["artist"], $_POST["showCategory"]);
             }
@@ -37,18 +37,15 @@ class AdminController extends Controller
         } else {
             $data = [
                 'title' => '',
+                'events'=>'',
                 'pageState' => 'Ajouter',
                 'returnLink' => './showlist',
                 'description' => '',
                 'artist' => '',
                 'idCat' => '',
+                'basePrice'=>''
             ];
         }
-        require_once("./views/admin/" . $viewName . ".php");
-    }
-
-    public static function eventView($viewName)
-    {
         require_once("./views/admin/" . $viewName . ".php");
     }
 
@@ -105,19 +102,6 @@ class AdminController extends Controller
         require_once("./views/admin/" . $viewName . ".php");
     }
 
-    public static function detailsView($viewName)
-    {
-        UserAcess::adminPage();
-
-        if (isset($_GET["id"]) && is_int((int) $_GET["id"])) {
-            $show = new Show();
-            $data = $show->get($_GET["id"]);
-            require_once("./views/admin/" . $viewName . ".php");
-        } else {
-            require_once("./views/invalidPage.php");
-        }
-    }
-
     public static function locationView($viewName)
     {
         UserAcess::adminPage();
@@ -142,12 +126,10 @@ class AdminController extends Controller
                 if (Components::verifyPostValue(["sectionId"])) {
                     $location->deleteSection($_POST['sectionId']);
                 }
-                //header('Location: ./locationlist');
 
                 //CREATE
             } else {
                 $id = $location->create($_POST["title"], $_POST["address"]);
-                header('Location: ./locationlist');
             }
         }
 

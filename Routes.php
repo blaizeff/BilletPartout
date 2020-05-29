@@ -39,12 +39,6 @@ Route::set('show/list',function() {
 Route::set('admin/show',function() {
     AdminController::showView("Show");
 });
-Route::set('admin/event',function() {
-    AdminController::eventView("event");
-});
-Route::set('admin/details',function() {
-    AdminController::detailsView("details");
-});
 Route::set('admin/location',function() {
     AdminController::locationView("location");
 });
